@@ -26,6 +26,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "Agape316": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://agape316.net",
+      "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
