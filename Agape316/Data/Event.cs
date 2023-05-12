@@ -50,5 +50,10 @@ namespace Agape316.Data
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<ApplicationUser> IEvent.GetActiveUsers(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
