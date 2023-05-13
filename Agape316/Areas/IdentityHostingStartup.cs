@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(AccountApplication.Areas.Identity.IdentityHostingStartup))]
-namespace AccountApplication.Areas.Identity
+[assembly: HostingStartup(typeof(Agape316.Areas.Identity.IdentityHostingStartup))]
+namespace Agape316.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    scroll-behavior: unset !important;
 }
 
 @media (min-width: 768px) {
@@ -18,5 +19,23 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 60px;
+}
+
+/*for tab control*/
+div.login-logout-tab div.card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+div.login-logout-tab ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+div.login-logout-tab li.nav-item {
+    width: 50%;
+}
+
+.btn-login-register {
+    color: white;
 }
