@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\PublishProfiles\" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml.user" />
   </ItemGroup>
 
 </Project>
