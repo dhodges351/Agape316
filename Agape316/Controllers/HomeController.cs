@@ -1,5 +1,6 @@
 ﻿using Agape316.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Agape316.Controllers
@@ -16,6 +17,11 @@ namespace Agape316.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult ShowpopUp()
+        {                       
+            return PartialView("_LoginPartial");
         }
 
         public IActionResult Privacy()

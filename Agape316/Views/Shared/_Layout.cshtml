@@ -32,7 +32,7 @@
 <body>
     <div class="container-xxl position-relative bg-white p-0">  
         <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-0">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-0">
                  <div class="container">
                     <a id="logoLink" href="" class="navbar-brand p-0">
                         <h1 class="text-primary m-0"><img src="~/img/agape316logo.png" height="30" width="30" alt="logo" />Agape 3:16</h1>
@@ -45,16 +45,16 @@
                             <a asp-asp-controller="Home" asp-action="Index" class="nav-item nav-link">Home</a>
                             <a href="about.html" class="nav-item nav-link">About</a>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>   
-                            @*<a class="nav-item nav-link" href="#" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#accountModal"><span>Login/Register</span></a>*@
+                            @*<a class="nav-item nav-link" href="#" onclick=Details()><span>Login/Register</span></a>*@
                         </div>
-                        <partial name="_LoginPartial"></partial>                        
+                        <partial name="_LoginPartial"></partial> 
                     </div>
                 </div>
             </nav>
         </header>
         <div class="container-xxl position-relative p-0">           
             <main role="main">
-                @RenderBody()
+                @RenderBody()  
             </main>
         </div>
         <!-- Back to Top -->
@@ -125,20 +125,6 @@
     </div>
     <!-- Footer End -->
 
-    <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="accountModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    TEST
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -156,7 +142,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)   
 </body>
 </html>
 
