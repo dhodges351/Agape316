@@ -39,3 +39,8 @@ div.login-logout-tab li.nav-item {
 .btn-login-register {
     color: white;
 }
+
+.margin-top-bottom {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
