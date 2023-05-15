@@ -4,5 +4,8 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h1>@ViewData["Title"]</h1>
+@{
+    Layout = "~/Areas/Identity/Pages/_ConfirmLayout.cshtml";
+}
+
 <partial name="_StatusMessage" model="Model.StatusMessage" />
