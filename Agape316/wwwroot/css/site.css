@@ -44,3 +44,34 @@ div.login-logout-tab li.nav-item {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.header-inner-left {
+    min-height: 350px;
+    background-image: url('/img/planameal.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.header-inner-right {
+    min-height: 350px;
+    background-image: url('/img/casserole.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+.homeSearch {
+    width: 200px;
+}
+
+.btn-forumSearch {
+    color: white;
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
