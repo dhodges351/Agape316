@@ -45,6 +45,16 @@ div.login-logout-tab li.nav-item {
     margin-bottom: 5px;
 }
 
+.welcome {
+    font-size: 1.9em;
+    font-weight: bold;
+}
+
+.mainPara {
+    margin: 0 0 5px 0;
+    color: white;
+}
+
 .header-inner-left {
     min-height: 300px;
     background-image: url('/img/planmeal.jpg');
@@ -56,6 +66,22 @@ div.login-logout-tab li.nav-item {
 .header-inner-right {
     min-height: 300px;
     background-image: url('/img/casserole.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header2-inner-left {
+    min-height: 300px;
+    background-image: url('/img/schedule-event.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header2-inner-right {
+    min-height: 300px;
+    background-image: url('/img/schedule-delivery.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

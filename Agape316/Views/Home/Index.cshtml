@@ -5,8 +5,20 @@
 }
 
 <!-- Navbar & Hero Start --> 
-<div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container mt-5 pt-5 overflow-hidden">       
+<div class="container-xxl py-5 bg-dark hero-header mb-5">    
+    <div class="container mt-5 pt-5 overflow-hidden"> 
+        <div class="row align-items-start">
+            <div class="col-md-12">
+                <p class="mainPara">
+                    <span class="welcome">Welcome</span> to Sand Ridge Baptist Church Agape Ministry in Lexington, TN!
+                    Our mission is to serve the community and provide service opportunities for people to demonstrate 
+                    God's agape love for His children as written in John 3:16: 
+                    <i><b>"For God so loved the world, that he gave his only begotten Son, that whosoever believeth in 
+                    him should not perish, but have everlasting life."</b></i>"
+                </p>
+            </div>            
+        </div>
+        
         <div class="row align-items-start">
             <form asp-controller="Search" asp-action="Search" method="post" role="form" id="homeSearchForm">
                 <input asp-for="SearchQuery" id="txtSearch" type="text" class="homeSearch" placeholder="Search..." onfocus="clearThis(this)" />
@@ -31,32 +43,27 @@
                     <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
                 </div>
             </div>
-        </div>        
+        </div>
+        <div class="row gx-4">
+            <div class="col-lg-6 text-center py-4">
+                <div>
+                    <p class="header2-inner-left">
+
+                    </p>
+                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center py-4">
+                <div>
+                    <p class="header2-inner-right">
+                    </p>
+                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-@*<div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container my-5 py-5">
-        <div class="row align-items-start">
-            <form asp-controller="Search" asp-action="Search" method="post" role="form" id="homeSearchForm">
-                <input asp-for="SearchQuery" id="txtSearch" type="text" class="homeSearch" placeholder="Search..." onfocus="clearThis(this)" />
-                <button type="submit" class="btn btn-forumSearch" onclick="return checkEntry()">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-lg-5 text-center text-lg-start header-main-left">
-                <p class="py-lg-5">&nbsp;</p>
-                <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Create An Event</a>
-            </div>
-            <div class="col-lg-5 text-center text-lg-end header-main-right">
-                <p class="py-lg-5">&nbsp;</p>
-                <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
-            </div>
-        </div>
-    </div>
-</div>*@
 <!-- Navbar & Hero End -->
 <!-- Service Start -->
 <div class="container-xxl py-5">

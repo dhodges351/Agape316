@@ -159,7 +159,7 @@
 }
 
 .hero-header img {
-    /*animation: imgRotate 50s linear infinite;*/
+    animation: imgRotate 50s linear infinite;
 }
 
 @keyframes imgRotate { 
