@@ -50,7 +50,6 @@ div.login-logout-tab li.nav-item {
     background-image: url('/img/planmeal.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: center;
 }
 
@@ -59,7 +58,6 @@ div.login-logout-tab li.nav-item {
     background-image: url('/img/casserole.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: center;
 }
 
