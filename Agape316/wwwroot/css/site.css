@@ -6,11 +6,32 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-  }
+  }  
+}
+
+@media (max-width: 991px) {
+    div.container-xxl.top-container.bg-dark {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    div.top-inner-container {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+
+div.container-xxl.top-container.bg-dark {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+div.top-inner-container {
+    margin-top: 3em;
+    padding-top: 3em;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
