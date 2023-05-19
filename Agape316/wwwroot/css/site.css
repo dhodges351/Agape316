@@ -20,6 +20,11 @@ html {
     }
 }
 
+.scripture-316 {
+    font-weight: bold;
+    font-style: italic;
+}
+
 div.container-xxl.top-container.bg-dark {
     padding-top: 15px;
     padding-bottom: 5px;
