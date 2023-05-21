@@ -1,11 +1,10 @@
 using Agape316.AspNetIdentity.Services;
 using Agape316.Data;
+using Agape316.Services;
 using Agape316.Settings;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Extensions.DependencyInjection;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
@@ -15,12 +14,13 @@ builder.Services.AddSendGrid(options => {
     .GetValue<string>("ApiKey");
 });
 
-builder.Services.AddScoped<IEmailSender, EmailSenderService>();
-
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IApplicationUser, ApplicationUserService>();
+builder.Services.AddScoped<IEmailSender, EmailSenderService>();
+builder.Services.AddScoped<IUpload, UploadService>();
 
 var app = builder.Build();
 
