@@ -172,3 +172,8 @@ div.login-logout-tab li.nav-item {
     font-family: 'Roboto';
     font-size: 1.7em;
 }
+
+
+.isAdmin {
+    color: red;
+}

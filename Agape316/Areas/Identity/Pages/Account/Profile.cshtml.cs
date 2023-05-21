@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Policy;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Agape316.Areas.Identity.Pages.Account
 {
@@ -44,19 +45,19 @@ namespace Agape316.Areas.Identity.Pages.Account
             _uploadService = uploadService;
             _appUserService = appUserService;   
         }
-
-        public async Task OnGetAsync(string returnUrl = null)
-        {
-            if (User.Identity.IsAuthenticated)
+		
+		public async Task OnGetAsync(string returnUrl = null)
+        {		
+			if (User.Identity.IsAuthenticated)
             {
                 var user = _appUserService.GetByUsername(User.Identity.Name);
                 if (user != null)
                 {
                     FullName = user.FirstName + " " + user.LastName;
                     Email = user.Email;
-                    ProfileImageUrl = user.ProfileImageUrl;
-                    IsAdmin = User.IsInRole("Admin");
-                }
+					ProfileImageUrl = user.ProfileImageUrl;
+                    IsAdmin = await _userManager.IsInRoleAsync(user, "ADMIN");
+				}
             }            
         }
 
