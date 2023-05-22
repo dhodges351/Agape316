@@ -22,35 +22,41 @@
 		    }
 		-->
 	</div>
-	<div class="row userProfile">
+	<div class="row my-2 py-2">
 		<div class="col-md-3">
 			<div class="profile-image-container">
 				<img src="@Model.ProfileImageUrl" alt="Profile Image" height="300" width="300" />
-			</div>			
-			@if (User?.Identity?.Name == Model.UserName)
+			</div>
+		</div>
+		<div class="col-md-9 text-left">	
+			Username: @Model.FullName 
+			@if (@Model.IsAdmin)
 			{
-				<form method="post" id="uploadForm" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
-					<div id="upload" style="text-align:left;">
-						<label class="btn btn-default btn-file">
-							Browse <input type="file" id="txtFile" name="file" style="display:none;" />
+				<span class="isAdmin">(Admin)</span>
+			}
+			<br />
+			Email: @Model.Email
+			<br />
+			Member Since: @Model.MemberSince			
+		</div>		
+	</div>
+	<div class="row">
+		<div class="col-12 text-center">
+			@if (User?.Identity?.Name == Model.Email)
+			{
+				<form method="post" id="uploadForm" enctype="multipart/form-data" asp-area="Identity" asp-page="/Account/Profile">
+					<div id="upload">
+						<label class="btn btn-primary">
+							Upload Profile Image <input type="file" id="txtFile" name="Upload" style="display:none;" />
 						</label>
-						<br>
-						<button type="submit" id="btn-profile" onclick="checkFile('Profile')" class="btn-profile-submit">
+					</div>
+					<div class="mt-2">
+						<button type="submit" id="btn-profile" onclick="checkFile('Profile')" class="btn btn-secondary">
 							Submit
-					    </button>
+						</button>
 					</div>
 				</form>
 			}
-		</div>
-		<div class="col-md-9">				
-			<span id="userFullNameLabel">Username: @Model.FullName 
-				@if (@Model.IsAdmin)
-				{
-					<span class="isAdmin">(Admin)</span>
-				}
-			</span>
-			<span id="userEmailLabel">Email: @Model.Email</span>
-			<span id="userCreatedLabel">Member Since: @Model.MemberSince</span>			
 		</div>
 	</div>
 </div>

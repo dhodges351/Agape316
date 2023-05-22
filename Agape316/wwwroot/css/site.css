@@ -149,10 +149,6 @@ div.login-logout-tab li.nav-item {
 }
 
 /* User Profiles */
-.userProfile {
-    padding: 32px 0 64px 24px;
-    background-color: #fff;
-}
 
 .profile-image-container {
     margin-bottom: 5px;
@@ -173,7 +169,20 @@ div.login-logout-tab li.nav-item {
     font-size: 1.7em;
 }
 
-
 .isAdmin {
     color: red;
 }
+
+
+.btn-file {
+    color: white;
+    background-color: #4FC3F7;
+    transition: ease-in 0.3s;
+    margin-bottom: 5px;
+}
+
+    .btn-file:hover {
+        background-color: #039BE5;
+        transition: ease-in 0.3s;
+    }
+

@@ -2,6 +2,6 @@
 {
     public interface IUpload
     {
-        Task UploadImage(IFormFile formFile);
-    }
+        Task SaveProfileImage(string userId, string fileName);
+	}
 }

@@ -10,6 +10,6 @@ namespace Agape316.Data
         ApplicationUser GetById(string id);
         ApplicationUser GetByUsername(string userName);
         IEnumerable<ApplicationUser> GetAll();
-        Task SetProfileImage(string id, Uri uri);        
+        Task SetProfileImage(string id, string pathToImage);        
     }
 }

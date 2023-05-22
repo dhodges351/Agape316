@@ -26,10 +26,10 @@ namespace Agape316.Services
             return GetAll().FirstOrDefault(user => user.UserName == userName);
         }
 
-        public async Task SetProfileImage(string id, Uri uri)
+        public async Task SetProfileImage(string id, string pathToImage)
         {
             var user = GetById(id);
-            user.ProfileImageUrl = uri.AbsoluteUri;
+            user.ProfileImageUrl = pathToImage;
             _context.Update(user);
             await _context.SaveChangesAsync();
         }

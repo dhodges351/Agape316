@@ -4,30 +4,16 @@ namespace Agape316.Services
 {
     public class UploadService : IUpload
     {
-        public UploadService()
+		private readonly IApplicationUser _appUserService;
+		public UploadService(IApplicationUser appUserService)
         {
-        }
+			_appUserService = appUserService;
+		}
 
-        public async Task UploadImage(IFormFile formFile)
+        public async Task SaveProfileImage(string userId, string fileName)
         {
-//            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-//#if DEBUG
-//            folderName = Path.Combine("ClientApp\\src\\assets", fileName.Contains("pdf") ? "exhibits" : "images");
-//#else
-//                        folderName = Path.Combine("ClientApp\\dist\\assets", fileName.Contains("pdf") ? "exhibits" : "images");
-//#endif
-//            pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-//            var fullPath = Path.Combine(pathToSave, fileName);
-//            dbPath += Path.Combine(folderName, fileName) + ",";
-
-            //using (var stream = new FileStream(fullPath, FileMode.Create))
-            //{
-            //    file.CopyTo(stream);
-            //}
-
-            string userId = string.Empty;
-            Uri uri = new Uri("/uploads/");
-            //await _userService.SetProfileImage(userId, uri);
+            string pathToImage = "/upload/" + fileName;
+            await _appUserService.SetProfileImage(userId, pathToImage);
         }
     }
 }
