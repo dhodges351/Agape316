@@ -9,10 +9,7 @@
 }
 
 <div class="container body-content">
-	<div class="row sectionHeader">
-		<div class="sectionHeading">
-			User Profile
-		</div>
+	<div class="row sectionHeader">		
 		<!--You could have an isActive property on ApplicationUser 
 			and use it to deactivate Users if necessary. Have a disable User
 			button here. Like forum moderators and standard users.
@@ -22,14 +19,16 @@
 		    }
 		-->
 	</div>
-	<div class="row my-2 py-2">
-		<div class="col-md-3">
+	<div class="row my-2">
+		<div class="col-md-12">
 			<div class="profile-image-container">
 				<img src="@Model.ProfileImageUrl" alt="Profile Image" height="300" width="300" />
 			</div>
-		</div>
-		<div class="col-md-9 text-left">	
-			Username: @Model.FullName 
+		</div>		
+	</div>
+	<div class="row my-2">		
+		<div class="col-md-12 text-left">
+			Username: @Model.FullName
 			@if (@Model.IsAdmin)
 			{
 				<span class="isAdmin">(Admin)</span>
@@ -37,8 +36,8 @@
 			<br />
 			Email: @Model.Email
 			<br />
-			Member Since: @Model.MemberSince			
-		</div>		
+			Member Since: @Model.MemberSince
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-12 text-center">

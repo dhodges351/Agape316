@@ -136,23 +136,23 @@ div.login-logout-tab li.nav-item {
 
 .sectionHeader {
     background-color: rgba(0,0,0,0.9);
-    padding: 8px 0 24px 24px;
+    padding: 0;
 }
 
 .sectionHeading {
     color: white;
     font-size: 1.1em;
     font-family: 'Roboto';
-    padding: 16px 0 16px 0;
+    padding: 0;
     border-bottom: 1px solid #335;
-    margin-bottom: 12px;
+    margin-bottom: 0;
 }
 
 /* User Profiles */
 
 .profile-image-container {
     margin-bottom: 5px;
-    text-align: left;
+    text-align: center;
 }
 
 #userEmailLabel, #userBioLabel, #userCreatedLable, #userRating, #userActiveLabel {

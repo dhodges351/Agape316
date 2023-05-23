@@ -78,18 +78,9 @@ namespace Agape316.Areas.Identity.Pages.Account
 				await _uploadService.SaveProfileImage(user?.Id, fileName);
 
 				_logger.LogInformation("User profile image saved.");
-			}			
-
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                // This needs to be a redirect so that the browser performs a new
-                // request and the identity for the user gets updated.
-                return RedirectToPage();
-            }
+			}		
+            
+            return RedirectToAction("Index", "Home");            
         }
     }
 }
