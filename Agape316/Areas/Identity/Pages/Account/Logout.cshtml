@@ -5,16 +5,15 @@
 }
 
 @{
-    Layout = "~/Areas/Identity/Pages/_GeneralLayout.cshtml";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
+<header>    
     @{
-        if (User.Identity?.IsAuthenticated ?? false)
+        if (User?.Identity?.IsAuthenticated ?? false)
         {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-primary text-light">Click here to Logout</button>
+            <form class="text-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-primary text-light">Click here to Logout</button>
             </form>
         }
         else

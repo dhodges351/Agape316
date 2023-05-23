@@ -6,30 +6,46 @@
     <div class="modal-dialog">
         <div class="modal-content rounded-0">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login/Register</h5>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title" id="exampleModalLabel">Login/Register</h5>
+                }                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="returnToHome()"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card login-logout-tab">
-                            <div class="card-header">
-                                <ul class="nav nav-tabs card-header-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href='/Identity/Account/Login'>Sign In</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href='/Identity/Account/Register'>Sign Up</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-content">
-                                <div class="col-md-12">
-                                    @RenderBody()
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="col-md-12">
+                            @RenderBody()
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12">
+                            <div class="card login-logout-tab">
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href='/Identity/Account/Login'>Sign In</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href='/Identity/Account/Register'>Sign Up</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-content">
+                                    <div class="col-md-12">
+                                        @RenderBody()
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }                    
                 </div>
             </div>
         </div>
