@@ -17,7 +17,7 @@ namespace Agape316.Areas.Identity.Pages.Account
         private readonly ILogger<ProfileModel> _logger;
         private readonly IApplicationUser _appUserService;
         private readonly IUpload _uploadService;
-		private IHostingEnvironment _environment;
+		private readonly IHostingEnvironment _environment;
 
 		public string UserId { get; set; }
         public string Email { get; set; }
@@ -44,7 +44,7 @@ namespace Agape316.Areas.Identity.Pages.Account
 			_environment = environment;
 		}
 		
-		public async Task OnGetAsync(string returnUrl = null)
+		public async Task OnGetAsync()
         {		
 			if (User.Identity.IsAuthenticated)
             {
@@ -60,7 +60,7 @@ namespace Agape316.Areas.Identity.Pages.Account
             }            
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync()
         {
 			if (User.Identity.IsAuthenticated)
 			{

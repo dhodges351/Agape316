@@ -1,59 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Agape316.Data
+namespace Agape316.Data;
+
+public partial class Event
 {
-    public class Event : IEvent
-    {
-        public int Id { get; set; }
-        public int Quantity { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime Created { get; set; }
-        public string ImageUrl { get; set; }
-        public virtual IEnumerable<EventItem> EventItems { get; set; }
+    public int Id { get; set; }
 
-        public Task Create(Event eventObj)
-        {
-            throw new NotImplementedException();
-        }
+    public string Title { get; set; } = null!;
 
-        public Task Delete(int Id)
-        {
-            throw new NotImplementedException();
-        }
+    public string Description { get; set; } = null!;
 
-        public IEnumerable<ApplicationUser> GetActiveUsers(int id)
-        {
-            throw new NotImplementedException();
-        }
+    public string? Notes { get; set; }
 
-        public IEnumerable<Event> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+    public string Location { get; set; } = null!;
 
-        public Event GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+    public string ContactEmail { get; set; } = null!;
 
-        public Task UpdateEventDescription(int eventId, string newDescription)
-        {
-            throw new NotImplementedException();
-        }
+    public DateTime Created { get; set; }
 
-        public Task UpdateEventTitle(int eventId, string newTitle)
-        {
-            throw new NotImplementedException();
-        }
+    public DateTime EventDate { get; set; }
 
-        IEnumerable<ApplicationUser> IEvent.GetActiveUsers(int id)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    public string? ImageUrl { get; set; }
+
+    public int CategoryId { get; set; }
 }

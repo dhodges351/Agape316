@@ -1,7 +1,5 @@
-﻿using Agape316.Data;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace Agape316.Data
 {
@@ -11,9 +9,16 @@ namespace Agape316.Data
             : base(options)
         {
         }
-
-        public DbSet<Event> Event { get; set; }
-        public DbSet<EventItem> EventItem { get; set; }
+        
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<CategoryDescription> CategoryDescriptions { get; set; }
+
+        public virtual DbSet<Event> Events { get; set; }
+
+        public virtual DbSet<EventDish> EventDishes { get; set; }
+
+        public virtual DbSet<EventSlot> EventSlots { get; set; }
     }
 }

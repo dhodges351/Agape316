@@ -1,13 +1,16 @@
-﻿namespace Agape316.Data
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Agape316.Models;
+
+namespace Agape316.Data
 {
     public interface IEvent
     {
         Event GetById(int id);
         IEnumerable<Event> GetAll();
-        Task Create(Event eventObj);
-        Task Delete(int Id);
-        Task UpdateEventTitle(int eventId, string newTitle);
-        Task UpdateEventDescription(int eventId, string newDescription);
-        IEnumerable<ApplicationUser> GetActiveUsers(int id);        
+        Task Create(Event agapeEvent);
+        Task Delete(int eventId);
+        Task UpdateEvent(Event agapeEvent);
     }
 }
