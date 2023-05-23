@@ -12,6 +12,5 @@ namespace Agape316.Data
         Task Create(Category category);
         Task Delete(int categoryId);
         Task UpdateCategoryName(int categoryId, string newName);
-        Task UpdateCategoryDescription(int categoryId, string newDescription);
     }
 }

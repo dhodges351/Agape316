@@ -9,6 +9,7 @@ namespace Agape316.Data
     {
         Event GetById(int id);
         IEnumerable<Event> GetAll();
+        IEnumerable<Category> GetAllCategories();
         Task Create(Event agapeEvent);
         Task Delete(int eventId);
         Task UpdateEvent(Event agapeEvent);

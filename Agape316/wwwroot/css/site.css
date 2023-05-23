@@ -126,6 +126,19 @@ div.login-logout-tab li.nav-item {
     font: inherit;
 }
 
+.btn-submitEvent {
+    background-color: #00695C !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-submitEvent:hover {
+        transition: ease-in 0.1s;
+        background-color: #00897B !important;
+        color: #fff !important;
+    }
+
 
 .logo-grill {
     height: 60px;

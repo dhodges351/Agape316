@@ -1,0 +1,60 @@
+﻿@model Agape316.Models.CreateEventModel
+@using Agape316.Enums
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Event" asp-action="AddEvent" method="post" id="addEventForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Event title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Write a brief description here.">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location">Location</label>
+                <input asp-for="Location" class="form-control" placeholder="Event Location" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactEmail">Email</label>
+                <input asp-for="ContactEmail" class="form-control" placeholder="ContactEmail" />
+                <span asp-validation-for="ContactEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate">Event Date</label>
+                <input asp-for="EventDate" class="form-control" placeholder="Event Date" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Category">Category</label>
+                @Html.DropDownListFor(m => m.Category,
+                new SelectList(Enum.GetValues(typeof(CategoryEnum))),
+                "Select Category")
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Notes">Notes</label>
+                <textarea asp-for="Notes" rows="3" class="form-control" placeholder="Write notes here (special instructions, ingredients, etc.)."></textarea>
+            </div>
+            <div id="upload" class="form-group my-2">
+                <label>Upload Event Image</label>
+                <br />
+                <label class="btn btn-default btn-file">
+                    Browse <input asp-for="ImageUrl" id="txtEventImage" type="file" style="display: none;">
+                </label>
+            </div>
+            <div class="form-group my-2">
+                <button type="submit" id="eventSaveBtn" class="btn btn-submitEvent">Submit</button>
+            </div>            
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
