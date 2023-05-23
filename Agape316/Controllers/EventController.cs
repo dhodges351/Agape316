@@ -29,7 +29,7 @@ namespace Agape316.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddEvent(CreateEventModel model)
-        {            
+        {
             if (model.ImageUrl != null)
             {
                 //_uploadService.SaveProfileImage()

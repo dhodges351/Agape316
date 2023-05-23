@@ -41,8 +41,6 @@ namespace Agape316.Models
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: MM-dd-yyyy}")]
-
-        [StringLength(10, ErrorMessage = "Event Date is required")]
         public DateTime EventDate { get; set; }
 
         public string? ImageUrl { get; set; }

@@ -31,18 +31,18 @@ namespace Agape316.Services
 
         public IEnumerable<Event> GetAll()
         {
-            return _context.Events
+            return _context.Event
                 .Include(agapeEvent => agapeEvent.EventDishes);
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
-            return _context.Categories.ToList();
+            return _context.Category.ToList();
         }
 
         public Event GetById(int id)
         {
-            var agapeEvent = _context.Events.Where(x => x.Id == id)
+            var agapeEvent = _context.Event.Where(x => x.Id == id)
                 .Include(f => f.EventDishes)
                 .FirstOrDefault();
 
