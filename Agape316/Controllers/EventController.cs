@@ -55,27 +55,10 @@ namespace Agape316.Controllers
                     {
                         await Upload.CopyToAsync(fileStream);
                     }
-
-                    await _uploadService.SaveProfileImage(user?.Id, fileName);
                 }
             }
 
-            var agapeEvent = new Event
-            {
-                Title = model.Title,
-                Description = model.Description,
-                Created = DateTime.Now,
-                EventDate = DateTime.Now,
-                ImageUrl = "/upload/" + fileName,
-                Location = model.Location,
-                CategoryId = model.GetCategoryId(model.Category),
-                ContactEmail = model.ContactEmail,
-                StartTime = model.StartTime,
-                EndTime = model.EndTime,
-                Notes = model.Notes,
-            };
-
-            await _eventService.Create(agapeEvent);
+            model.SaveEvent(model, fileName, _eventService);
 
             return RedirectToAction("Index", "Home");
         }

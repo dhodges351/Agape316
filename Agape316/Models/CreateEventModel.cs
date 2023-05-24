@@ -80,5 +80,25 @@ namespace Agape316.Models
 
             return catId + 1;
         }
+
+        public void SaveEvent(CreateEventModel model, string fileName, IEvent _eventService)
+        {
+            var agapeEvent = new Event
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Created = DateTime.Now,
+                EventDate = model.EventDate,
+                ImageUrl = "/upload/" + fileName,
+                Location = model.Location,
+                CategoryId = model.GetCategoryId(model.Category),
+                ContactEmail = model.ContactEmail,
+                StartTime = model.StartTime,
+                EndTime = model.EndTime,
+                Notes = model.Notes,
+            };
+
+            _eventService.Create(agapeEvent);
+        }
     }
 }
