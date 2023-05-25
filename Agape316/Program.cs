@@ -22,6 +22,7 @@ builder.Services.AddScoped<IApplicationUser, ApplicationUserService>();
 builder.Services.AddScoped<IEmailSender, EmailSenderService>();
 builder.Services.AddScoped<IUpload, UploadService>();
 builder.Services.AddScoped<IEvent, EventService>();
+builder.Services.AddScoped<IEventDish, EventDishService>();
 
 var app = builder.Build();
 
