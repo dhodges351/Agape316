@@ -126,11 +126,27 @@ div.login-logout-tab li.nav-item {
     font: inherit;
 }
 
+
+.btn-file {
+    color: white;
+    background-color: #4FC3F7;
+    transition: ease-in 0.3s;
+    margin-bottom: 5px;
+}
+
+    .btn-file:hover {
+        background-color: #039BE5;
+        transition: ease-in 0.3s;
+    }
+
+
 .btn-submitEvent {
     background-color: #00695C !important;
     color: #fff !important;
-    transition: ease-in 0.1s;
-    border-radius: 0px !important;
+    transition: ease-in 0.3s;
+    border-radius: 5px !important;
+    margin-bottom: 5px;
+    margin-top: 1px !important;
 }
 
     .btn-submitEvent:hover {
@@ -186,16 +202,10 @@ div.login-logout-tab li.nav-item {
     color: red;
 }
 
-
-.btn-file {
-    color: white;
-    background-color: #4FC3F7;
-    transition: ease-in 0.3s;
-    margin-bottom: 5px;
+.eventModalContent {
+    background-color: cornsilk;
 }
 
-    .btn-file:hover {
-        background-color: #039BE5;
-        transition: ease-in 0.3s;
-    }
-
+.eventModalHeader {
+    background-color: wheat;
+}

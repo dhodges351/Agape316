@@ -37,7 +37,7 @@ namespace Agape316.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddEvent(CreateEventModel model)
+        public async Task<IActionResult> AddEditEvent(EventModel model)
         {
             var fileName = string.Empty;
 

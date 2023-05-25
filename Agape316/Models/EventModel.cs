@@ -7,14 +7,11 @@ using System.Collections;
 
 namespace Agape316.Models
 {
-    public class CreateEventModel
+    public class EventModel
     {
-        private readonly IEvent _eventService;
+        private readonly IEvent _eventService;    
 
-        public CreateEventModel() 
-        { }
-
-        public CreateEventModel(IEvent eventService)
+        public EventModel(IEvent eventService)
         {
             _eventService = eventService;
             Categories = _eventService.GetAllCategories();
@@ -81,7 +78,7 @@ namespace Agape316.Models
             return catId + 1;
         }
 
-        public void SaveEvent(CreateEventModel model, string fileName, IEvent _eventService)
+        public void SaveEvent(EventModel model, string fileName, IEvent _eventService)
         {
             var agapeEvent = new Event
             {
