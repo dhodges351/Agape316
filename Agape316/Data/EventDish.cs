@@ -7,6 +7,8 @@ public partial class EventDish
 {
     public int Id { get; set; }
 
+    public int EventId { get; set; }
+
     public int SlotId { get; set; }
 
     public DateTime Created { get; set; }

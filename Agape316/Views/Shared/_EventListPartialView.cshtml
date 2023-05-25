@@ -1,0 +1,41 @@
+﻿@using NonFactors.Mvc.Grid
+@model Agape316.Models.EventModel
+
+<div class="row">
+    <div class="col-md-12">       
+        @if (Model.AgapeEvents.Any())
+        {
+            @(
+                Html
+                .Grid(Model.AgapeEvents)
+                .Build(columns =>
+                {
+                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Event Image");
+                    columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
+                    columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
+                    columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
+                    columns.Add(model => @Html.Raw(model.ContactEmail)).Titled("Contact Email");
+                    columns.Add(model => @Html.Raw(model.EventDate)).Titled("Event Date");
+                    columns.Add(model => @Html.Raw(model.StartTime)).Titled("Start Time");
+                    columns.Add(model => @Html.Raw(model.EndTime)).Titled("End Time");
+                    columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
+                    columns.Add(model => @Html.Raw(model.Id)).Hidden();
+                })
+                .Empty("No data found")
+                .Pageable(pager =>
+                {
+                    pager.RowsPerPage = 6;
+                })
+            )
+        }
+        else
+        {
+            <div class="noPosts">
+                <i class="material-icons md-72">question_answer</i>
+                <h3>
+                No Events have been created yet. <br />
+                </h3>
+            </div>
+        }
+    </div>    
+</div>

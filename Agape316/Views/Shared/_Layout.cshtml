@@ -23,6 +23,7 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -141,13 +142,18 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>
+    <script>
+        document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+    </script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)   
+
     <script>
         var fileSize = 0;
-        var filePath = '';
+        var filePath = '';        
 
         // Allowed file types
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
@@ -183,7 +189,7 @@
             fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
             filePath = $("#txtFile").val();
         });
-       
+
     </script>
 </body>
 </html>

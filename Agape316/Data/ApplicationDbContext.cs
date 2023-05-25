@@ -11,7 +11,6 @@ namespace Agape316.Data
         }
         
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventDish> EventDish{ get; set; }
         public virtual DbSet<EventSlot> EventSlot { get; set; }

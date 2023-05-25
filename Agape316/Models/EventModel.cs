@@ -9,12 +9,16 @@ namespace Agape316.Models
 {
     public class EventModel
     {
-        private readonly IEvent _eventService;    
+        private readonly IEvent _eventService;
+
+        public EventModel()
+        {
+        }
 
         public EventModel(IEvent eventService)
         {
             _eventService = eventService;
-            Categories = _eventService.GetAllCategories();
+            AgapeEvents = _eventService.GetAll();
         }
 
         [Required]
@@ -60,11 +64,11 @@ namespace Agape316.Models
 
         public int CategoryId { get; set; }
 
-        IEnumerable<Category> Categories { get; set; } = new List<Category>();
-
         [Required]        
         [StringLength(50, ErrorMessage = "Category is required")]
         public string Category { get; set; }
+
+        public IEnumerable<Event> AgapeEvents { get; set; }
 
         public int GetCategoryId(string category)
         {

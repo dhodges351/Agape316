@@ -19,9 +19,9 @@ namespace Agape316.Services
             await _context.SaveChangesAsync();
         }        
 
-        public async Task Delete(int eventId)
+        public async Task Delete(int id)
         {
-            var agapeEvent = GetById(eventId);
+            var agapeEvent = GetById(id);
             if (agapeEvent != null)
             {
                 _context.Remove(agapeEvent);
@@ -31,13 +31,10 @@ namespace Agape316.Services
 
         public IEnumerable<Event> GetAll()
         {
-            return _context.Event
-                .Include(agapeEvent => agapeEvent.EventDishes);
-        }
+            var events = _context.Event
+                        .Include(f => f.EventDishes);
 
-        public IEnumerable<Category> GetAllCategories()
-        {
-            return _context.Category.ToList();
+            return events.OrderByDescending(x => x.Created);
         }
 
         public Event GetById(int id)
