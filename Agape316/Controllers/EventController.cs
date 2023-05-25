@@ -17,7 +17,7 @@ namespace Agape316.Controllers
         [BindProperty]
         public IFormFile Upload { get; set; }
 
-        public EventController(IEvent eventService, IApplicationUser appUserService,
+        public EventController(IEvent eventService,
             Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             _eventService = eventService;
@@ -46,12 +46,22 @@ namespace Agape316.Controllers
 
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
+                    model.ImageUrl = "/upload/" + fileName;
                 }
             }
 
             model.SaveEvent(model, fileName, _eventService);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetEventDetails(int eventId)
+        {
+            var model = new EventModel(_eventService, eventId);
+
+            return PartialView("~/Views/Shared/_EventPartialView.cshtml", model);
         }
     }
 }

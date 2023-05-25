@@ -209,3 +209,7 @@ div.login-logout-tab li.nav-item {
 .eventModalHeader {
     background-color: wheat;
 }
+
+.edit-event {
+    text-align: right !important;
+}

@@ -1,6 +1,11 @@
 ﻿@using NonFactors.Mvc.Grid
 @model Agape316.Models.EventModel
 
+<style>
+    tr.mvc-grid-headers {
+        text-align: center;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">       
         @if (Model.AgapeEvents.Any())
@@ -10,15 +15,15 @@
                 .Grid(Model.AgapeEvents)
                 .Build(columns =>
                 {
-                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Event Image");
+                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");
                     columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
                     columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
+                    columns.Add(model => @Html.Raw(Agape316.Helpers.EventHelpers.GetCategoryName(model.CategoryId))).Titled("Category");
                     columns.Add(model => @Html.Raw(model.ContactEmail)).Titled("Contact Email");
-                    columns.Add(model => @Html.Raw(model.EventDate)).Titled("Event Date");
-                    columns.Add(model => @Html.Raw(model.StartTime)).Titled("Start Time");
-                    columns.Add(model => @Html.Raw(model.EndTime)).Titled("End Time");
+                    columns.Add(model => @Html.Raw($"{model.EventDate.ToShortDateString()} {model.StartTime}-{model.EndTime}")).Titled("Date/Time");
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
+                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEvent({model.Id})'>{model.Id}</a")).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
                 })
                 .Empty("No data found")
@@ -39,3 +44,24 @@
         }
     </div>    
 </div>
+<script>
+    function EditEvent(eventId)
+    {
+        event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "/Event/GetEventDetails",
+            data: { "eventId": eventId },
+            success: function (response) {
+                $("#planEventModal").find(".modal-body").html(response);
+                $("#planEventModal").modal('show');
+            },
+            failure: function (response) {
+                alert('Get Event details failed');
+            },
+            error: function (response) {
+                alert('Get Event details error');
+            }
+        });        
+    }
+</script>
