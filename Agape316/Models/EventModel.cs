@@ -35,6 +35,13 @@ namespace Agape316.Models
                 Notes = agapeEvent.Notes;
                 Id = agapeEvent.Id;
                 ImageUrl = agapeEvent.ImageUrl;
+                SandwichSlots = agapeEvent.SandwichSlots;
+                SideDishSlots = agapeEvent.SideDishSlots;
+                MainDishSlots = agapeEvent.MainDishSlots;
+                DessertSlots = agapeEvent.DessertSlots;
+                SetUpSlots = agapeEvent.SetUpSlots;
+                ServeSlots = agapeEvent.ServeSlots;
+                CleanUpSlots = agapeEvent.CleanUpSlots;
             }
         }
 
@@ -78,9 +85,7 @@ namespace Agape316.Models
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: HH:mm:ss}")] 
         public string? EndTime { get; set; }
-
         public int CategoryId { get; set; }
-
         public int? Id { get; set; }
         public int SandwichSlots { get; set; }
         public int SideDishSlots { get; set; }
@@ -140,6 +145,13 @@ namespace Agape316.Models
                     StartTime = model.StartTime,
                     EndTime = model.EndTime,
                     Notes = model.Notes,
+                    SandwichSlots = model.SandwichSlots,
+                    SideDishSlots = model.SideDishSlots,
+                    MainDishSlots = model.MainDishSlots,
+                    DessertSlots = model.DessertSlots,
+                    SetUpSlots = model.SetUpSlots,
+                    ServeSlots = model.ServeSlots,
+                    CleanUpSlots = model.CleanUpSlots,
                 };
                 _eventService.Create(agapeEvent);
             }
@@ -157,6 +169,13 @@ namespace Agape316.Models
                 agapeEvent.StartTime = model.StartTime;
                 agapeEvent.EndTime = model.EndTime;
                 agapeEvent.Notes = model.Notes;
+                agapeEvent.SandwichSlots = model.SandwichSlots;
+                agapeEvent.SideDishSlots = model.SideDishSlots;
+                agapeEvent.MainDishSlots = model.MainDishSlots;
+                agapeEvent.DessertSlots = model.DessertSlots;
+                agapeEvent.SetUpSlots = model.SetUpSlots;
+                agapeEvent.ServeSlots = model.ServeSlots;
+                agapeEvent.CleanUpSlots = model.CleanUpSlots;
 
                 _eventService.UpdateEvent(agapeEvent);
             }

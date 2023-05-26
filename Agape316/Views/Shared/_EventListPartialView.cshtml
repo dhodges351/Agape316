@@ -20,8 +20,9 @@
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
                     columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
                     columns.Add(model => @Html.Raw(Agape316.Helpers.EventHelpers.GetCategoryName(model.CategoryId))).Titled("Category");
-                    columns.Add(model => @Html.Raw(model.ContactEmail)).Titled("Contact Email");
+                    columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");
                     columns.Add(model => @Html.Raw($"{model.EventDate.ToShortDateString()} {model.StartTime}-{model.EndTime}")).Titled("Date/Time");
+                    columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlots} Side Dish: {model.SideDishSlots} Main Dish: {model.MainDishSlots} Dessert: {model.DessertSlots} Set Up: {model.SetUpSlots} Serve: {model.ServeSlots} Clean Up: {model.CleanUpSlots}")).Titled("Slots");                    
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
                     columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEvent({model.Id})'>{model.Id}</a")).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
