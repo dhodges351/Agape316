@@ -61,9 +61,8 @@ namespace Agape316.Models
 
         [Required]
         [Display(Name = "Event Date")]
+        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: MM-dd-yyyy}")]
         public DateTime EventDate { get; set; }
 
         public string? ImageUrl { get; set; }
@@ -83,6 +82,13 @@ namespace Agape316.Models
         public int CategoryId { get; set; }
 
         public int? Id { get; set; }
+        public int SandwichSlots { get; set; }
+        public int SideDishSlots { get; set; }
+        public int MainDishSlots { get; set; }
+        public int DessertSlots { get; set; }
+        public int SetUpSlots { get; set; }
+        public int ServeSlots { get; set; }
+        public int CleanUpSlots { get; set; }
 
         [Required]        
         [StringLength(50, ErrorMessage = "Category is required")]

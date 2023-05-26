@@ -132,6 +132,7 @@ div.login-logout-tab li.nav-item {
     background-color: #4FC3F7;
     transition: ease-in 0.3s;
     margin-bottom: 5px;
+    width: 100%;
 }
 
     .btn-file:hover {
@@ -147,6 +148,7 @@ div.login-logout-tab li.nav-item {
     border-radius: 5px !important;
     margin-bottom: 5px;
     margin-top: 1px !important;
+    width: 100%;
 }
 
     .btn-submitEvent:hover {
@@ -212,4 +214,12 @@ div.login-logout-tab li.nav-item {
 
 .edit-event {
     text-align: right !important;
+}
+
+.text-slots {
+    width: 50px;
+}
+
+.label-slots-2 {
+    width: 120px;
 }
