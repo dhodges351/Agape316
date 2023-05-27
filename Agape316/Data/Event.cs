@@ -22,12 +22,12 @@ public partial class Event
     public string EndTime { get; set; }
     public string? ImageUrl { get; set; }
     public int CategoryId { get; set; }
-    public int SandwichSlots { get; set; }
-    public int SideDishSlots { get; set; }
-    public int MainDishSlots { get; set; }
-    public int DessertSlots { get; set; }
-    public int SetUpSlots { get; set; }
-    public int ServeSlots { get; set; }
-    public int CleanUpSlots { get; set; }
+    public int? SandwichSlots { get; set; }
+    public int? SideDishSlots { get; set; }
+    public int? MainDishSlots { get; set; }
+    public int? DessertSlots { get; set; }
+    public int? SetUpSlots { get; set; }
+    public int? ServeSlots { get; set; }
+    public int? CleanUpSlots { get; set; }
     public virtual IEnumerable<EventDish> EventDishes { get; set; }
 }

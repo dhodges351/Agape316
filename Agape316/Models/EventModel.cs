@@ -87,13 +87,13 @@ namespace Agape316.Models
         public string? EndTime { get; set; }
         public int CategoryId { get; set; }
         public int? Id { get; set; }
-        public int SandwichSlots { get; set; }
-        public int SideDishSlots { get; set; }
-        public int MainDishSlots { get; set; }
-        public int DessertSlots { get; set; }
-        public int SetUpSlots { get; set; }
-        public int ServeSlots { get; set; }
-        public int CleanUpSlots { get; set; }
+        public int? SandwichSlots { get; set; }
+        public int? SideDishSlots { get; set; }
+        public int? MainDishSlots { get; set; }
+        public int? DessertSlots { get; set; }
+        public int? SetUpSlots { get; set; }
+        public int? ServeSlots { get; set; }
+        public int? CleanUpSlots { get; set; }
 
         [Required]        
         [StringLength(50, ErrorMessage = "Category is required")]
