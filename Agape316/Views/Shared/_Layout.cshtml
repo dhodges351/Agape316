@@ -148,7 +148,7 @@
     </script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    @*<script src="js/main.js"></script>*@
     @await RenderSectionAsync("Scripts", required: false)   
 
     <script>
@@ -188,6 +188,14 @@
         $('#txtFile').on('change', function () {
             fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
             filePath = $("#txtFile").val();
+        });
+
+
+        $(function () {
+            $('#planEventModal').on('hidden.bs.modal', function () {
+                // Clears fields in Event modal for new Event.
+                window.location.reload();
+            });
         });
 
     </script>
