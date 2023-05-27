@@ -101,7 +101,7 @@ else
 <!-- Service Start -->
 <div class="container-xxl py-3">
     <h5>Latest Events</h5>
-    @await Html.PartialAsync("~/Views/Shared/_EventListPartialView.cshtml", (EventModel)ViewBag.EventModel)
+    @await Component.InvokeAsync("EventList")    
 </div>
 <!-- Service End -->
 

@@ -20,28 +20,29 @@ namespace Agape316.Models
         public EventModel(IEvent eventService, int? id = null)
         {
             _eventService = eventService;
-            AgapeEvents = _eventService.GetAll();
-            if (id.HasValue && AgapeEvents != null && AgapeEvents.Any())
+            if (id.HasValue)
             {
-                var agapeEvent = AgapeEvents.FirstOrDefault(x => x.Id.Equals(id));
-                Title = agapeEvent.Title;
-                Description = agapeEvent.Description;
-                Location = agapeEvent.Location;
-                EventDate = agapeEvent.EventDate;
-                StartTime = agapeEvent.StartTime;
-                EndTime = agapeEvent.EndTime;
-                ContactEmail = agapeEvent.ContactEmail;
-                Category = EventHelpers.GetCategoryName(agapeEvent.CategoryId);
-                Notes = agapeEvent.Notes;
-                Id = agapeEvent.Id;
-                ImageUrl = agapeEvent.ImageUrl;
-                SandwichSlots = agapeEvent.SandwichSlots;
-                SideDishSlots = agapeEvent.SideDishSlots;
-                MainDishSlots = agapeEvent.MainDishSlots;
-                DessertSlots = agapeEvent.DessertSlots;
-                SetUpSlots = agapeEvent.SetUpSlots;
-                ServeSlots = agapeEvent.ServeSlots;
-                CleanUpSlots = agapeEvent.CleanUpSlots;
+                var agapeEvent = _eventService.GetById(id.Value);
+                if (agapeEvent != null)
+                {
+                    Title = agapeEvent.Title;
+                    Description = agapeEvent.Description;
+                    EventDate = agapeEvent.EventDate;
+                    ImageUrl = agapeEvent.ImageUrl;
+                    Location = agapeEvent.Location;
+                    CategoryId = agapeEvent.CategoryId;
+                    ContactEmail = agapeEvent.ContactEmail;
+                    StartTime = agapeEvent.StartTime;
+                    EndTime = agapeEvent.EndTime;
+                    Notes = agapeEvent.Notes;
+                    SandwichSlots = agapeEvent.SandwichSlots;
+                    SideDishSlots = agapeEvent.SideDishSlots;
+                    MainDishSlots = agapeEvent.MainDishSlots;
+                    DessertSlots = agapeEvent.DessertSlots;
+                    SetUpSlots = agapeEvent.SetUpSlots;
+                    ServeSlots = agapeEvent.ServeSlots;
+                    CleanUpSlots = agapeEvent.CleanUpSlots;
+                }
             }
         }
 
@@ -133,7 +134,7 @@ namespace Agape316.Models
             if (!model.Id.HasValue)
             {
                 var agapeEvent = new Event
-                {
+                {                    
                     Title = model.Title,
                     Description = model.Description,
                     Created = DateTime.Now,

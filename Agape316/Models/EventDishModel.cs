@@ -59,6 +59,7 @@ namespace Agape316.Models
         public string? ImageUrl { get; set; }        
         public string Category { get; set; }
         public int? Id { get; set; }
+        public int? EventId { get; set; }
         public int? SandwichSlot { get; set; }
         public int? SideDishSlot { get; set; }
         public int? MainDishSlot { get; set; }
@@ -85,7 +86,7 @@ namespace Agape316.Models
 
         public void SaveEventDish(EventDishModel model, string fileName, IEventDish _eventDishService)
         {
-            AgapeEvent = _eventService.GetByEventDishId(model.Id ?? 0);
+            AgapeEvent = _eventService.GetByEventId(model.Id ?? 0);
 
             if (!model.Id.HasValue)
             {

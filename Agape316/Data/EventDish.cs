@@ -6,6 +6,7 @@ namespace Agape316.Data;
 public partial class EventDish
 {
     public int Id { get; set; }
+    public int EventId { get; set; }
     public int? SandwichSlot { get; set; }
     public int? SideDishSlot { get; set; }
     public int? MainDishSlot { get; set; }

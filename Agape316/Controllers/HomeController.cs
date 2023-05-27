@@ -19,9 +19,7 @@ namespace Agape316.Controllers
         }
 
         public IActionResult Index()
-        {
-            var model = new EventModel(_eventService);
-            ViewBag.EventModel = model; 
+        {            
             return View();
         }
 

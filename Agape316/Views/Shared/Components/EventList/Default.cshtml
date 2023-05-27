@@ -1,5 +1,5 @@
 ﻿@using NonFactors.Mvc.Grid
-@model Agape316.Models.EventModel
+@model IEnumerable<Agape316.Data.Event>
 
 <style>
     tr.mvc-grid-headers {
@@ -8,11 +8,11 @@
 </style>
 <div class="row">
     <div class="col-md-12">       
-        @if (Model.AgapeEvents.Any())
+        @if (Model.Any())
         {
             @(
                 Html
-                .Grid(Model.AgapeEvents)
+                .Grid(Model)
                 .Build(columns =>
                 {
                     columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");

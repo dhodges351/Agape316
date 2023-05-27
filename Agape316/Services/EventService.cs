@@ -7,10 +7,12 @@ namespace Agape316.Services
     public class EventService : IEvent
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEventDish _eventDishService;
 
-        public EventService(ApplicationDbContext context)
+        public EventService(ApplicationDbContext context, IEventDish eventDishService)
         {
             _context = context;
+            _eventDishService = eventDishService;   
         }
 
         public async Task Create(Event agapeEvent)
@@ -31,10 +33,8 @@ namespace Agape316.Services
 
         public IEnumerable<Event> GetAll()
         {
-            var events = _context.Event
-                        .Include(f => f.EventDishes);
-
-            return events.OrderByDescending(x => x.Created);
+            return _context.Event
+                .Include(eventDish => eventDish.EventDishes).OrderByDescending(x => x.Created);
         }
 
         public Event GetById(int id)
@@ -51,9 +51,9 @@ namespace Agape316.Services
             return agapeEvent;
         }
 
-        public Event GetByEventDishId(int eventDishId)
+        public Event GetByEventId(int eventId)
         {
-            var agapeEvent = _context.Event.Where(x => x.EventDishId == eventDishId)
+            var agapeEvent = _context.Event.Where(x => x.Id == eventId)
                 .FirstOrDefault();
 
             if (agapeEvent != null && agapeEvent.EventDishes == null)
