@@ -49,7 +49,20 @@ namespace Agape316.Services
             }
 
             return agapeEvent;
-        }        
+        }
+
+        public Event GetByEventDishId(int eventDishId)
+        {
+            var agapeEvent = _context.Event.Where(x => x.EventDishId == eventDishId)
+                .FirstOrDefault();
+
+            if (agapeEvent != null && agapeEvent.EventDishes == null)
+            {
+                agapeEvent.EventDishes = new List<EventDish>();
+            }
+
+            return agapeEvent;
+        }
 
         public async Task UpdateEvent(Event agapeEvent)
         {

@@ -1,0 +1,96 @@
+﻿@model Agape316.Models.EventDishModel
+@using Agape316.Enums
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Event" asp-action="AddEditEventDish" method="post" id="eventForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Event title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Write a brief description here.">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="ContactEmail">Email</label>
+                <input asp-for="ContactEmail" class="form-control" placeholder="ContactEmail" />
+                <span asp-validation-for="ContactEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate">Event Date</label>
+                <input asp-for="EventDate" class="form-control" placeholder="Event Date" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div> 
+            <div class="form-group my-2">
+                <label asp-for="Category">Category</label>
+                @Html.DropDownListFor(m => m.Category,
+                new SelectList(Enum.GetValues(typeof(CategoryEnum))),
+                "Select Category")
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="SandwichSlot">Sandwich Slot</label>
+                        <input asp-for="SandwichSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="SideDishSlot">Side Dish Slot</label>
+                        <input asp-for="SideDishSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>                                   
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="MainDishSlot">Main Dish Slot</label>
+                        <input asp-for="MainDishSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="DessertSlot">Dessert Slot</label>
+                        <input asp-for="DessertSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="SetUpSlot">Set Up Slot</label>
+                        <input asp-for="SetUpSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="ServeSlot">Serve Slot</label>
+                        <input asp-for="ServeSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>                   
+                </div>
+                <div class="row">                    
+                    <div class="col-md-6">
+                        <label class="label-slots-2" asp-for="CleanUpSlot">Clean Up Slot</label>
+                        <input asp-for="CleanUpSlot" class="text-slots" min="0" step="any" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Notes">Notes</label>
+                <textarea asp-for="Notes" rows="3" class="form-control" placeholder="(Special instructions, ingredients, allergies, etc.)."></textarea>
+            </div>
+            <div id="upload" class="form-group my-2">
+                <div class="row">
+                    <div class="col-md-12 text-center">                        
+                        <label class="btn btn-default btn-file">
+                            Select Image File <input type="file" name="Upload" style="display:none;" />
+                        </label>
+                    </div>                   
+                </div>
+                <div class="row">                   
+                    <div class="col-md-12 text-center">                       
+                        <button type="submit" id="eventDishSaveBtn" class="btn btn-submitEvent">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
+                <input asp-for="Id" class="form-control" />
+                <input asp-for="ImageUrl" class="form-control"  />
+            </div>
+        </form>
+    </div>
+</div>

@@ -29,12 +29,11 @@ namespace Agape316.Services
             }
         }
 
-        public EventDish GetByEventId(int eventId)
+        public IEnumerable<EventDish> GetEventDishesByEventDishId(int eventDishId)
         {
-            var agapeEventDish = _context.EventDish.Where(x => x.EventId == eventId)
-                .FirstOrDefault();
+            var eventDishes = _context.EventDish.Where(x => x.Id == eventDishId);
 
-            return agapeEventDish;
+            return eventDishes.OrderByDescending(x => x.Created);
         }
 
         public EventDish GetById(int id)

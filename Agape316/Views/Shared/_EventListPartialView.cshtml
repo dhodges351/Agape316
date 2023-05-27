@@ -46,13 +46,13 @@
     </div>    
 </div>
 <script>
-    function EditEvent(eventId)
+    function EditEvent(id)
     {
         event.preventDefault();
         $.ajax({
             type: "GET",
             url: "/Event/GetEventDetails",
-            data: { "eventId": eventId },
+            data: { "id": id },
             success: function (response) {
                 $("#planEventModal").find(".modal-body").html(response);
                 $("#planEventModal").modal('show');

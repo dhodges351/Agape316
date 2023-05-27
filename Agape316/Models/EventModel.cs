@@ -17,13 +17,13 @@ namespace Agape316.Models
         {
         }
 
-        public EventModel(IEvent eventService, int? eventId = null)
+        public EventModel(IEvent eventService, int? id = null)
         {
             _eventService = eventService;
             AgapeEvents = _eventService.GetAll();
-            if (eventId.HasValue && AgapeEvents != null && AgapeEvents.Any())
+            if (id.HasValue && AgapeEvents != null && AgapeEvents.Any())
             {
-                var agapeEvent = AgapeEvents.FirstOrDefault(x => x.Id.Equals(eventId));
+                var agapeEvent = AgapeEvents.FirstOrDefault(x => x.Id.Equals(id));
                 Title = agapeEvent.Title;
                 Description = agapeEvent.Description;
                 Location = agapeEvent.Location;
