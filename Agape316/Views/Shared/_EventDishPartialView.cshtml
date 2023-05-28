@@ -5,6 +5,11 @@
     <div class="col-md-12">
         <form asp-controller="Event" asp-action="AddEditEventDish" method="post" id="eventForm" enctype="multipart/form-data">
             <div class="form-group">
+                <label asp-for="Id">Events</label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.AgapeEvents"></select>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Title">Title</label>
                 <input asp-for="Title" class="form-control" placeholder="Event title" />
                 <span asp-validation-for="Title" class="text-danger"></span>

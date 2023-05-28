@@ -61,7 +61,7 @@ else
                 <div>
                     <p class="header-inner-right">
                     </p>
-                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
+                    <a href="#" onclick="showEventDishModal()"  class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
                 </div>
             </div>
         </div>
@@ -94,6 +94,19 @@ else
             </div>
             <div class="modal-body">
                 @await Html.PartialAsync("~/Views/Shared/_EventPartialView.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="eventDishModal" tabindex="-1" aria-labelledby="eventDishModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0 eventModalContent">
+            <div class="modal-header eventModalHeader">
+                <h5 class="modal-title" id="eventDishModalLabel">Bring a Dish</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("~/Views/Shared/_EventDishPartialView.cshtml")
             </div>
         </div>
     </div>
@@ -160,26 +173,25 @@ else
         }        
     }
 
-    $(function () {
-        $('#planEventModal').on('hidden.bs.modal', function () {
-            window.location = "/";
-        });
-    }); 
-
-    $(function () {
-        $.ajax({
-            type: "Get",
-            url: "/Home/GetEventListPartialView",
-            success: function (response) {
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
-    })();
+    function showEventDishModal() {
+        $(function () {
+            $.ajax({
+                type: "Get",
+                url: "/EventDish/GetEventDishDetails",
+                data: { "eventId": "", "id": "" },
+                success: function (response) {
+                    $("#eventDishModal").find(".modal-body").html(response);
+                    $("#eventDishModal").modal('show');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        })();        
+    }   
 
 </script>
 @section Scripts {

@@ -198,6 +198,12 @@
             });
         });
 
+        $(function () {
+            $('#eventDishModal').on('hidden.bs.modal', function () {
+                window.location = "/";
+            });
+        });
+
     </script>
 </body>
 </html>

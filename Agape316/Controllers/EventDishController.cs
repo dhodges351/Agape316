@@ -4,37 +4,51 @@ using Agape316.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Data;
 
 namespace Agape316.Controllers
 {
-    public class EventController : Controller
+    public class EventDishController : Controller
     {
         private readonly IEvent _eventService;
+        private readonly IEventDish _eventDishService;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
-        public EventController(IEvent eventService,
+        public EventDishController(IEvent eventService, IEventDish eventDishService,
             Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             _eventService = eventService;
+            _eventDishService = eventDishService;
             _environment = environment;
         }
-
-        [Authorize(Roles = "Admin")]
+        
         public IActionResult Index()
         {            
             return View();
+        }       
+
+        [HttpGet]       
+        public async Task<IActionResult> GetEventDishDetails(int? eventId, int? id)
+        {
+            var model = new EventDishModel(_eventService, _eventDishService, eventId, id);
+
+            var agapeEvents = _eventService.GetAll();
+
+            ViewData["AgapeEvents"] = new SelectList(agapeEvents.ToList(), "Id", "Title");
+
+            return PartialView("~/Views/Shared/_EventDishPartialView.cshtml", model);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddEditEvent(EventModel model)
+        public async Task<IActionResult> AddEditEventDish(EventDishModel model)
         {
-            var fileName = string.Empty;
+            var fileName = string.Empty;      
 
             if (Upload != null)
             {
@@ -50,18 +64,9 @@ namespace Agape316.Controllers
                 }
             }
 
-            model.SaveEvent(model, fileName, _eventService);
+            model.SaveEventDish(model, fileName, _eventDishService);
 
             return RedirectToAction("Index", "Home");
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetEventDetails(int id)
-        {
-            var model = new EventModel(_eventService, id);
-
-            return PartialView("~/Views/Shared/_EventPartialView.cshtml", model);
-        }      
     }
 }

@@ -18,35 +18,52 @@ namespace Agape316.Models
         {
         }
 
-        public EventDishModel(IEvent eventService, IEventDish eventDishService, int? eventDishId = null)
+        public EventDishModel(IEvent eventService, IEventDish eventDishService, int? eventId = null, int? id = null)
         {
             _eventService = eventService;
             _eventDishService = eventDishService;
 
-            if (eventDishId.HasValue)
+            if (!eventId.HasValue)
             {
-                EventDishes = _eventDishService.GetEventDishesByEventDishId(eventDishId.Value);                
-            }            
-            else
+                var eventDishes = _eventDishService.GetEventDishesByEventDishId(eventId ?? 0);                
+            }
+            else if (id.HasValue)
             {
-                EventDishes = _eventDishService.GetAll();
+                var eventDish = _eventDishService.GetById(id ?? 0);
+                if (eventDish != null)
+                {
+                    Title = eventDish.Title;
+                    Description = eventDish.Description;
+                    EventDate = eventDish.EventDate;
+                    ImageUrl = eventDish.ImageUrl;
+                    ContactEmail = eventDish.ContactEmail;
+                    Notes = eventDish.Notes;
+                    SandwichSlot = eventDish.SandwichSlot;
+                    SideDishSlot = eventDish.SideDishSlot;
+                    MainDishSlot = eventDish.MainDishSlot;
+                    DessertSlot = eventDish.DessertSlot;
+                    SetUpSlot = eventDish.SetUpSlot;
+                    ServeSlot = eventDish.ServeSlot;
+                    CleanUpSlot = eventDish.CleanUpSlot;
+                    Category = eventDish.Category;
+                }               
             }
         }
 
         [Required]
         [StringLength(100, ErrorMessage = "Title is required")] 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [Required]
         [StringLength(200, ErrorMessage = "Description is required")] 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public string? Notes { get; set; }       
 
         [Required]
         [Display(Name = "Contact Email")]
         [StringLength(100, ErrorMessage = "Email is required")] 
-        public string ContactEmail { get; set; } 
+        public string? ContactEmail { get; set; } 
 
         public DateTime Created { get; set; }
 
@@ -54,10 +71,10 @@ namespace Agape316.Models
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
 
         public string? ImageUrl { get; set; }        
-        public string Category { get; set; }
+        public string? Category { get; set; }
         public int? Id { get; set; }
         public int? EventId { get; set; }
         public int? SandwichSlot { get; set; }
