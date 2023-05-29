@@ -58,7 +58,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            model.SaveEventDish(model, fileName, _eventDishService);
+            //model.SaveEventDish(model, fileName, _eventDishService);
 
             return RedirectToAction("Index", "Home");
         }

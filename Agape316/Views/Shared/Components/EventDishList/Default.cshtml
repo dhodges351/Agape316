@@ -1,0 +1,66 @@
+﻿@using NonFactors.Mvc.Grid
+@model IEnumerable<Agape316.Data.EventDish>
+
+<style>
+    tr.mvc-grid-headers {
+        text-align: center;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">       
+        @if (Model.Any())
+        {
+            @(
+                Html
+                .Grid(Model)
+                .Build(columns =>
+                {
+                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");
+                    columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
+                    columns.Add(model => @Html.Raw(model.Description)).Titled("Description");                                        
+                    columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");
+                    columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlot} Side Dish: {model.SideDishSlot} Main Dish: {model.MainDishSlot} Dessert: {model.DessertSlot} Set Up: {model.SetUpSlot} Serve: {model.ServeSlot} Clean Up: {model.CleanUpSlot}")).Titled("Slots");                    
+                    columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
+                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEventDish({model.Id})'>Edit</a")).Titled("Edit").Css("edit-event");
+                    columns.Add(model => @Html.Raw(model.Id)).Hidden();
+                    columns.Add(model => @Html.Raw(model.EventId)).Hidden();
+                })
+                .Empty("No data found")
+                .Pageable(pager =>
+                {
+                    pager.RowsPerPage = 6;
+                })
+            )
+        }
+        else
+        {
+            <div class="noPosts">
+                <i class="material-icons md-72">question_answer</i>
+                <h3>
+                No Event Dishes have been created yet. <br />
+                </h3>
+            </div>
+        }
+    </div>    
+</div>
+<script>
+    function EditEvent(id)
+    {
+        event.preventDefault();
+        $.ajax({
+            type: "GET",            
+            url: "/Event/OnGetCallEventViewComponent",
+            data: { "id": id },
+            success: function (response) {
+                $("#planEventModal").find(".modal-body").html(response);
+                $("#planEventModal").modal('show');
+            },
+            failure: function (response) {
+                alert('Get Event details failed');
+            },
+            error: function (response) {
+                alert('Error getting Event details');
+            }
+        });        
+    }
+</script>
