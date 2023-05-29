@@ -223,3 +223,13 @@ div.login-logout-tab li.nav-item {
 .label-slots-2 {
     width: 120px;
 }
+
+.form-group-small {
+    font-size: 11px;
+    color: firebrick;
+}
+
+div#eventContainer {
+    margin:0;
+    padding:0;
+}

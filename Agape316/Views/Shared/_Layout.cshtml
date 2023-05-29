@@ -202,7 +202,29 @@
             $('#eventDishModal').on('hidden.bs.modal', function () {
                 window.location = "/";
             });
-        });
+        });       
+
+        function GetSelectedEvent(el)
+        {
+            var selectedId = parseInt(el.value);
+            $.ajax({
+                type: "GET",
+                url: "/EventDish/OnGetCallEventDishViewComponent",
+                data: { "id": selectedId },
+                success: function (response) {
+                    $("#eventDishModal").find(".modal-body").html(response);
+                    $("#eventDishModal").modal('show');
+                    $("#eventContainer").show();
+                    $('#EventId').val("");
+                },
+                failure: function (response) {
+                    alert('Get Event Dish details failed');
+                },
+                error: function (response) {
+                    alert('Error getting Event Dish details');
+                }
+            });
+        }
 
     </script>
 </body>

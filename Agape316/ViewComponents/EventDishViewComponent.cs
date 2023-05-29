@@ -2,6 +2,7 @@
 using Agape316.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace Agape316.ViewComponents
 {
@@ -19,10 +20,29 @@ namespace Agape316.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
+            if (id > 0)
+            {
+                ViewData["SelectedAgapeEvent"] = _eventService.GetById(id);
+            }
             var model = new EventDishModel(_eventService, _eventDishService, null, id);
-            var agapeEvents = _eventService.GetAll();
-            ViewData["AgapeEvents"] = new SelectList(agapeEvents.ToList(), "Id", "Title");
+            var agapeEvents = _eventService.GetAll().ToList();
+            ViewData["AgapeEventObjects"] = agapeEvents;
+            var agapeEventModels = new List<AgapeEventModel>();
+            if (agapeEvents != null && agapeEvents.Count > 0)
+            {
+                foreach (var agapeEvent in agapeEvents)
+                {
+                    agapeEventModels.Add(new AgapeEventModel { EventId = agapeEvent.Id, Title = agapeEvent.Title });
+                }                
+            }
+            ViewData["AgapeEvents"] = new SelectList(agapeEventModels, "EventId", "Title");
             return View(model);
         }
+    }
+
+    public class AgapeEventModel
+    {       
+        public int EventId { get; set; }
+        public string Title { get; set; }
     }
 }

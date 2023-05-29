@@ -69,8 +69,9 @@ namespace Agape316.Models
         public DateTime? EventDate { get; set; }
 
         public string? ImageUrl { get; set; }        
-        public string? Category { get; set; }
+        public string? Category { get; set; }       
         public int? Id { get; set; }
+        [Required(ErrorMessage = "Please select an Event")] 
         public int? EventId { get; set; }
         public int? SandwichSlot { get; set; }
         public int? SideDishSlot { get; set; }
