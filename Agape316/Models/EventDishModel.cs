@@ -1,11 +1,6 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
 using System.ComponentModel.DataAnnotations;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using Agape316.Helpers;
 
 namespace Agape316.Models
 {

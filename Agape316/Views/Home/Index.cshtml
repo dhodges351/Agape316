@@ -92,8 +92,8 @@ else
                 <h5 class="modal-title" id="planEventModalLabel">Plan Event</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                @await Html.PartialAsync("~/Views/Shared/_EventPartialView.cshtml")
+            <div class="modal-body">                
+                @await Component.InvokeAsync("Event")  
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@ else
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @await Html.PartialAsync("~/Views/Shared/_EventDishPartialView.cshtml")
+                @await Component.InvokeAsync("EventDish")                 
             </div>
         </div>
     </div>
@@ -174,23 +174,7 @@ else
     }
 
     function showEventDishModal() {
-        $(function () {
-            $.ajax({
-                type: "Get",
-                url: "/EventDish/GetEventDishDetails",
-                data: { "eventId": "", "id": "" },
-                success: function (response) {
-                    $("#eventDishModal").find(".modal-body").html(response);
-                    $("#eventDishModal").modal('show');
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        })();        
+        $("#eventDishModal").modal('show');        
     }   
 
 </script>

@@ -55,13 +55,10 @@ namespace Agape316.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetEventDetails(int id)
+        public ActionResult OnGetCallEventViewComponent(int id)
         {
-            var model = new EventModel(_eventService, id);
-
-            return PartialView("~/Views/Shared/_EventPartialView.cshtml", model);
-        }      
+            return ViewComponent("Event", new { id = id });
+        }       
     }
 }

@@ -50,8 +50,8 @@
     {
         event.preventDefault();
         $.ajax({
-            type: "GET",
-            url: "/Event/GetEventDetails",
+            type: "GET",            
+            url: "/Event/OnGetCallEventViewComponent",
             data: { "id": id },
             success: function (response) {
                 $("#planEventModal").find(".modal-body").html(response);
@@ -61,7 +61,7 @@
                 alert('Get Event details failed');
             },
             error: function (response) {
-                alert('You must be logged in as an Admin to use this feature.');
+                alert('Error getting Event details');
             }
         });        
     }

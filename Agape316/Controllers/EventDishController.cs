@@ -31,18 +31,12 @@ namespace Agape316.Controllers
         public IActionResult Index()
         {            
             return View();
-        }       
+        }
 
-        [HttpGet]       
-        public async Task<IActionResult> GetEventDishDetails(int? eventId, int? id)
+        [HttpGet]
+        public async Task<IActionResult> OnGetCallEventDishViewComponent(int id)
         {
-            var model = new EventDishModel(_eventService, _eventDishService, eventId, id);
-
-            var agapeEvents = _eventService.GetAll();
-
-            ViewData["AgapeEvents"] = new SelectList(agapeEvents.ToList(), "Id", "Title");
-
-            return PartialView("~/Views/Shared/_EventDishPartialView.cshtml", model);
+            return ViewComponent("EventDish", new { id = id });
         }
 
         [HttpPost]
