@@ -1,11 +1,6 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
 using System.ComponentModel.DataAnnotations;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using Agape316.Helpers;
 
 namespace Agape316.Models
 {
@@ -78,14 +73,15 @@ namespace Agape316.Models
         [Required]
         [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: HH:mm:ss}")] 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]
         public string? StartTime { get; set; }
-        
+
         [Required]
         [Display(Name = "End Time")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: HH:mm:ss}")] 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]
         public string? EndTime { get; set; }
+
         public int CategoryId { get; set; }
         public int? Id { get; set; }
         public int? SandwichSlots { get; set; }
@@ -129,7 +125,7 @@ namespace Agape316.Models
             return categoryName;
         }
 
-        public void SaveEvent(EventModel model, string fileName, IEvent _eventService)
+        public async Task SaveEvent(EventModel model, string fileName, IEvent _eventService)
         {
             if (!model.Id.HasValue)
             {
@@ -154,7 +150,7 @@ namespace Agape316.Models
                     ServeSlots = model.ServeSlots,
                     CleanUpSlots = model.CleanUpSlots,
                 };
-                _eventService.Create(agapeEvent);
+                await _eventService.Create(agapeEvent);
             }
             else
             {
@@ -167,8 +163,8 @@ namespace Agape316.Models
                 agapeEvent.Location = model.Location;
                 agapeEvent.CategoryId = model.GetCategoryId(model.Category);
                 agapeEvent.ContactEmail = model.ContactEmail;
-                agapeEvent.StartTime = model.StartTime;
-                agapeEvent.EndTime = model.EndTime;
+                agapeEvent.StartTime = GetStandardTimeFromMilitaryTime(model.StartTime);
+                agapeEvent.EndTime = GetStandardTimeFromMilitaryTime(model.EndTime);
                 agapeEvent.Notes = model.Notes;
                 agapeEvent.SandwichSlots = model.SandwichSlots;
                 agapeEvent.SideDishSlots = model.SideDishSlots;
@@ -178,8 +174,45 @@ namespace Agape316.Models
                 agapeEvent.ServeSlots = model.ServeSlots;
                 agapeEvent.CleanUpSlots = model.CleanUpSlots;
 
-                _eventService.UpdateEvent(agapeEvent);
+                await _eventService.UpdateEvent(agapeEvent);
             }
+        }
+
+        public string GetStandardTimeFromMilitaryTime(string timeToCheck)
+        {            
+            string output = string.Empty;
+            int militaryHour = Convert.ToInt32(timeToCheck.Split(':')[0]);
+            string militaryMinutes = timeToCheck.Split(':')[1];
+            int standardHour = 0;
+            string strStandardHour = "0";
+            
+            if (militaryHour > 12)
+            {
+                standardHour = militaryHour - 12;
+                if (standardHour < 10)
+                {
+                    strStandardHour = "0" + standardHour.ToString();
+                }
+                else
+                {
+                    strStandardHour = standardHour.ToString();
+                }
+            } 
+            else
+            {
+                strStandardHour = militaryHour.ToString();
+            }
+
+            if (militaryHour >= 1 && militaryHour <= 12)
+            {                
+                output = strStandardHour + ":" + militaryMinutes + " AM";
+            }
+            else if (militaryHour >= 12 && militaryHour <= 24)
+            {
+                output = strStandardHour + ":" + militaryMinutes + " PM";
+            }            
+
+            return output;
         }
     }
 }
