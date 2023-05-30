@@ -139,8 +139,8 @@ namespace Agape316.Models
                     Location = model.Location,
                     CategoryId = model.GetCategoryId(model.Category),
                     ContactEmail = model.ContactEmail,
-                    StartTime = GetStandardTimeFromMilitaryTime(model.StartTime),
-                    EndTime = GetStandardTimeFromMilitaryTime(model.EndTime),
+                    StartTime = model.StartTime,
+                    EndTime = model.EndTime,
                     Notes = model.Notes,
                     SandwichSlots = model.SandwichSlots,
                     SideDishSlots = model.SideDishSlots,
@@ -150,7 +150,7 @@ namespace Agape316.Models
                     ServeSlots = model.ServeSlots,
                     CleanUpSlots = model.CleanUpSlots,
                 };
-                await _eventService.Create(agapeEvent);
+                _eventService.Create(agapeEvent);
             }
             else
             {
@@ -163,8 +163,8 @@ namespace Agape316.Models
                 agapeEvent.Location = model.Location;
                 agapeEvent.CategoryId = model.GetCategoryId(model.Category);
                 agapeEvent.ContactEmail = model.ContactEmail;
-                agapeEvent.StartTime = GetStandardTimeFromMilitaryTime(model.StartTime);
-                agapeEvent.EndTime = GetStandardTimeFromMilitaryTime(model.EndTime);
+                agapeEvent.StartTime = model.StartTime;
+                agapeEvent.EndTime = model.EndTime;
                 agapeEvent.Notes = model.Notes;
                 agapeEvent.SandwichSlots = model.SandwichSlots;
                 agapeEvent.SideDishSlots = model.SideDishSlots;
@@ -174,45 +174,8 @@ namespace Agape316.Models
                 agapeEvent.ServeSlots = model.ServeSlots;
                 agapeEvent.CleanUpSlots = model.CleanUpSlots;
 
-                await _eventService.UpdateEvent(agapeEvent);
+                _eventService.UpdateEvent(agapeEvent);
             }
-        }
-
-        public string GetStandardTimeFromMilitaryTime(string timeToCheck)
-        {            
-            string output = string.Empty;
-            int militaryHour = Convert.ToInt32(timeToCheck.Split(':')[0]);
-            string militaryMinutes = timeToCheck.Split(':')[1];
-            int standardHour = 0;
-            string strStandardHour = "0";
-            
-            if (militaryHour > 12)
-            {
-                standardHour = militaryHour - 12;
-                if (standardHour < 10)
-                {
-                    strStandardHour = "0" + standardHour.ToString();
-                }
-                else
-                {
-                    strStandardHour = standardHour.ToString();
-                }
-            } 
-            else
-            {
-                strStandardHour = militaryHour.ToString();
-            }
-
-            if (militaryHour >= 1 && militaryHour <= 12)
-            {                
-                output = strStandardHour + ":" + militaryMinutes + " AM";
-            }
-            else if (militaryHour >= 12 && militaryHour <= 24)
-            {
-                output = strStandardHour + ":" + militaryMinutes + " PM";
-            }            
-
-            return output;
         }
     }
 }

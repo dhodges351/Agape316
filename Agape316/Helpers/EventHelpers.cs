@@ -18,5 +18,44 @@ namespace Agape316.Helpers
             }
             return categoryName;
         }
+
+
+        public static string GetStandardTimeFromMilitaryTime(string timeToCheck)
+        {
+            string output = string.Empty;
+            int militaryHour = Convert.ToInt32(timeToCheck.Split(':')[0]);
+            string militaryMinutes = timeToCheck.Split(":")[1];
+            militaryMinutes = militaryMinutes.Split(" ")[0];
+            int standardHour = 0;
+            string strStandardHour = "0";
+
+            if (militaryHour > 12)
+            {
+                standardHour = militaryHour - 12;
+                if (standardHour < 10)
+                {
+                    strStandardHour = "0" + standardHour.ToString();
+                }
+                else
+                {
+                    strStandardHour = standardHour.ToString();
+                }
+            }
+            else
+            {
+                strStandardHour = militaryHour.ToString();
+            }
+
+            if (militaryHour >= 1 && militaryHour <= 12)
+            {
+                output = strStandardHour + ":" + militaryMinutes + " AM";
+            }
+            else if (militaryHour >= 12 && militaryHour <= 24)
+            {
+                output = strStandardHour + ":" + militaryMinutes + " PM";
+            }
+
+            return output;
+        }
     }
 }

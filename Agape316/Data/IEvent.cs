@@ -12,6 +12,6 @@ namespace Agape316.Data
         IEnumerable<Event> GetAll();
         Task Create(Event agapeEvent);
         Task Delete(int id);
-        Task UpdateEvent(Event agapeEvent);
+        void UpdateEvent(Event agapeEvent);
     }
 }

@@ -64,10 +64,10 @@ namespace Agape316.Services
             return agapeEvent;
         }
 
-        public async Task UpdateEvent(Event agapeEvent)
+        public void UpdateEvent(Event agapeEvent)
         {
             _context.Update(agapeEvent);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
         }
     }
 }
