@@ -20,5 +20,6 @@ public partial class EventDish
     public string? ContactEmail { get; set; }
     public string? ImageUrl { get; set; }
     public string? Notes { get; set; }
-    public string? Category { get; set; }    
+    public string? Category { get; set; }
+    public Event? RelatedEvent { get; set; }
 }

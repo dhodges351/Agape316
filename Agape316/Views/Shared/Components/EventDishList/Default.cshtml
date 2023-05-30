@@ -1,6 +1,10 @@
 ﻿@using NonFactors.Mvc.Grid
 @model IEnumerable<Agape316.Data.EventDish>
 
+@{
+    var relatedEvents = ViewData["RelatedEvents"] as List<Agape316.Data.Event>;
+}
+
 <style>
     tr.mvc-grid-headers {
         text-align: center;
@@ -15,7 +19,8 @@
                 .Grid(Model)
                 .Build(columns =>
                 {
-                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");
+                    columns.Add(model => @Html.Raw(relatedEvents.Where(x => x.Id.Equals(model.EventId)).FirstOrDefault().Title)).Titled("Event");
+                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Dish");
                     columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");                                        
                     columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");

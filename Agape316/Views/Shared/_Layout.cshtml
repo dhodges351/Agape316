@@ -228,7 +228,18 @@
             });
         }       
 
-        
+        function checkHasInvalidSlot()
+        {
+            event.preventDefault();
+            if ($("#HasInvalidSlot").val() != "ok") {
+                alert('Please check available Event slots.');
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }        
 
         function CheckEventSlot(el) {
             var eventId = $("#EventId").val();
