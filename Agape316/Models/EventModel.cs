@@ -150,7 +150,7 @@ namespace Agape316.Models
                     ServeSlots = model.ServeSlots,
                     CleanUpSlots = model.CleanUpSlots,
                 };
-                _eventService.Create(agapeEvent);
+                await _eventService.Create(agapeEvent);
             }
             else
             {

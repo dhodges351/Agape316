@@ -26,7 +26,7 @@
                     columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");
                     columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlot} Side Dish: {model.SideDishSlot} Main Dish: {model.MainDishSlot} Dessert: {model.DessertSlot} Set Up: {model.SetUpSlot} Serve: {model.ServeSlot} Clean Up: {model.CleanUpSlot}")).Titled("Slots");                    
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
-                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEventDish({model.Id})'>Edit</a")).Titled("Edit").Css("edit-event");
+                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEventDish({model.EventId},{model.Id})'>Edit</a")).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
                     columns.Add(model => @Html.Raw(model.EventId)).Hidden();
                 })
@@ -49,22 +49,22 @@
     </div>    
 </div>
 <script>
-    function EditEvent(id)
+    function EditEventDish(eventId, id)
     {
         event.preventDefault();
         $.ajax({
             type: "GET",            
-            url: "/Event/OnGetCallEventViewComponent",
-            data: { "id": id },
+            url: "/EventDish/OnGetCallEventDishViewComponent",
+            data: { "eventId": eventId, "id": id },
             success: function (response) {
-                $("#planEventModal").find(".modal-body").html(response);
-                $("#planEventModal").modal('show');
+                $("#eventDishModal").find(".modal-body").html(response);
+                $("#eventDishModal").modal('show');
             },
             failure: function (response) {
-                alert('Get Event details failed');
+                alert('Get Event Dish details failed');
             },
             error: function (response) {
-                alert('Error getting Event details');
+                alert('Error getting Event Dish details');
             }
         });        
     }

@@ -27,9 +27,9 @@ namespace Agape316.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> OnGetCallEventDishViewComponent(int eventId)
+        public async Task<IActionResult> OnGetCallEventDishViewComponent(int eventId, int id)
         {
-            return ViewComponent("EventDish", new { eventId = eventId });
+            return ViewComponent("EventDish", new { eventId = eventId, id = id });
         }
 
         [HttpPost]

@@ -23,15 +23,13 @@ namespace Agape316.Controllers
             _eventService = eventService;
             _environment = environment;
         }
-
-        [Authorize(Roles = "Admin")]
+        
         public IActionResult Index()
         {            
             return View();
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [HttpPost]        
         public async Task<IActionResult> AddEditEvent(EventModel model)
         {
             var fileName = string.Empty;
@@ -50,12 +48,11 @@ namespace Agape316.Controllers
                 }
             }
 
-            model.SaveEvent(model, fileName, _eventService);
+            await model.SaveEvent(model, fileName, _eventService);
 
             return RedirectToAction("Index", "Home");
         }
-
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult OnGetCallEventViewComponent(int id)
         {
             return ViewComponent("Event", new { id = id });
