@@ -189,9 +189,17 @@
                 <input asp-for="EventId" class="form-control" value="@selectedEvent.Id" />              
                 <input asp-for="ImageUrl" class="form-control"  />
                 <input asp-for="HasInvalidSlot" class="form-control" />
+                <input asp-for="Category" class="form-control" value="@Model.GetCategoryName(selectedEvent.CategoryId)" />
             </div>            
         </form>
     </div>
 </div>
+<script>
+    $(function () {
+        if ($("#EventId").val() != "") {
+            $("#eventContainer").show();
+        }
+    });
+</script>
 
                         

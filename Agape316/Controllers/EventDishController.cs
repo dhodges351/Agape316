@@ -37,7 +37,7 @@ namespace Agape316.Controllers
         {
             var eventDishModel = new EventDishModel();
             var isInvalidSlot = eventDishModel.ValidateEventSlot(_eventService, _eventDishService, eventId, slotName, slotQuantity);
-            var model = new JsonMessage { Message = !isInvalidSlot ? "Max slots reached" : "ok" };
+            var model = new JsonMessage { Message = isInvalidSlot.ToString() };
             return new JsonResult(new { data = model });
         }
 

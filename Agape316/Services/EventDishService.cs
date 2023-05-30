@@ -44,10 +44,10 @@ namespace Agape316.Services
             return agapeEventDish;
         }
 
-        public async Task UpdateEventDish(EventDish eventDish)
+        public void UpdateEventDish(EventDish eventDish)
         {
             _context.Update(eventDish);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
         }
 
         IEnumerable<EventDish> IEventDish.GetAll()

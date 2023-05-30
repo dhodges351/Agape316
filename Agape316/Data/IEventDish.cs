@@ -12,6 +12,6 @@ namespace Agape316.Data
         IEnumerable<EventDish> GetAll();
         Task Create(EventDish eventDish);
         Task Delete(int Id);
-        Task UpdateEventDish(EventDish eventDish);
+        void UpdateEventDish(EventDish eventDish);
     }
 }

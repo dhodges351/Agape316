@@ -91,66 +91,66 @@ namespace Agape316.Models
             return categoryName;
         }
 
-        public bool ValidateEventSlot(IEvent _eventService, IEventDish _eventDishService, int eventId, string slotName, int slotQuantity)
-        {
-            bool retVal = true;
+		public bool ValidateEventSlot(IEvent _eventService, IEventDish _eventDishService, int eventId, string slotName, int slotQuantity)
+		{
+			bool retVal = true;
 
-            var agapeEvent = _eventService.GetByEventId(eventId);
-            var eventDishes = _eventDishService.GetEventDishesByEventId(eventId);
-            int sandwichSlotsUsed = 0;
-            int sideDishSlotsUsed = 0;
-            int mainDishSlotsUsed = 0;
-            int dessertSlotsUsed = 0;
-            int setUpSlotsUsed = 0;
-            int serveSlotsUsed = 0;
-            int cleanUpSlotsUsed = 0;
+			var agapeEvent = _eventService.GetByEventId(eventId);
+			var eventDishes = _eventDishService.GetEventDishesByEventId(eventId);
+			int sandwichSlotsUsed = 0;
+			int sideDishSlotsUsed = 0;
+			int mainDishSlotsUsed = 0;
+			int dessertSlotsUsed = 0;
+			int setUpSlotsUsed = 0;
+			int serveSlotsUsed = 0;
+			int cleanUpSlotsUsed = 0;
 
-            if (eventDishes != null && eventDishes.Any())
-            {
-                foreach (var eventDish in eventDishes)
-                {
-                    sandwichSlotsUsed += eventDish.SandwichSlot ?? 0;
-                    sideDishSlotsUsed += eventDish.SideDishSlot ?? 0;
-                    mainDishSlotsUsed += eventDish.MainDishSlot ?? 0;
-                    dessertSlotsUsed += eventDish.DessertSlot ?? 0;
-                    setUpSlotsUsed += eventDish.SetUpSlot ?? 0;
-                    serveSlotsUsed += eventDish.ServeSlot ?? 0;
-                    cleanUpSlotsUsed += eventDish.CleanUpSlot ?? 0;
-                }
-            }
+			if (eventDishes != null && eventDishes.Any())
+			{
+				foreach (var eventDish in eventDishes)
+				{
+					sandwichSlotsUsed += eventDish.SandwichSlot ?? 0;
+					sideDishSlotsUsed += eventDish.SideDishSlot ?? 0;
+					mainDishSlotsUsed += eventDish.MainDishSlot ?? 0;
+					dessertSlotsUsed += eventDish.DessertSlot ?? 0;
+					setUpSlotsUsed += eventDish.SetUpSlot ?? 0;
+					serveSlotsUsed += eventDish.ServeSlot ?? 0;
+					cleanUpSlotsUsed += eventDish.CleanUpSlot ?? 0;
+				}
+			}
 
-            if (agapeEvent != null)
-            {
-                switch (slotName)
-                {
-                    case "SandwichSlot":
-                        retVal = sandwichSlotsUsed < slotQuantity;
-                        break;
-                    case "SideDishSlot":
-                        retVal = sideDishSlotsUsed < slotQuantity;
-                        break;
-                    case "MainDishSlot":
-                        retVal = mainDishSlotsUsed < slotQuantity;
-                        break;
-                    case "DessertSlot":
-                        retVal = dessertSlotsUsed < slotQuantity;
-                        break;
-                    case "SetUpSlot":
-                        retVal = setUpSlotsUsed < slotQuantity;
-                        break;
-                    case "ServeSlot":
-                        retVal = serveSlotsUsed < slotQuantity;
-                        break;
-                    case "CleanUpSlot":
-                        retVal = cleanUpSlotsUsed < slotQuantity;
-                        break;
-                }
-            }
+			if (agapeEvent != null)
+			{
+				switch (slotName)
+				{
+					case "SandwichSlot":
+						retVal = (sandwichSlotsUsed + slotQuantity) > agapeEvent.SandwichSlots;
+						break;
+					case "SideDishSlot":
+						retVal = (sideDishSlotsUsed + slotQuantity) > agapeEvent.SideDishSlots;
+						break;
+					case "MainDishSlot":
+						retVal = (mainDishSlotsUsed + slotQuantity) > agapeEvent.MainDishSlots;
+						break;
+					case "DessertSlot":
+						retVal = (dessertSlotsUsed + slotQuantity) > agapeEvent.DessertSlots;
+						break;
+					case "SetUpSlot":
+						retVal = (setUpSlotsUsed + slotQuantity) > agapeEvent.SetUpSlots;
+						break;
+					case "ServeSlot":
+						retVal = (serveSlotsUsed + slotQuantity) > agapeEvent.ServeSlots;
+						break;
+					case "CleanUpSlot":
+						retVal = (cleanUpSlotsUsed + slotQuantity) > agapeEvent.CleanUpSlots;
+						break;
+				}
+			}
 
-            return retVal;
-        }
+			return retVal;
+		}
 
-        public void SaveEventDish(EventDishModel model, string fileName, IEventDish _eventDishService)
+		public void SaveEventDish(EventDishModel model, string fileName, IEventDish _eventDishService)
         {
             if (!model.Id.HasValue)
             {
@@ -181,7 +181,7 @@ namespace Agape316.Models
                 eventDish.Description = model.Description;
                 eventDish.Created = DateTime.Now;
                 eventDish.ImageUrl = model.ImageUrl;
-                eventDish.Category = model.GetCategoryName(AgapeEvent.CategoryId);
+                eventDish.Category = model.Category;
                 eventDish.Notes = model.Notes;
                 eventDish.SandwichSlot = model.SandwichSlot;
                 eventDish.SideDishSlot = model.SideDishSlot;

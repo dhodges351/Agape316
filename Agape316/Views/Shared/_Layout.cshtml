@@ -231,13 +231,13 @@
         function checkHasInvalidSlot()
         {
             event.preventDefault();
-            if ($("#HasInvalidSlot").val() != "ok") {
+            if ($("#HasInvalidSlot").val() == "True") {
                 alert('Please check available Event slots.');
                 return false;
-            }
+            }      
             else
             {
-                return true;
+                $("#eventDishForm").submit();
             }
         }        
 
@@ -253,14 +253,7 @@
                     url: "/EventDish/CheckEventSlot",
                     data: { "eventId": eventId, "slotName": el.id, "slotQuantity": el.value },
                     success: function (response) {
-                        if (response.data.Message == "ok")
-                        {
-                            $("#HasInvalidSlot").val(false);
-                        }
-                        else
-                        {
-                            $("#HasInvalidSlot").val(true);
-                        }                        
+                        $("#HasInvalidSlot").val(response.data.Message);
                     },
                     failure: function (response) {
                         alert('Check Event slot failed');
@@ -271,7 +264,6 @@
                 });
             }            
         }
-
     </script>
 </body>
 </html>
