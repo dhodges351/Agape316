@@ -67,7 +67,7 @@ namespace Agape316.Services
         public void UpdateEvent(Event agapeEvent)
         {
             _context.Update(agapeEvent);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

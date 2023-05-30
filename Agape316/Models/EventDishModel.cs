@@ -159,7 +159,7 @@ namespace Agape316.Models
                     Title = model.Title,
                     Description = model.Description,
                     Created = DateTime.Now,
-                    ImageUrl = "/upload/" + fileName,
+                    ImageUrl = System.Web.HttpUtility.HtmlEncode("/upload/" + fileName),
                     ContactEmail = model.ContactEmail,
                     Notes = model.Notes,
                     SandwichSlot = model.SandwichSlot,
@@ -180,7 +180,7 @@ namespace Agape316.Models
                 eventDish.Title = model.Title;
                 eventDish.Description = model.Description;
                 eventDish.Created = DateTime.Now;
-                eventDish.ImageUrl = model.ImageUrl;
+                eventDish.ImageUrl = System.Web.HttpUtility.HtmlEncode("/upload/" + fileName);
                 eventDish.Category = model.Category;
                 eventDish.Notes = model.Notes;
                 eventDish.SandwichSlot = model.SandwichSlot;

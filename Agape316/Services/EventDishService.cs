@@ -47,7 +47,7 @@ namespace Agape316.Services
         public void UpdateEventDish(EventDish eventDish)
         {
             _context.Update(eventDish);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         IEnumerable<EventDish> IEventDish.GetAll()

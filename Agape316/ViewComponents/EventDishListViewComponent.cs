@@ -18,6 +18,16 @@ namespace Agape316.ViewComponents
         {
             var eventDishList = _eventDishService.GetAll().OrderByDescending(x => x.Created).ToList();
             ViewData["RelatedEvents"] = _eventService.GetAll().ToList();
+            if (eventDishList != null)
+            {
+                foreach (var item in eventDishList)
+                {
+                    if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        item.ImageUrl = System.Web.HttpUtility.UrlDecode(item.ImageUrl);
+                    }
+                }
+            }
             return View(eventDishList);
         }
     }
