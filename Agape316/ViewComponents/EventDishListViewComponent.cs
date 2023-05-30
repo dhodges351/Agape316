@@ -14,9 +14,9 @@ namespace Agape316.ViewComponents
             _eventDishService = eventDishService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int eventId)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var eventDishList = _eventDishService.GetEventDishesByEventId(eventId);
+            var eventDishList = _eventDishService.GetAll().OrderByDescending(x => x.Created).ToList();
             return View(eventDishList);
         }
     }

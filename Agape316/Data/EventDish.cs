@@ -15,12 +15,10 @@ public partial class EventDish
     public int? CleanUpSlot { get; set; }
     public int? ServeSlot { get; set; }
     public DateTime? Created { get; set; }
-    public DateTime? EventDate { get; set; }
     public string? Title { get; set; }
     public string? Description { get; set; }
     public string? ContactEmail { get; set; }
     public string? ImageUrl { get; set; }
     public string? Notes { get; set; }
-    public string? Category { get; set; }
-    public int? Quantity { get; set; }
+    public string? Category { get; set; }    
 }

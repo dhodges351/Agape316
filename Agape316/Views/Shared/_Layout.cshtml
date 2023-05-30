@@ -207,6 +207,7 @@
         function GetSelectedEvent(el)
         {
             var selectedId = parseInt(el.value);
+            var eventDate = $("#hidEventDate").val();
             $.ajax({
                 type: "GET",
                 url: "/EventDish/OnGetCallEventDishViewComponent",
@@ -216,6 +217,7 @@
                     $("#eventDishModal").modal('show');
                     $("#eventContainer").show();
                     $('#EventId').val(selectedId);
+                    $('#EventDate').val(eventDate);
                 },
                 failure: function (response) {
                     alert('Get Event Dish details failed');

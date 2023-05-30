@@ -30,8 +30,8 @@ namespace Agape316.Models
                 {
                     Title = eventDish.Title;
                     Description = eventDish.Description;
-                    EventDate = eventDish.EventDate;
                     ImageUrl = eventDish.ImageUrl;
+                    Created = DateTime.Now;
                     ContactEmail = eventDish.ContactEmail;
                     Notes = eventDish.Notes;
                     SandwichSlot = eventDish.SandwichSlot;
@@ -59,16 +59,8 @@ namespace Agape316.Models
         [Required]
         [Display(Name = "Contact Email")]
         [StringLength(100, ErrorMessage = "Email is required")] 
-        public string? ContactEmail { get; set; } 
-
+        public string? ContactEmail { get; set; }       
         public DateTime Created { get; set; }
-
-        [Required]
-        [Display(Name = "Event Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime? EventDate { get; set; }
-
         public string? ImageUrl { get; set; }        
         public string? Category { get; set; }       
         public int? Id { get; set; }
@@ -167,7 +159,6 @@ namespace Agape316.Models
                     Title = model.Title,
                     Description = model.Description,
                     Created = DateTime.Now,
-                    EventDate = model.EventDate,
                     ImageUrl = "/upload/" + fileName,
                     ContactEmail = model.ContactEmail,
                     Notes = model.Notes,
@@ -189,7 +180,6 @@ namespace Agape316.Models
                 eventDish.Title = model.Title;
                 eventDish.Description = model.Description;
                 eventDish.Created = DateTime.Now;
-                eventDish.EventDate = model.EventDate;
                 eventDish.ImageUrl = model.ImageUrl;
                 eventDish.Category = model.GetCategoryName(AgapeEvent.CategoryId);
                 eventDish.Notes = model.Notes;
