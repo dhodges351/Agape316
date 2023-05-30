@@ -18,13 +18,13 @@ namespace Agape316.ViewComponents
             _eventDishService = eventDishService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public async Task<IViewComponentResult> InvokeAsync(int eventId)
         {
-            if (id > 0)
+            if (eventId > 0)
             {
-                ViewData["SelectedAgapeEvent"] = _eventService.GetById(id);
+                ViewData["SelectedAgapeEvent"] = _eventService.GetById(eventId);
             }
-            var model = new EventDishModel(_eventService, _eventDishService, null, id);
+            var model = new EventDishModel(_eventService, _eventDishService, eventId, null);
             var agapeEvents = _eventService.GetAll().ToList();
             ViewData["AgapeEventObjects"] = agapeEvents;
             var agapeEventModels = new List<AgapeEventModel>();

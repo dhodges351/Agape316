@@ -1,13 +1,6 @@
-﻿using Agape316.Areas.Identity.Pages.Account;
-using Agape316.Data;
+﻿using Agape316.Data;
 using Agape316.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System.Data;
 
 namespace Agape316.Controllers
 {
@@ -34,14 +27,28 @@ namespace Agape316.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> OnGetCallEventDishViewComponent(int id)
+        public async Task<IActionResult> OnGetCallEventDishViewComponent(int eventId)
         {
-            return ViewComponent("EventDish", new { id = id });
+            return ViewComponent("EventDish", new { eventId = eventId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckEventSlot(int eventId, string slotName, int slotQuantity)
+        {
+            var eventDishModel = new EventDishModel();
+            var isInvalidSlot = eventDishModel.ValidateEventSlot(_eventService, _eventDishService, eventId, slotName, slotQuantity);
+            var model = new JsonMessage { Message = !isInvalidSlot ? "Max slots reached" : "ok" };
+            return new JsonResult(new { data = model });
         }
 
         [HttpPost]
         public async Task<IActionResult> AddEditEventDish(EventDishModel model)
-        {
+        {            
+            if (model.HasInvalidSlot == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var fileName = string.Empty;      
 
             if (Upload != null)
@@ -58,9 +65,14 @@ namespace Agape316.Controllers
                 }
             }
 
-            //model.SaveEventDish(model, fileName, _eventDishService);
+            model.SaveEventDish(model, fileName, _eventDishService);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public class JsonMessage
+        {
+            public string Message { get; set; }
         }
     }
 }

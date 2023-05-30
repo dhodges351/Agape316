@@ -29,9 +29,9 @@ namespace Agape316.Services
             }
         }
 
-        public IEnumerable<EventDish> GetEventDishesByEventDishId(int eventDishId)
+        public IEnumerable<EventDish> GetEventDishesByEventId(int eventId)
         {
-            var eventDishes = _context.EventDish.Where(x => x.Id == eventDishId);
+            var eventDishes = _context.EventDish.Where(x => x.EventId == eventId);
 
             return eventDishes.OrderByDescending(x => x.Created);
         }

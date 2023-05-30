@@ -210,12 +210,12 @@
             $.ajax({
                 type: "GET",
                 url: "/EventDish/OnGetCallEventDishViewComponent",
-                data: { "id": selectedId },
+                data: { "eventId": selectedId },
                 success: function (response) {
                     $("#eventDishModal").find(".modal-body").html(response);
                     $("#eventDishModal").modal('show');
                     $("#eventContainer").show();
-                    $('#EventId').val("");
+                    $('#EventId').val(selectedId);
                 },
                 failure: function (response) {
                     alert('Get Event Dish details failed');
@@ -224,6 +224,39 @@
                     alert('Error getting Event Dish details');
                 }
             });
+        }       
+
+        
+
+        function CheckEventSlot(el) {
+            var eventId = $("#EventId").val();
+            if ($("#EventId").val() == "") {
+                return;
+            }
+            else
+            {                
+                $.ajax({
+                    type: "POST",
+                    url: "/EventDish/CheckEventSlot",
+                    data: { "eventId": eventId, "slotName": el.id, "slotQuantity": el.value },
+                    success: function (response) {
+                        if (response.data.Message == "ok")
+                        {
+                            $("#HasInvalidSlot").val(false);
+                        }
+                        else
+                        {
+                            $("#HasInvalidSlot").val(true);
+                        }                        
+                    },
+                    failure: function (response) {
+                        alert('Check Event slot failed');
+                    },
+                    error: function (response) {
+                        alert('Error checking Event slot');
+                    }
+                });
+            }            
         }
 
     </script>

@@ -123,42 +123,46 @@
                 <label asp-for="ContactEmail">Email</label>
                 <input asp-for="ContactEmail" class="form-control" placeholder="Contact Email" />
                 <span asp-validation-for="ContactEmail" class="text-danger"></span>
-            </div>            
+            </div> 
+            <div class="form-group">
+                <label asp-for="Category">Category</label>
+                <input asp-for="Category" readonly class="form-control" placeholder="" value="@Model.GetCategoryName(selectedEvent.CategoryId)" />
+            </div>           
             <div class="form-group my-2">
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SandwichSlot">Sandwich</label>
-                        <input asp-for="SandwichSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="SandwichSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SideDishSlot">Side Dish</label>
-                        <input asp-for="SideDishSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="SideDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>                                   
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="MainDishSlot">Main Dish</label>
-                        <input asp-for="MainDishSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="MainDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="DessertSlot">Dessert</label>
-                        <input asp-for="DessertSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="DessertSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SetUpSlot">Set Up</label>
-                        <input asp-for="SetUpSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="SetUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="ServeSlot">Serve</label>
-                        <input asp-for="ServeSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="ServeSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>                   
                 </div>
                 <div class="row">                    
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="CleanUpSlot">Clean Up</label>
-                        <input asp-for="CleanUpSlot" class="text-slots" min="0" step="any" type="number">
+                        <input asp-for="CleanUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
                     </div>
                 </div>
             </div>
@@ -182,8 +186,12 @@
             </div>
             <div class="form-group" style="display:none;">
                 <input asp-for="Id" class="form-control" />
+                <input asp-for="EventId" class="form-control" value="@selectedEvent.Id" />
                 <input asp-for="ImageUrl" class="form-control"  />
+                <input asp-for="HasInvalidSlot" class="form-control" />
             </div>            
         </form>
     </div>
 </div>
+
+                        

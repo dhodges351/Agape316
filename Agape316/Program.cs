@@ -3,7 +3,7 @@ using Agape316.Data;
 using Agape316.Services;
 using Agape316.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +15,13 @@ builder.Services.AddSendGrid(options => {
 });
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    });
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

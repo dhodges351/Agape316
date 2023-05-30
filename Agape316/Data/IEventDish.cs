@@ -8,7 +8,7 @@ namespace Agape316.Data
     public interface IEventDish
     {
         EventDish GetById(int id);
-        public IEnumerable<EventDish> GetEventDishesByEventDishId(int eventDishId);
+        public IEnumerable<EventDish> GetEventDishesByEventId(int eventId);
         IEnumerable<EventDish> GetAll();
         Task Create(EventDish eventDish);
         Task Delete(int Id);

@@ -1,6 +1,7 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace Agape316.Models
 {
@@ -20,7 +21,7 @@ namespace Agape316.Models
 
             if (!eventId.HasValue)
             {
-                var eventDishes = _eventDishService.GetEventDishesByEventDishId(eventId ?? 0);                
+                var eventDishes = _eventDishService.GetEventDishesByEventId(eventId ?? 0);                
             }
             else if (id.HasValue)
             {
@@ -79,7 +80,8 @@ namespace Agape316.Models
         public int? DessertSlot { get; set; }
         public int? SetUpSlot { get; set; }
         public int? ServeSlot { get; set; }
-        public int? CleanUpSlot { get; set; } 
+        public int? CleanUpSlot { get; set; }
+        public bool HasInvalidSlot { get; set; } = false;
         public IEnumerable<EventDish> EventDishes { get; set; }
         public Event AgapeEvent { get; set; }
         public string GetCategoryName(int categoryId)
@@ -97,10 +99,67 @@ namespace Agape316.Models
             return categoryName;
         }
 
+        public bool ValidateEventSlot(IEvent _eventService, IEventDish _eventDishService, int eventId, string slotName, int slotQuantity)
+        {
+            bool retVal = true;
+
+            var agapeEvent = _eventService.GetByEventId(eventId);
+            var eventDishes = _eventDishService.GetEventDishesByEventId(eventId);
+            int sandwichSlotsUsed = 0;
+            int sideDishSlotsUsed = 0;
+            int mainDishSlotsUsed = 0;
+            int dessertSlotsUsed = 0;
+            int setUpSlotsUsed = 0;
+            int serveSlotsUsed = 0;
+            int cleanUpSlotsUsed = 0;
+
+            if (eventDishes != null && eventDishes.Any())
+            {
+                foreach (var eventDish in eventDishes)
+                {
+                    sandwichSlotsUsed += eventDish.SandwichSlot ?? 0;
+                    sideDishSlotsUsed += eventDish.SideDishSlot ?? 0;
+                    mainDishSlotsUsed += eventDish.MainDishSlot ?? 0;
+                    dessertSlotsUsed += eventDish.DessertSlot ?? 0;
+                    setUpSlotsUsed += eventDish.SetUpSlot ?? 0;
+                    serveSlotsUsed += eventDish.ServeSlot ?? 0;
+                    cleanUpSlotsUsed += eventDish.CleanUpSlot ?? 0;
+                }
+            }
+
+            if (agapeEvent != null)
+            {
+                switch (slotName)
+                {
+                    case "SandwichSlot":
+                        retVal = sandwichSlotsUsed < slotQuantity;
+                        break;
+                    case "SideDishSlot":
+                        retVal = sideDishSlotsUsed < slotQuantity;
+                        break;
+                    case "MainDishSlot":
+                        retVal = mainDishSlotsUsed < slotQuantity;
+                        break;
+                    case "DessertSlot":
+                        retVal = dessertSlotsUsed < slotQuantity;
+                        break;
+                    case "SetUpSlot":
+                        retVal = setUpSlotsUsed < slotQuantity;
+                        break;
+                    case "ServeSlot":
+                        retVal = serveSlotsUsed < slotQuantity;
+                        break;
+                    case "CleanUpSlot":
+                        retVal = cleanUpSlotsUsed < slotQuantity;
+                        break;
+                }
+            }
+
+            return retVal;
+        }
+
         public void SaveEventDish(EventDishModel model, string fileName, IEventDish _eventDishService)
         {
-            AgapeEvent = _eventService.GetByEventId(model.Id ?? 0);
-
             if (!model.Id.HasValue)
             {
                 var eventDish = new EventDish
@@ -120,6 +179,7 @@ namespace Agape316.Models
                     ServeSlot = model.ServeSlot,
                     CleanUpSlot = model.CleanUpSlot,
                     Category = model.Category,
+                    EventId = model.EventId ?? 0
                 };
                 _eventDishService.Create(eventDish);
             }
@@ -140,6 +200,7 @@ namespace Agape316.Models
                 eventDish.SetUpSlot = model.SetUpSlot;
                 eventDish.ServeSlot = model.ServeSlot;
                 eventDish.CleanUpSlot = model.CleanUpSlot;
+                eventDish.EventId = model.EventId ?? 0;
 
                 _eventDishService.UpdateEventDish(eventDish);
             }
