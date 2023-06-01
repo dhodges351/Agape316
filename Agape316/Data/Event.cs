@@ -1,11 +1,11 @@
-﻿namespace Agape316.Data;
+﻿using System.Security.Claims;
+
+namespace Agape316.Data;
 
 public partial class Event
-{
+{        
     public Event()
-    {
-    }
-
+    {}    
     public int Id { get; set; }
     public string? Title { get; set; }
     public string? Description { get; set; }
@@ -26,19 +26,28 @@ public partial class Event
     public int? ServeSlots { get; set; }
     public int? CleanUpSlots { get; set; }
     public virtual IEnumerable<EventDish> EventDishes { get; set; }
-
+    public string UserName
+    {
+        get
+        {
+            string userName = string.Empty;
+            if (Agape316.Helpers.AppContext.Current != null)
+            {
+                userName = Agape316.Helpers.AppContext.Current.Session.GetString("UserName");
+            }            
+            return userName;
+        }
+    }
     public string ContactLink
     {
         get
         {
-            string link = string.Empty;
-            var httpContext = new HttpContextAccessor().HttpContext;
-            var userName = httpContext.User.Identity.Name;
-            if (string.IsNullOrEmpty(userName))
+            string link = string.Empty;            
+            if (string.IsNullOrEmpty(UserName))
             {
                 link = $"<a href='#' class='disabled-link'>Contact</a>";
             }
-            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(ContactEmail))
             {
                 link = $"<a href='/Identity/Account/Profile/' class='enabled-link'>Contact</a>";
             }
@@ -50,14 +59,12 @@ public partial class Event
     {
         get
         {
-            string link = string.Empty;
-            var httpContext = new HttpContextAccessor().HttpContext;
-            var userName = httpContext.User.Identity.Name;
-            if (string.IsNullOrEmpty(userName))
+            string link = string.Empty;           
+            if (string.IsNullOrEmpty(UserName))
             {
                 link = $"<a href='#' class='disabled-link'>Edit</a>";
             }
-            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(ContactEmail))
             {
                 link = $"<a href='#' class='enabled-link' onclick='EditEvent({Id})'>Edit</a>";
             }

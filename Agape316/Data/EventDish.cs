@@ -5,6 +5,8 @@ namespace Agape316.Data;
 
 public partial class EventDish
 {
+    public EventDish()
+    {}   
     public int Id { get; set; }
     public int EventId { get; set; }
     public int? SandwichSlot { get; set; }
@@ -22,19 +24,28 @@ public partial class EventDish
     public string? Notes { get; set; }
     public string? Category { get; set; }
     public Event? RelatedEvent { get; set; }
-
+    public string UserName
+    {
+        get
+        {
+            string userName = string.Empty;
+            if (Agape316.Helpers.AppContext.Current != null)
+            {
+                userName = Agape316.Helpers.AppContext.Current.Session.GetString("UserName");
+            }
+            return userName;
+        }
+    }
     public string ContactLink
     {
         get
         {
-            string link = string.Empty;
-            var httpContext = new HttpContextAccessor().HttpContext;
-            var userName = httpContext.User.Identity.Name;
-            if (string.IsNullOrEmpty(userName))
+            string link = string.Empty;            
+            if (string.IsNullOrEmpty(UserName))
             {
                 link = $"<a href='#' class='disabled-link'>Contact</a>";
             }
-            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(ContactEmail))
             {
                 link = $"<a href='/Identity/Account/Profile/' class='enabled-link'>Contact</a>";
             }
@@ -45,14 +56,12 @@ public partial class EventDish
     {
         get
         {
-            string link = string.Empty;
-            var httpContext = new HttpContextAccessor().HttpContext;
-            var userName = httpContext.User.Identity.Name;
-            if (string.IsNullOrEmpty(userName))
+            string link = string.Empty;           
+            if (string.IsNullOrEmpty(UserName))
             {
                 link = $"<a href='#' class='disabled-link')'>Edit</a>";
             }
-            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(ContactEmail))
             {
                 link = $"<a href='#' class='enabled-link' onclick='EditEventDish({EventId},{Id})'>Edit</a>";
             }

@@ -26,7 +26,11 @@ namespace Agape316.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
-            await _signInManager.SignOutAsync();
+            if (Agape316.Helpers.AppContext.Current != null)
+            {
+                Agape316.Helpers.AppContext.Current.Session.SetString("UserName", "");
+            }    
+            await _signInManager.SignOutAsync();                    
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {

@@ -1,10 +1,13 @@
 using Agape316.AspNetIdentity.Services;
 using Agape316.Data;
+using Agape316.Helpers;
 using Agape316.Services;
 using Agape316.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Newtonsoft.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using AppContext = Agape316.Helpers.AppContext;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
@@ -24,12 +27,19 @@ builder.Services.AddControllers()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(1800);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddScoped<IApplicationUser, ApplicationUserService>();
 builder.Services.AddScoped<IEmailSender, EmailSenderService>();
 builder.Services.AddScoped<IUpload, UploadService>();
 builder.Services.AddTransient<IEvent, EventService>();
 builder.Services.AddScoped<IEventDish, EventDishService>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -47,9 +57,9 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
+AppContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

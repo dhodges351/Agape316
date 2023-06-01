@@ -16,8 +16,6 @@ namespace Agape316.Areas.Identity
 
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-
-                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             });
         }
     }

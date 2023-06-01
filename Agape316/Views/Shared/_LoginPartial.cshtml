@@ -5,6 +5,11 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    if (User != null && User.Identity != null)
+    {
+        Context.Session.SetString("UserName", User.Identity.Name);
+    }
+
     <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Profile" title="Profile">Hello @User.Identity?.Name!</a>
     </li>    

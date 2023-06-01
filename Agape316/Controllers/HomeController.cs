@@ -1,8 +1,5 @@
-﻿using Agape316.Data;
-using Agape316.Models;
-using Agape316.Services;
+﻿using Agape316.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Agape316.Controllers
@@ -10,16 +7,14 @@ namespace Agape316.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IEvent _eventService;
 
-        public HomeController(ILogger<HomeController> logger, IEvent eventService)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
-            _eventService = eventService;
+            _logger = logger;       
         }
 
         public IActionResult Index()
-        {            
+        {
             return View();
         }
 
