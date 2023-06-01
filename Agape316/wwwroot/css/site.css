@@ -233,3 +233,15 @@ div#eventContainer {
     margin:0;
     padding:0;
 }
+
+.disabled-link {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+}
+
+.enabled-link {
+    pointer-events: all;
+    color: #0d6efd;
+    text-decoration: underline;
+}

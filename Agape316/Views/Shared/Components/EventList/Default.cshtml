@@ -11,21 +11,21 @@
         @if (Model.Any())
         {
             @(
-                Html
-                .Grid(Model)
-                .Build(columns =>
-                {
-                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");
-                    columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
-                    columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
-                    columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
-                    columns.Add(model => @Html.Raw(Agape316.Helpers.EventHelpers.GetCategoryName(model.CategoryId))).Titled("Category");
-                    columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");
-                    columns.Add(model => @Html.Raw($"{model.EventDate.ToShortDateString()} {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.StartTime)} - {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.EndTime)}")).Titled("Date/Time");
-                    columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlots} Side Dish: {model.SideDishSlots} Main Dish: {model.MainDishSlots} Dessert: {model.DessertSlots} Set Up: {model.SetUpSlots} Serve: {model.ServeSlots} Clean Up: {model.CleanUpSlots}")).Titled("Slots");                    
-                    columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
-                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEvent({model.Id})'>Edit</a")).Titled("Edit").Css("edit-event");
-                    columns.Add(model => @Html.Raw(model.Id)).Hidden();
+            Html
+                    .Grid(Model)
+                    .Build(columns =>
+                    {
+                        columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Photo");
+                        columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
+                        columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
+                        columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
+                        columns.Add(model => @Html.Raw(Agape316.Helpers.EventHelpers.GetCategoryName(model.CategoryId))).Titled("Category");
+                        columns.Add(model => @Html.Raw(model.ContactLink)).Titled("Contact");
+                        columns.Add(model => @Html.Raw($"{model.EventDate.ToShortDateString()} {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.StartTime)} - {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.EndTime)}")).Titled("Date/Time");
+                        columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlots} Side Dish: {model.SideDishSlots} Main Dish: {model.MainDishSlots} Dessert: {model.DessertSlots} Set Up: {model.SetUpSlots} Serve: {model.ServeSlots} Clean Up: {model.CleanUpSlots}")).Titled("Slots");                    
+                        columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");                        
+                        columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit");
+                        columns.Add(model => @Html.Raw(model.Id)).Hidden();
                 })
                 .Empty("No data found")
                 .Pageable(pager =>

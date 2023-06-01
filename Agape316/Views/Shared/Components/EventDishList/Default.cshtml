@@ -23,10 +23,10 @@
                     columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='dish image' height=50 width=50></img>")).Width(50).Titled("Dish");
                     columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");                                        
-                    columns.Add(model => @Html.Raw("<a href='/Identity/Account/Profile/'>Contact</a>")).Titled("Contact");
+                    columns.Add(model => @Html.Raw(model.ContactLink)).Titled("Contact");
                     columns.Add(model => @Html.Raw($"Sandwich: {model.SandwichSlot} Side Dish: {model.SideDishSlot} Main Dish: {model.MainDishSlot} Dessert: {model.DessertSlot} Set Up: {model.SetUpSlot} Serve: {model.ServeSlot} Clean Up: {model.CleanUpSlot}")).Titled("Slots");                    
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
-                    columns.Add(model => @Html.Raw($"<a href='#' onclick='EditEventDish({model.EventId},{model.Id})'>Edit</a")).Titled("Edit").Css("edit-event");
+                    columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
                     columns.Add(model => @Html.Raw(model.EventId)).Hidden();
                 })

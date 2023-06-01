@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-
-namespace Agape316.Data;
+﻿namespace Agape316.Data;
 
 public partial class Event
 {
@@ -30,4 +26,42 @@ public partial class Event
     public int? ServeSlots { get; set; }
     public int? CleanUpSlots { get; set; }
     public virtual IEnumerable<EventDish> EventDishes { get; set; }
+
+    public string ContactLink
+    {
+        get
+        {
+            string link = string.Empty;
+            var httpContext = new HttpContextAccessor().HttpContext;
+            var userName = httpContext.User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                link = $"<a href='#' class='disabled-link'>Contact</a>";
+            }
+            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            {
+                link = $"<a href='/Identity/Account/Profile/' class='enabled-link'>Contact</a>";
+            }
+            return link;
+        }
+    }
+
+    public string EditLink
+    {
+        get
+        {
+            string link = string.Empty;
+            var httpContext = new HttpContextAccessor().HttpContext;
+            var userName = httpContext.User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                link = $"<a href='#' class='disabled-link'>Edit</a>";
+            }
+            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            {
+                link = $"<a href='#' class='enabled-link' onclick='EditEvent({Id})'>Edit</a>";
+            }
+            return link;
+        }
+    }
 }

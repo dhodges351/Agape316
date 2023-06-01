@@ -22,4 +22,41 @@ public partial class EventDish
     public string? Notes { get; set; }
     public string? Category { get; set; }
     public Event? RelatedEvent { get; set; }
+
+    public string ContactLink
+    {
+        get
+        {
+            string link = string.Empty;
+            var httpContext = new HttpContextAccessor().HttpContext;
+            var userName = httpContext.User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                link = $"<a href='#' class='disabled-link'>Contact</a>";
+            }
+            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            {
+                link = $"<a href='/Identity/Account/Profile/' class='enabled-link'>Contact</a>";
+            }
+            return link;
+        }
+    }
+    public string EditLink
+    {
+        get
+        {
+            string link = string.Empty;
+            var httpContext = new HttpContextAccessor().HttpContext;
+            var userName = httpContext.User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                link = $"<a href='#' class='disabled-link')'>Edit</a>";
+            }
+            else if (!string.IsNullOrEmpty(userName) && userName.Equals(ContactEmail))
+            {
+                link = $"<a href='#' class='enabled-link' onclick='EditEventDish({EventId},{Id})'>Edit</a>";
+            }
+            return link;
+        }
+    }
 }
