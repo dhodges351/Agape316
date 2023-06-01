@@ -163,22 +163,29 @@ else
     function showPlanEventModal()
     {        
         checkLoggedIn();
-        checkAdmin();
+        //checkAdmin();
 
         if (!isLoggedIn) {
             alert('You must be an logged in to use this feature.')
         }
-        else if (isLoggedIn && !isAdmin) {
-            alert('You must be an Admin to use this feature.')
-        }
+        //else if (isLoggedIn && !isAdmin) {
+        //    alert('You must be an Admin to use this feature.')
+        //}
         else
         {
             $("#planEventModal").modal("show");
         }        
     }
 
-    function showEventDishModal() {
-        $("#eventDishModal").modal('show');        
+    function showEventDishModal() {    
+        checkLoggedIn();
+
+        if (!isLoggedIn) {
+            alert('You must be an logged in to use this feature.')
+        }        
+        else {
+            $("#eventDishModal").modal("show");
+        }
     }    
 
 </script>
