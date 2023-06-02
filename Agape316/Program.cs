@@ -7,6 +7,7 @@ using Newtonsoft.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
 using AppContext = Agape316.Helpers.AppContext;
 using Serilog;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,10 @@ builder.Services.AddControllers()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

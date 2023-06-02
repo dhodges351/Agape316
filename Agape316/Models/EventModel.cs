@@ -1,5 +1,7 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
+using AngleSharp.Dom;
+using Ganss.Xss;
 using System.ComponentModel.DataAnnotations;
 
 namespace Agape316.Models
@@ -7,6 +9,15 @@ namespace Agape316.Models
     public class EventModel
     {
         private readonly IEvent _eventService;
+        public string note { get; private set; }
+        public string title { get; private set; }
+        public string description { get; private set; }
+        public string location { get; private set; }
+        public string contactEmail { get; private set; }
+        public string startTime { get; private set; }
+        public string endTime { get; private set; }
+        public string imageUrl { get; private set; }
+        public string category { get; private set; }
 
         public EventModel()
         {
@@ -42,23 +53,46 @@ namespace Agape316.Models
         }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Title is required")] 
-        public string Title { get; set; }
+        [StringLength(100, ErrorMessage = "Title is required")]
+        public string Title
+        {
+            get => title;
+            set => title = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
-        [StringLength(200, ErrorMessage = "Description is required")] 
-        public string Description { get; set; }
+        [StringLength(200, ErrorMessage = "Description is required")]
+        public string Description
+        {
+            get => description;
+            set => description = new HtmlSanitizer().Sanitize(value);
+        }        
 
-        public string? Notes { get; set; }
+        [StringLength(200)]
+        [DataType(DataType.MultilineText)]
+        public string Notes
+        {
+            get => note;
+            set => note = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Location is required")] 
-        public string Location { get; set; }
+        [StringLength(100, ErrorMessage = "Location is required")]
+        public string Location
+        {
+            get => location;
+            set => location = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
         [Display(Name = "Contact Email")]
-        [StringLength(100, ErrorMessage = "Email is required")] 
-        public string ContactEmail { get; set; } 
+        [StringLength(100, ErrorMessage = "Email is required")]
+        [DataType(DataType.EmailAddress)]
+        public string ContactEmail
+        {
+            get => contactEmail;
+            set => contactEmail = new HtmlSanitizer().Sanitize(value);
+        }
 
         public DateTime Created { get; set; }
 
@@ -67,20 +101,32 @@ namespace Agape316.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime EventDate { get; set; }
-
-        public string? ImageUrl { get; set; }
+            
+        public string ImageUrl
+        {
+            get => imageUrl;
+            set => imageUrl = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
         [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]
-        public string? StartTime { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]        
+        public string StartTime
+        {
+            get => startTime;
+            set => startTime = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
         [Display(Name = "End Time")]
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]
-        public string? EndTime { get; set; }
+        public string EndTime
+        {
+            get => endTime;
+            set => endTime = new HtmlSanitizer().Sanitize(value);
+        }
 
         public int CategoryId { get; set; }
         public int? Id { get; set; }
@@ -94,7 +140,11 @@ namespace Agape316.Models
 
         [Required]        
         [StringLength(50, ErrorMessage = "Category is required")]
-        public string Category { get; set; }
+        public string Category
+        {
+            get => category;
+            set => category = new HtmlSanitizer().Sanitize(value);
+        }
 
         public IEnumerable<Event> AgapeEvents { get; set; }
 
