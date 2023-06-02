@@ -202,7 +202,20 @@
             $('#eventDishModal').on('hidden.bs.modal', function () {
                 window.location = "/";
             });
-        });       
+        }); 
+
+        function checkCategory() {
+            var selectedCategory = $("#Category").val();
+            if (selectedCategory == "")
+            {
+                alert("Please select a Category.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         function GetSelectedEvent(el)
         {

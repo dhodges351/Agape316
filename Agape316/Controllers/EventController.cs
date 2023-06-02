@@ -3,6 +3,7 @@ using Agape316.Data;
 using Agape316.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Data;
@@ -11,15 +12,17 @@ namespace Agape316.Controllers
 {
     public class EventController : Controller
     {
+        private readonly IEmailSender _emailSender;
         private readonly IEvent _eventService;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
-        public EventController(IEvent eventService,
+        public EventController(IEmailSender emailSender, IEvent eventService,
             Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
+            _emailSender = emailSender;
             _eventService = eventService;
             _environment = environment;
         }
@@ -48,7 +51,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEvent(model, fileName, _eventService);
+            await model.SaveEvent(_emailSender, model, fileName, _eventService);
 
             return RedirectToAction("Index", "Home");
         }

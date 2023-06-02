@@ -2,12 +2,15 @@
 using Agape316.Enums;
 using AngleSharp.Dom;
 using Ganss.Xss;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Encodings.Web;
 
 namespace Agape316.Models
 {
     public class EventModel
     {
+        private readonly IEmailSender _emailSender;
         private readonly IEvent _eventService;
         public string note { get; private set; }
         public string title { get; private set; }
@@ -23,8 +26,9 @@ namespace Agape316.Models
         {
         }
 
-        public EventModel(IEvent eventService, int? id = null)
+        public EventModel(IEmailSender emailSender, IEvent eventService, int? id = null)
         {
+            _emailSender = emailSender;
             _eventService = eventService;
             if (id.HasValue)
             {
@@ -50,6 +54,7 @@ namespace Agape316.Models
                     CleanUpSlots = agapeEvent.CleanUpSlots;
                 }
             }
+            _emailSender = emailSender;
         }
 
         [Required]
@@ -127,8 +132,8 @@ namespace Agape316.Models
             get => endTime;
             set => endTime = new HtmlSanitizer().Sanitize(value);
         }
-
-        public int CategoryId { get; set; }
+       
+        public int? CategoryId { get; set; }
         public int? Id { get; set; }
         public int? SandwichSlots { get; set; }
         public int? SideDishSlots { get; set; }
@@ -175,7 +180,7 @@ namespace Agape316.Models
             return categoryName;
         }
 
-        public async Task SaveEvent(EventModel model, string fileName, IEvent _eventService)
+        public async Task SaveEvent(IEmailSender emailSender, EventModel model, string fileName, IEvent _eventService)
         {
             if (!model.Id.HasValue)
             {
@@ -226,6 +231,24 @@ namespace Agape316.Models
 
                 _eventService.UpdateEvent(agapeEvent);
             }
+            await emailSender.SendEmailAsync(
+                    model.ContactEmail,
+                    model.Title,
+                    $"<h1>Thank you for submitting your Event!</h1>" +
+                    $"Title: {model.Title} " +
+                    $" <br /> Description: {model.Description} " +
+                    $" <br /> Location: {model.Location} " +
+                    $" <br /> Event Date: {model.EventDate } " +
+                    $" <br /> Starts: {model.StartTime} Ends: {model.EndTime} " +
+                    $" <br /> Category: {model.Category} " +
+                    $" <br /> Sandwiches: { model.SandwichSlots }" +
+                    $" <br /> Side Dishes: {model.SideDishSlots }" +
+                    $" <br /> Main Dishes: {model.MainDishSlots }" +
+                    $" <br /> Desserts: {model.DessertSlots}" +
+                    $" <br /> Set Up: {model.SetUpSlots}" +
+                    $" <br /> Servers: {model.ServeSlots}" +
+                    $" <br /> Clean Up: {model.CleanUpSlots}"
+            );
         }
     }
 }

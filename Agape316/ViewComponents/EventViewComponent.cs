@@ -1,5 +1,6 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace Agape316.ViewComponents
 {
@@ -7,15 +8,17 @@ namespace Agape316.ViewComponents
     public class EventViewComponent : ViewComponent
     {
         private readonly IEvent _eventService;
+        private readonly IEmailSender _emailSender;
 
-        public EventViewComponent(IEvent eventService)
+        public EventViewComponent(IEmailSender emailSender, IEvent eventService)
         {
+            _emailSender = emailSender;
             _eventService = eventService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var model = new EventModel(_eventService, id);
+            var model = new EventModel(_emailSender, _eventService, id);
             var agapeEvent = _eventService.GetById(id);
             if (agapeEvent != null)
             {
