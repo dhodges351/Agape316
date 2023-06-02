@@ -1,15 +1,22 @@
 using Agape316.AspNetIdentity.Services;
 using Agape316.Data;
-using Agape316.Helpers;
 using Agape316.Services;
 using Agape316.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Newtonsoft.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using AppContext = Agape316.Helpers.AppContext;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.FromLogContext()
+        .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
 
 builder.Services.AddSendGrid(options => {

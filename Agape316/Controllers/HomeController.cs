@@ -1,7 +1,5 @@
-﻿using Agape316.Models;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Agape316.Controllers
 {
@@ -15,7 +13,7 @@ namespace Agape316.Controllers
         }
 
         public IActionResult Index()
-        {            
+        {                   
             return View();
         }
 
@@ -42,10 +40,7 @@ namespace Agape316.Controllers
                 // Get the exception that occurred
                 Exception exceptionThatOccurred = exceptionFeature.Error;
 
-                // TODO: Do something with the exception
-                // Log it with Serilog?
-                // Send an e-mail, text, fax, or carrier pidgeon?  Maybe all of the above?
-                // Whatever you do, be careful to catch any exceptions, otherwise you'll end up with a blank page and throwing a 500
+                _logger.LogError(exceptionThatOccurred.Message + "\r\n" + exceptionThatOccurred.InnerException + "\r\n" + exceptionThatOccurred.StackTrace);
             }
 
             return View();
