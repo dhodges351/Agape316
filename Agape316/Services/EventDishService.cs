@@ -44,6 +44,14 @@ namespace Agape316.Services
             return agapeEventDish;
         }
 
+        public Event GetByEventId(int eventId)
+        {
+            var agapeEvent = _context.Event.Where(x => x.Id == eventId)
+                .FirstOrDefault();
+
+            return agapeEvent;
+        }
+
         public void UpdateEventDish(EventDish eventDish)
         {
             _context.Update(eventDish);

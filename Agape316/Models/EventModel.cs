@@ -1,5 +1,6 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
+using Agape316.Helpers;
 using AngleSharp.Dom;
 using Ganss.Xss;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -238,8 +239,8 @@ namespace Agape316.Models
                     $"Title: {model.Title} " +
                     $" <br /> Description: {model.Description} " +
                     $" <br /> Location: {model.Location} " +
-                    $" <br /> Event Date: {model.EventDate } " +
-                    $" <br /> Starts: {model.StartTime} Ends: {model.EndTime} " +
+                    $" <br /> Event Date: {model.EventDate.ToShortDateString() } " +
+                    $" <br /> Starts: {EventHelpers.GetStandardTimeFromMilitaryTime(model.StartTime)} Ends: {EventHelpers.GetStandardTimeFromMilitaryTime(model.EndTime)} " +
                     $" <br /> Category: {model.Category} " +
                     $" <br /> Sandwiches: { model.SandwichSlots }" +
                     $" <br /> Side Dishes: {model.SideDishSlots }" +

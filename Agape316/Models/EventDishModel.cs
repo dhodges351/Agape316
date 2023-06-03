@@ -1,8 +1,10 @@
 ﻿using Agape316.Data;
 using Agape316.Enums;
+using Agape316.Helpers;
 using Ganss.Xss;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
+
 
 namespace Agape316.Models
 {
@@ -185,7 +187,7 @@ namespace Agape316.Models
 			return retVal;
 		}
 
-		public void SaveEventDish(EventDishModel model, string fileName, IEventDish _eventDishService)
+		public async Task SaveEventDish(IEmailSender emailSender, EventDishModel model, string fileName, IEventDish _eventDishService)
         {
             if (!model.Id.HasValue)
             {
@@ -194,7 +196,7 @@ namespace Agape316.Models
                     Title = model.Title,
                     Description = model.Description,
                     Created = DateTime.Now,
-                    ImageUrl = System.Web.HttpUtility.HtmlEncode("/upload/" + fileName),
+                    ImageUrl = System.Web.HttpUtility.HtmlEncode(model.ImageUrl),
                     ContactEmail = model.ContactEmail,
                     Notes = model.Notes,
                     SandwichSlot = model.SandwichSlot,
@@ -207,7 +209,7 @@ namespace Agape316.Models
                     Category = model.Category,
                     EventId = model.EventId ?? 0
                 };
-                _eventDishService.Create(eventDish);
+                await _eventDishService.Create(eventDish);
             }
             else
             {
@@ -215,7 +217,7 @@ namespace Agape316.Models
                 eventDish.Title = model.Title;
                 eventDish.Description = model.Description;
                 eventDish.Created = DateTime.Now;
-                eventDish.ImageUrl = System.Web.HttpUtility.HtmlEncode("/upload/" + fileName);
+                eventDish.ImageUrl = System.Web.HttpUtility.HtmlEncode(model.ImageUrl);
                 eventDish.Category = model.Category;
                 eventDish.Notes = model.Notes;
                 eventDish.SandwichSlot = model.SandwichSlot;
@@ -229,6 +231,25 @@ namespace Agape316.Models
 
                 _eventDishService.UpdateEventDish(eventDish);
             }
+
+            AgapeEvent = _eventDishService.GetByEventId(model.EventId ?? 0);
+            await emailSender.SendEmailAsync(
+                    model.ContactEmail,
+                    model.Title,
+                    $"<h1>Thank you for submitting your Event Dish!</h1>" +
+                    $"Event: {AgapeEvent?.Title} " +
+                    $" <br /> Event Category: {model.Category} " +
+                    $" <br /> Event Date: {AgapeEvent?.EventDate.ToShortDateString()} {EventHelpers.GetStandardTimeFromMilitaryTime(AgapeEvent?.StartTime)} - {EventHelpers.GetStandardTimeFromMilitaryTime(AgapeEvent?.EndTime)} " +
+                    $" <br /> Title: {model.Title} " +
+                    $" <br /> Description: {model.Description} " +
+                    $" <br /> Sandwiches: {model.SandwichSlot}" +
+                    $" <br /> Side Dishes: {model.SideDishSlot}" +
+                    $" <br /> Main Dishes: {model.MainDishSlot}" +
+                    $" <br /> Desserts: {model.DessertSlot}" +
+                    $" <br /> Set Up: {model.SetUpSlot}" +
+                    $" <br /> Servers: {model.ServeSlot}" +
+                    $" <br /> Clean Up: {model.CleanUpSlot}"
+            );
         }
     }
 }

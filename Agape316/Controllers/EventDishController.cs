@@ -1,5 +1,6 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agape316.Controllers
@@ -8,17 +9,19 @@ namespace Agape316.Controllers
     {
         private readonly IEvent _eventService;
         private readonly IEventDish _eventDishService;
+        private readonly IEmailSender _emailSender;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         public EventDishController(IEvent eventService, IEventDish eventDishService,
-            Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
+            IEmailSender emailSender, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             _eventService = eventService;
             _eventDishService = eventDishService;
             _environment = environment;
+            _emailSender = emailSender;
         }
         
         public IActionResult Index()
@@ -32,8 +35,8 @@ namespace Agape316.Controllers
             return ViewComponent("EventDish", new { eventId = eventId, id = id });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CheckEventSlot(int eventId, string slotName, int slotQuantity)
+        [HttpGet]
+        public IActionResult CheckEventSlot(int eventId, string slotName, int slotQuantity)
         {
             var eventDishModel = new EventDishModel();
             var isInvalidSlot = eventDishModel.ValidateEventSlot(_eventService, _eventDishService, eventId, slotName, slotQuantity);
@@ -65,7 +68,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            model.SaveEventDish(model, fileName, _eventDishService);
+            await model.SaveEventDish(_emailSender, model, fileName, _eventDishService);
 
             return RedirectToAction("Index", "Home");
         }

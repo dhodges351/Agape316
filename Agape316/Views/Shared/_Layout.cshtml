@@ -245,7 +245,7 @@
         {
             event.preventDefault();
             if ($("#HasInvalidSlot").val() == "True") {
-                alert('Please check available Event slots.');
+                alert('Please check reserved dishes for available Event slots.');
                 return false;
             }      
             else
@@ -262,7 +262,7 @@
             else
             {                
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     url: "/EventDish/CheckEventSlot",
                     data: { "eventId": eventId, "slotName": el.id, "slotQuantity": el.value },
                     success: function (response) {
