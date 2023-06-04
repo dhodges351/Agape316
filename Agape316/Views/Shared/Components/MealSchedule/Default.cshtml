@@ -26,7 +26,17 @@
             </div>            
             <div class="form-group">
                 <label asp-for="CoordPhone">Coordinator Phone</label>
-                <input asp-for="CoordPhone" readonly class="form-control" placeholder="Coordinator phone" />
+                <input asp-for="CoordPhone" class="form-control" placeholder="Coordinator phone" />
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate">Start Date</label>
+                <input asp-for="StartDate" class="form-control" placeholder="Start Date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate">End Date</label>
+                <input asp-for="EndDate" class="form-control" placeholder="End Date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientFName">Recipient First Name</label>
@@ -34,17 +44,17 @@
                 <span asp-validation-for="RecipientFName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RecipientLName">Recipient First Name</label>
+                <label asp-for="RecipientLName">Recipient Last Name</label>
                 <input asp-for="RecipientLName" class="form-control" placeholder="Recipient last name">
                 <span asp-validation-for="RecipientLName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientEmail">Recipient Email</label>
-                <input asp-for="RecipientEmail" class="form-control" placeholder="Recipient email" />                
+                <input asp-for="RecipientEmail" class="form-control" placeholder="Recipient email (optional)" />                
             </div>
             <div class="form-group">
                 <label asp-for="RecipientPhone">Recipient Phone</label>
-                <input asp-for="RecipientPhone" class="form-control" placeholder="Recipient phone" />
+                <input asp-for="RecipientPhone" class="form-control" placeholder="Recipient phone (optional)" />
             </div>
             <div class="form-group">
                 <label asp-for="RecipientAddress">Recipent Address</label>
@@ -56,7 +66,7 @@
                 <input asp-for="RecipientCity" class="form-control" placeholder="Recipient city" />
                 <span asp-validation-for="RecipientCity" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group py-2">
                 <label asp-for="RecipientState">Recipent State</label>
                 @Html.DropDownListFor(m => m.RecipientState, (IEnumerable<SelectListItem>)ViewData["States"], "Please select", new { @onchange = "GetSelectedState(this)" })
                 <br />
@@ -68,13 +78,9 @@
                 <span asp-validation-for="RecipientZipcode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FoodAllergies ">Recipent Food Allergies</label>
-                <input asp-for="FoodAllergies " class="form-control" placeholder="Recipient food allergies" />              
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes ">Recipent Zipcode</label>
-                <input asp-for="Notes " class="form-control" placeholder="Meal schedule notes" />
-            </div>
+                <label asp-for="FoodAllergies">Recipent Food Allergies</label>
+                <input asp-for="FoodAllergies" class="form-control" placeholder="Recipient food allergies" />              
+            </div>           
             <div class="form-group my-2">
                 <div class="row">
                     <div class="col-md-6">

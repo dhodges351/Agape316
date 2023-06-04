@@ -102,7 +102,7 @@ namespace Agape316.Models
 
         [Required]
         [Display(Name = "Coordinator Phone")]
-        [StringLength(100, ErrorMessage = "Phone number is required")]
+        [StringLength(20, ErrorMessage = "Phone number is required")]
         [DataType(DataType.PhoneNumber)]
         public string CoordPhone
         {
@@ -130,20 +130,18 @@ namespace Agape316.Models
         
         [Display(Name = "Recipient Email")]
         [StringLength(100)]
-        [DataType(DataType.EmailAddress)]
-        public string RecipientEmail
+        public string? RecipientEmail
         {
             get => recipientEmail;
-            set => recipientEmail = new HtmlSanitizer().Sanitize(value);
+            set => recipientEmail = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
         
         [Display(Name = "Recipient Phone")]
-        [StringLength(100)]
-        [DataType(DataType.PhoneNumber)]
-        public string RecipientPhone
+        [StringLength(20)]
+        public string? RecipientPhone
         {
             get => recipientPhone;
-            set => recipientPhone = new HtmlSanitizer().Sanitize(value);
+            set => recipientPhone = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         } 
 
         [Required]
@@ -152,7 +150,7 @@ namespace Agape316.Models
         public string RecipientAddress
         {
             get => recipientAddress;
-            set => recipientLName = new HtmlSanitizer().Sanitize(value);
+            set => recipientAddress = new HtmlSanitizer().Sanitize(value);
         }
 
         [Required]
@@ -183,8 +181,19 @@ namespace Agape316.Models
         }
 
         public DateTime Created { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime StartDate { get; set; } = DateTime.Now;
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime EndDate { get; set; } = DateTime.Now;
+
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
         public bool Wednesday { get; set; }
@@ -195,7 +204,7 @@ namespace Agape316.Models
 
         [Display(Name = "Food Allergies")]
         [StringLength(500)]
-        public string FoodAllergies
+        public string? FoodAllergies
         {
             get => foodAllergies;
             set => foodAllergies = new HtmlSanitizer().Sanitize(value);
@@ -203,12 +212,11 @@ namespace Agape316.Models
 
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
-        public string Notes
+        public string? Notes
         {
             get => notes;
             set => notes = new HtmlSanitizer().Sanitize(value);
         }
-
 
         public async Task SaveMealSchedule(IEmailSender emailSender, MealScheduleModel model, IMealSchedule _mealScheduleService)
         {
