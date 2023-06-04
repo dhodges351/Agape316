@@ -23,24 +23,9 @@ namespace Agape316.ViewComponents
             var mealSchedules = _mealScheduleService.GetAll().ToList();
             ViewData["MealScheduleObjects"] = mealSchedules;
 
-            var stateModels = new List<StateModel>
-            {
-                new StateModel { StateId = 1, StateAbbreviation = "AL" },
-                new StateModel { StateId = 2, StateAbbreviation = "AK" },
-                new StateModel { StateId = 3, StateAbbreviation = "AZ" },
-                new StateModel { StateId = 4, StateAbbreviation = "CA" },
-                new StateModel { StateId = 5, StateAbbreviation = "CO" }
-            };
-
-            ViewData["States"] = new SelectList(stateModels, "StateId", "StateAbbreviation");
+            ViewData["States"] = new SelectList(Agape316.Helpers.StateArray.states.ToArray(), "Abbreviations", "Abbreviations");
             
             return View(model);
         }
-    }
-
-    public class StateModel
-    {       
-        public int StateId { get; set; }
-        public string StateAbbreviation { get; set; }
     }
 }
