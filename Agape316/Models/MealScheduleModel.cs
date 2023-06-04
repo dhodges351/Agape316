@@ -135,6 +135,7 @@ namespace Agape316.Models
         
         [Display(Name = "Recipient Email")]
         [StringLength(100)]
+        [DataType(DataType.EmailAddress)]
         public string? RecipientEmail
         {
             get => recipientEmail;
@@ -143,6 +144,7 @@ namespace Agape316.Models
         
         [Display(Name = "Recipient Phone")]
         [StringLength(20)]
+        [DataType(DataType.PhoneNumber)]
         public string? RecipientPhone
         {
             get => recipientPhone;
@@ -289,7 +291,7 @@ namespace Agape316.Models
             await emailSender.SendEmailAsync(
                     model.CoordEmail,
                     model.Title,
-                    $" <br /> Created: {model.Created.ToShortDateString()} " +
+                    $" <br /> Created: {DateTime.Now.ToShortDateString()} " +
                     $" <br /> Coordinator: {model.Coordinator} " +
                     $" <br /> Description: {model.Description} " +
                     $" <br /> Start Date: {model.StartDate.ToShortDateString()} " +
