@@ -72,13 +72,15 @@ else
 
                     </p>
                     <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>
+                    @*<a rel="noopener" href="#schedule-meals" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>*@
                 </div>
             </div>
             <div class="col-lg-6 text-center py-4">
                 <div>
                     <p class="header2-inner-right">
                     </p>
-                    <a href="#" onclick="showDeliverMealsModal()"  class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
+                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
+                    @*<a rel="noopener" href="#deliver-meals" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>*@
                 </div>
             </div>
         </div>
@@ -147,6 +149,28 @@ else
     @await Component.InvokeAsync("EventDishList")
 </div>
 <!-- Service End -->
+
+<!-- Schedule Meals Start -->
+<div class="container-xxl py-3">
+    <h5 class="sub-heading">Meals Scheduled</h5>
+    <div class="row">
+        <div class="col-md-12">
+            @*<a id="schedule-meals">Schedule Meals Here</a>*@
+        </div>
+    </div>
+</div>
+<!-- Schedule Meals End -->
+
+<!-- Deliver Meals Start -->
+<div class="container-xxl py-3">
+    <h5 class="sub-heading">Meals Delivered</h5>
+    <div class="row">
+        <div class="col-md-12">
+            @*<a id="deliver-meals">Deliver Meals Here</a>*@
+        </div>
+    </div>
+</div>
+<!-- Deliver Meals End -->
 
 
 <script>
@@ -235,6 +259,7 @@ else
             $("#deliverMealsModal").modal("show");
         }
     }
+    
 
 </script>
 @section Scripts {

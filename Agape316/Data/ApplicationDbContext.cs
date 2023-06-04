@@ -11,6 +11,7 @@ namespace Agape316.Data
         
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
         public virtual DbSet<Event> Event { get; set; }
-        public virtual DbSet<EventDish> EventDish{ get; set; }
+        public virtual DbSet<EventDish> EventDish { get; set; }
+        public virtual DbSet<MealSchedule> MealSchedule { get; set; }
     }
 }

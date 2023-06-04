@@ -248,7 +248,8 @@ namespace Agape316.Models
                     $" <br /> Desserts: {model.DessertSlot}" +
                     $" <br /> Set Up: {model.SetUpSlot}" +
                     $" <br /> Servers: {model.ServeSlot}" +
-                    $" <br /> Clean Up: {model.CleanUpSlot}"
+                    $" <br /> Clean Up: {model.CleanUpSlot}" +
+                    $" <br /> Notes: {model.Notes}"
             );
         }
     }
