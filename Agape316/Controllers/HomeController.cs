@@ -15,12 +15,7 @@ namespace Agape316.Controllers
         public IActionResult Index()
         {                   
             return View();
-        }
-
-        public IActionResult GetEventListPartialView()
-        {
-            return PartialView("_EventListPartialView");
-        }
+        }       
 
         public IActionResult Privacy()
         {

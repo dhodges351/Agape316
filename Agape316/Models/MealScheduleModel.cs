@@ -1,6 +1,8 @@
 ﻿using Agape316.Data;
 using Ganss.Xss;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.CodeAnalysis.Elfie.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace Agape316.Models
@@ -38,6 +40,7 @@ namespace Agape316.Models
 				{
                     Title = mealSchedule.Title;
                     Description = mealSchedule.Description;
+                    Created = DateTime.Now;
 					Coordinator = mealSchedule.Coordinator;
                     CoordEmail = mealSchedule.CoordEmail;
                     CoordPhone = mealSchedule.CoordPhone;
@@ -65,6 +68,8 @@ namespace Agape316.Models
 		}
 
         public int? Id { get; set; }
+
+        public DateTime Created { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Title is required")]
@@ -180,8 +185,6 @@ namespace Agape316.Models
             set => recipientZipcode = new HtmlSanitizer().Sanitize(value);
         }
 
-        public DateTime Created { get; set; }
-
         [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
@@ -204,7 +207,7 @@ namespace Agape316.Models
 
         [Display(Name = "Food Allergies")]
         [StringLength(500)]
-        public string? FoodAllergies
+        public string FoodAllergies
         {
             get => foodAllergies;
             set => foodAllergies = new HtmlSanitizer().Sanitize(value);
@@ -212,7 +215,7 @@ namespace Agape316.Models
 
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
-        public string? Notes
+        public string Notes
         {
             get => notes;
             set => notes = new HtmlSanitizer().Sanitize(value);
@@ -226,6 +229,7 @@ namespace Agape316.Models
                 {
                     Title = model.Title,
                     Description = model.Description,
+                    Created = DateTime.Now,
                     Coordinator = model.Coordinator,
                     CoordEmail = model.CoordEmail,
                     CoordPhone = model.CoordPhone,
@@ -247,43 +251,45 @@ namespace Agape316.Models
                     Saturday = model.Saturday,
                     Sunday = model.Sunday,
                     FoodAllergies = model.FoodAllergies,
-                    Notes = model.Notes,
+                    Notes = model.Notes
                 };
                 await _mealScheduleService.Create(mealSchedule);
             }
             else
             {
                 var mealSchedule = _mealScheduleService.GetById(model.Id.Value);
-                Title = mealSchedule.Title;
-                Description = mealSchedule.Description;
-                Coordinator = mealSchedule.Coordinator;
-                CoordEmail = mealSchedule.CoordEmail;
-                CoordPhone = mealSchedule.CoordPhone;
-                RecipientFName = mealSchedule.RecipientFName;
-                RecipientLName = mealSchedule.RecipientLName;
-                RecipientEmail = mealSchedule.RecipientEmail;
-                RecipientPhone = mealSchedule.RecipientPhone;
-                RecipientAddress = mealSchedule.RecipientAddress;
-                RecipientCity = mealSchedule.RecipientCity;
-                RecipientState = mealSchedule.RecipientState;
-                RecipientZipcode = mealSchedule.RecipientZipcode;
-                StartDate = mealSchedule.StartDate;
-                EndDate = mealSchedule.EndDate;
-                Monday = mealSchedule.Monday;
-                Tuesday = mealSchedule.Tuesday;
-                Wednesday = mealSchedule.Wednesday;
-                Thursday = mealSchedule.Thursday;
-                Friday = mealSchedule.Friday;
-                Saturday = mealSchedule.Saturday;
-                Sunday = mealSchedule.Sunday;
-                FoodAllergies = mealSchedule.FoodAllergies;
-                Notes = mealSchedule.Notes;
+                mealSchedule.Title = model.Title;
+                mealSchedule.Description = model.Description;
+                mealSchedule.Created = DateTime.Now;
+                mealSchedule.Coordinator = model.Coordinator;
+                mealSchedule.CoordEmail = model.CoordEmail;
+                mealSchedule.CoordPhone = model.CoordPhone;
+                mealSchedule.RecipientFName = model.RecipientFName;
+                mealSchedule.RecipientLName = model.RecipientLName;
+                mealSchedule.RecipientEmail = model.RecipientEmail;
+                mealSchedule.RecipientPhone = model.RecipientPhone;
+                mealSchedule.RecipientAddress = model.RecipientAddress;
+                mealSchedule.RecipientCity = model.RecipientCity;
+                mealSchedule.RecipientState = model.RecipientState;
+                mealSchedule.RecipientZipcode = model.RecipientZipcode;
+                mealSchedule.StartDate = model.StartDate;
+                mealSchedule.EndDate = model.EndDate;
+                mealSchedule.Monday = model.Monday;
+                mealSchedule.Tuesday = model.Tuesday;
+                mealSchedule.Wednesday = model.Wednesday;
+                mealSchedule.Thursday = model.Thursday;
+                mealSchedule.Friday = model.Friday;
+                mealSchedule.Saturday = model.Saturday;
+                mealSchedule.Sunday = model.Sunday;
+                mealSchedule.FoodAllergies = model.FoodAllergies;
+                mealSchedule.Notes = model.Notes;
 
                 _mealScheduleService.UpdateMealSchedule(mealSchedule);
             }
             await emailSender.SendEmailAsync(
                     model.CoordEmail,
                     model.Title,
+                    $" <br /> Created: {model.Created.ToShortDateString()} " +
                     $" <br /> Coordinator: {model.Coordinator} " +
                     $" <br /> Description: {model.Description} " +
                     $" <br /> Start Date: {model.StartDate.ToShortDateString()} " +
