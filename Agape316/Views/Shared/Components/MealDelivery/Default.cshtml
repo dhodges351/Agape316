@@ -1,18 +1,12 @@
 ﻿@model Agape316.Models.MealDeliveryModel
 @using Agape316.Data
 
-@{
-    var allEvents = ViewData["AgapeEventObjects"] as List<Event>;
-    var selectedEvent = ViewData["SelectedAgapeEvent"] as Event;
-    var selectedEventDate = string.Empty;
-    if (selectedEvent == null)
+@{    
+    var selectedMealSchedule = ViewData["SelectedMealSchedule"] as MealSchedule;   
+    if (selectedMealSchedule == null)
     {
-        selectedEvent = new Event();
-    }
-    else
-    {
-        selectedEventDate = selectedEvent.EventDate.ToShortDateString();
-    }
+        selectedMealSchedule = new MealSchedule();
+    }    
 }
 
 <div class="row">
@@ -20,41 +14,53 @@
         <form asp-controller="MealDelivery" asp-action="AddEditMealDelivery" method="post" id="mealDeliveryForm">
             <div class="row my-2">
                 <div class="form-group">
-                    <label>Events</label>
-                    @Html.DropDownListFor(m => m.EventId, (IEnumerable<SelectListItem>)ViewData["AgapeEvents"], "Please select", new { @onchange = "GetMealDeliverySelectedEvent(this)" })
+                    <label>Meal Schedules</label>
+                    @Html.DropDownListFor(m => m.ScheduleId, (IEnumerable<SelectListItem>)ViewData["MealSchedules"], "Please select", new { @onchange = "GetSelectedSchedule(this)" })
                     <br />
-                    @Html.ValidationMessageFor(m => m.EventId, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.ScheduleId, "", new { @class = "text-danger" })
                 </div>
             </div>            
-            <div class="container" id="mealDeliveryEventContainer" style="display:none;">
+            <div class="container" id="scheduleContainer" style="display:none;">
                 <div class="row mt-2">
                     <div class="col-sm-6">
                         <div class="form-group form-group-small">
-                            <label>@selectedEvent.Title</label>
+                            <label>@selectedMealSchedule.Title</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group form-group-small">
-                            <label>@selectedEvent.Description</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group form-group-small">
-                            <label>@selectedEvent.Location</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group form-group-small">
-                            <label>@selectedEventDate @selectedEvent.StartTime - @selectedEvent.EndTime</label>
+                            <label>@selectedMealSchedule.Description</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group form-group-small">
-                            <label>@selectedEvent.ContactEmail</label>
+                            <label>@selectedMealSchedule.Coordinator</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedMealSchedule.CoordEmail</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedMealSchedule.CoordPhone</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedMealSchedule.StartDate.ToShortDateString() - @selectedMealSchedule.EndDate.ToShortDateString()</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group form-group-small">
+                            <label>@selectedMealSchedule.RecipientInfo</label>
                         </div>
                     </div>                    
                 </div>               
@@ -79,8 +85,13 @@
             </div>           
             <div class="form-group">
                 <label asp-for="DeliveryDate">Delivery Date</label>
-                <input asp-for="DeliveryDate" class="form-control" placeholder="Delivery Date/Time" />
+                <input asp-for="DeliveryDate" class="form-control" placeholder="Delivery Date" />
                 <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryTime">Delivery Time</label>
+                <input asp-for="DeliveryTime" class="form-control" placeholder="Delivery Time" />
+                <span asp-validation-for="DeliveryTime" class="text-danger"></span>
             </div>
             <div class="form-group my-2">
                 <label asp-for="Notes">Notes</label>
@@ -95,7 +106,7 @@
             </div>
             <div class="form-group" style="display:none;">
                 <input asp-for="Id" class="form-control" />
-                <input asp-for="EventId" class="form-control" />
+                <input asp-for="ScheduleId" class="form-control" />
                 @*<input asp-for="MealSchedule.StartDate" class="form-control" id="mealScheduleStart" />
                 <input asp-for="MealSchedule.EndDate" class="form-control" id="mealScheduleEnd" />*@
             </div>            

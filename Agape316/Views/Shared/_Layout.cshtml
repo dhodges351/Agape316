@@ -284,24 +284,24 @@
             });
         }       
 
-        function GetMealDeliverySelectedEvent(el) {
+        function GetSelectedSchedule(el) {
             var selectedId = parseInt(el.value);
             var id = $("#Id").val();
             $.ajax({
                 type: "GET",
                 url: "/MealDelivery/OnGetCallMealDeliveryViewComponent",
-                data: { "eventId": selectedId, "id": id },
+                data: { "scheduleId": selectedId, "id": id },
                 success: function (response) {
                     $("#deliverMealsModal").find(".modal-body").html(response);
                     $("#deliverMealsModal").modal('show');
-                    $("#mealDeliveryEventContainer").show();
-                    $('#EventId').val(selectedId);
+                    $("#scheduleContainer").show();
+                    $('#ScheduleId').val(selectedId);
                 },
                 failure: function (response) {
-                    alert('Get Event details failed');
+                    alert('Get Meal Schedule details failed');
                 },
                 error: function (response) {
-                    alert('Error getting Event details');
+                    alert('Error getting Meal Schedule details');
                 }
             });
         }

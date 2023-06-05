@@ -66,7 +66,7 @@ public partial class MealSchedule
     {
         get
         {
-            return $"{RecipientPhone} {RecipientEmail} {RecipientAddress} {RecipientCity} {RecipientState} {RecipientZipcode}";            
+            return $"{RecipientAddress} {RecipientCity} {RecipientState}, {RecipientZipcode}";            
         }
     }
 

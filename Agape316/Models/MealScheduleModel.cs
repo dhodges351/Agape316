@@ -300,9 +300,9 @@ namespace Agape316.Models
                     $" <br /> Phone: {model.RecipientPhone}" +
                     $" <br /> Email: {model.RecipientEmail}" +
                     $" <br /> Address: {model.recipientAddress} {model.recipientCity} {model.recipientState} {model.RecipientZipcode}" +
-                    $" <br /> Days/Evenings: {(model.Monday ? "Monday" : "")} {(model.Tuesday ? "Tuesday" : "")}" +
-                    $" {(model.Wednesday ? "Wednesday" : "")} {(model.Thursday ? "Thursday" : "")} {(model.Friday ? "Friday" : "")}" +
-                    $" {(model.Saturday ? "Saturday" : "")} {(model.Sunday ? "Sunday" : "")} " +               
+                    //$" <br /> Days/Evenings: {(model.Monday ? "Monday" : "")} {(model.Tuesday ? "Tuesday" : "")}" +
+                    //$" {(model.Wednesday ? "Wednesday" : "")} {(model.Thursday ? "Thursday" : "")} {(model.Friday ? "Friday" : "")}" +
+                    //$" {(model.Saturday ? "Saturday" : "")} {(model.Sunday ? "Sunday" : "")} " +               
                     $" <br /> Food Allergies: {model.FoodAllergies}" +
                     $" <br /> Notes: {model.Notes}"
             );

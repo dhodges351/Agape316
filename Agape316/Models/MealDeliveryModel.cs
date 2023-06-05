@@ -8,29 +8,30 @@ namespace Agape316.Models
     public class MealDeliveryModel
     {
         private readonly IMealDelivery _mealDeliveryService;
-        private readonly IEvent _eventService;
+        private readonly IMealSchedule _mealScheduleService;
         public string firstName { get; private set; }
         public string lastName { get; private set; }
         public string email { get; private set; }
         public string phone { get; private set; }
         public string notes { get; private set; }
+        public string deliveryTime { get; private set; }
 
         public MealDeliveryModel()
         {
         }
 
-        public MealDeliveryModel(IEvent eventService, IMealDelivery mealDeliveryService, int? eventId = null, int ? id = null)
+        public MealDeliveryModel(IMealSchedule mealScheduleService, IMealDelivery mealDeliveryService, int? scheduleId = null, int ? id = null)
         {
-            _eventService = eventService;
+            _mealScheduleService = mealScheduleService;
             _mealDeliveryService = mealDeliveryService;            
 
-            if (eventId.HasValue)
+            if (scheduleId.HasValue)
             {
-                SelectedEvent = _eventService.GetByEventId(eventId.Value);
+                SelectedSchedule = _mealScheduleService.GetById(scheduleId.Value);
             }
             else
             {
-                SelectedEvent = new Event
+                SelectedSchedule = new MealSchedule
                 {
                     Created = DateTime.Now,
                 };
@@ -59,11 +60,21 @@ namespace Agape316.Models
             }
         }
 
-        public Event SelectedEvent { get; set; }
+        public MealSchedule SelectedSchedule { get; set; }
 
         public int? Id { get; set; }
-        public int? EventId { get; set; }
+        public int? ScheduleId { get; set; }
         public DateTime Created { get; set; }
+
+        [Required]
+        [Display(Name = "Delivery Time")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:  hh:mm:ss aa}")]
+        public string DeliveryTime
+        {
+            get => deliveryTime;
+            set => deliveryTime = new HtmlSanitizer().Sanitize(value);
+        }
 
         [Required]
         [StringLength(100, ErrorMessage = "First name is required")]
@@ -114,7 +125,7 @@ namespace Agape316.Models
             set => notes = new HtmlSanitizer().Sanitize(value);
         }
 
-        public async Task SaveMealDelivery(IEmailSender emailSender, MealDeliveryModel model, IMealDelivery _mealDeliveryService)
+        public async Task SaveMealDelivery(IEmailSender emailSender, MealDeliveryModel model, IMealDelivery _mealDeliveryService, IMealSchedule mealScheduleService)
         {
             if (!model.Id.HasValue)
             {
@@ -125,7 +136,10 @@ namespace Agape316.Models
                     Email = model.Email,
                     Phone = model.Phone,
                     DeliveryDate = model.DeliveryDate,
+                    DeliveryTime = model.DeliveryTime,
+                    ScheduleId = model.ScheduleId ?? 0,
                     Notes = model.Notes,
+                    
                     Created = DateTime.Now,
                 };
                 await _mealDeliveryService.Create(mealDelivery);
@@ -138,25 +152,32 @@ namespace Agape316.Models
                 mealDelivery.Email = model.Email;
                 mealDelivery.Phone = model.Phone;
                 mealDelivery.DeliveryDate = model.DeliveryDate;
+                mealDelivery.DeliveryTime = model.DeliveryTime;
+                mealDelivery.ScheduleId = model.ScheduleId ?? 0;
                 mealDelivery.Notes = model.Notes;
                 mealDelivery.Created = DateTime.Now;
 
                 _mealDeliveryService.UpdateMealDelivery(mealDelivery);
             }
-            //await emailSender.SendEmailAsync(
-            //        model.Email,
-            //        "Delivery Information for " + MealSchedule.Title,
-            //        $"Descripion: { MealSchedule.Description }" +
-            //        $" <br /> Meal Schedule Coordinator: {MealSchedule.Coordinator} " +
-            //        $" <br /> Meal Schedule Start Date: {MealSchedule.StartDate.ToShortDateString()} " +
-            //        $" <br /> Meal Schedule End Date: {MealSchedule.EndDate.ToShortDateString()} " +
-            //        $" <br /> Meal Schedule Recipient: {MealSchedule.RecipientFullName}" +
-            //        $" <br /> Delivered By: {model.FullName}" +
-            //        $" <br /> Delivery Date/Time: {model.DeliveryDate}" +
-            //        $" <br /> Contact Email: {model.Email}" +
-            //        $" <br /> Contact Phone: {model.Phone}" +                                                    
-            //        $" <br /> Notes: {model.Notes}"
-            //);
+            MealSchedule mealSchedule = new MealSchedule();
+            if (model.ScheduleId.HasValue)
+            {
+                mealSchedule = mealScheduleService.GetById(model.ScheduleId ?? 0);
+            }
+            await emailSender.SendEmailAsync(
+                    model.Email,
+                    "Delivery Information for " + mealSchedule.Title,
+                    $"Descripion: {mealSchedule.Description}" +
+                    $" <br /> Meal Schedule Coordinator: {mealSchedule.Coordinator} " +
+                    $" <br /> Meal Schedule Start Date: {mealSchedule.StartDate.ToShortDateString()} " +
+                    $" <br /> Meal Schedule End Date: {mealSchedule.EndDate.ToShortDateString()} " +
+                    $" <br /> Meal Schedule Recipient: {mealSchedule.RecipientFullName}" +
+                    $" <br /> Delivered By: {model.FullName}" +
+                    $" <br /> Delivery Date/Time: {model.DeliveryDate}" +
+                    $" <br /> Contact Email: {model.Email}" +
+                    $" <br /> Contact Phone: {model.Phone}" +
+                    $" <br /> Notes: {model.Notes}"
+            );
         }
     }
 }

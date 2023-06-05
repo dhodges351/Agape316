@@ -10,34 +10,37 @@ namespace Agape316.ViewComponents
     public class MealDeliveryViewComponent : ViewComponent
     {        
         private readonly IMealDelivery _mealDeliveryService;
-        private readonly IEvent _eventService;
+        private readonly IMealSchedule _mealScheduleService;
 
-        public MealDeliveryViewComponent(IEvent eventService, IMealDelivery mealDeliveryService)
+        public MealDeliveryViewComponent(IMealSchedule mealScheduleService, IMealDelivery mealDeliveryService)
         {
-            _eventService = eventService;
+            _mealScheduleService = mealScheduleService;
             _mealDeliveryService = mealDeliveryService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int eventId, int id)
+        public async Task<IViewComponentResult> InvokeAsync(int scheduleId, int id)
         {
-            if (eventId > 0)
+            if (scheduleId > 0)
             {
-                ViewData["SelectedAgapeEvent"] = _eventService.GetById(eventId);
+                ViewData["SelectedMealSchedule"] = _mealScheduleService.GetById(scheduleId);
             }
-            var model = new MealDeliveryModel(_eventService, _mealDeliveryService, eventId, id);
+            var model = new MealDeliveryModel(_mealScheduleService, _mealDeliveryService, scheduleId, id);
 
-            var agapeEvents = _eventService.GetAll().ToList();
-            ViewData["AgapeEventObjects"] = agapeEvents;
-
-            var agapeEventModels = new List<AgapeEventModel>();
-            if (agapeEvents != null && agapeEvents.Count > 0)
+            var mealSchedules = _mealScheduleService.GetAll().ToList();
+            var mealScheduleModels = new List<MealScheduleModel>();
+            if (mealSchedules != null && mealSchedules.Count > 0)
             {
-                foreach (var agapeEvent in agapeEvents)
+                foreach (var mealSchedule in mealSchedules)
                 {
-                    agapeEventModels.Add(new AgapeEventModel { EventId = agapeEvent.Id, Title = agapeEvent.Title });
+                    mealScheduleModels.Add(new MealScheduleModel { Id = mealSchedule.Id, Title = mealSchedule.Title });
                 }
             }
-            ViewData["AgapeEvents"] = new SelectList(agapeEventModels, "EventId", "Title");
+            else
+            {
+                mealScheduleModels.Add(new MealScheduleModel { Id = 0, Title = "Please Select" });
+            }
+
+            ViewData["MealSchedules"] = new SelectList(mealScheduleModels, "Id", "Title");
             return View(model);
         }
     }
