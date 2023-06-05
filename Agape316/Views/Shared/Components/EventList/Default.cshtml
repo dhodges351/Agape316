@@ -15,7 +15,7 @@
             .Grid(Model)
             .Build(columns =>
             {
-                columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='topic image' height=50 width=50></img>")).Width(50).Titled("Event");
+                columns.Add(model => @Html.Raw(model.ImageUrlDisplay)).Titled("Photo");
                 columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                 columns.Add(model => @Html.Raw(model.Description)).Titled("Description");
                 columns.Add(model => @Html.Raw(model.Location)).Titled("Location");
@@ -26,7 +26,9 @@
                 columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");                        
                 columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit");
                 columns.Add(model => @Html.Raw(model.Id)).Hidden();
+                columns.Add(model => @Html.Raw(model.ImageUrl)).Css("image-url-hidden");
             })
+            .Attributed(new { id = "event-table" })
             .Empty("No data found")
             .Pageable(pager =>
             {

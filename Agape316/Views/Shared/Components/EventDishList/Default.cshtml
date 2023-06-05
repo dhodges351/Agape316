@@ -20,7 +20,8 @@
                 .Build(columns =>
                 {
                     columns.Add(model => @Html.Raw(relatedEvents.Where(x => x.Id.Equals(model.EventId)).FirstOrDefault().Title)).Titled("Event");
-                    columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='dish image' height=50 width=50></img>")).Width(50).Titled("Dish");
+                    @*columns.Add(model => @Html.Raw($"<img src='{model.ImageUrl}' alt='dish image' height=50 width=50></img>")).Width(50).Titled("Dish");*@
+                    columns.Add(model => @Html.Raw(model.ImageUrlDisplay)).Titled("Photo");
                     columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");                                        
                     columns.Add(model => @Html.Raw(model.ContactLink)).Titled("Contact");
@@ -29,7 +30,9 @@
                     columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
                     columns.Add(model => @Html.Raw(model.EventId)).Hidden();
+                    columns.Add(model => @Html.Raw(model.ImageUrl)).Css("image-url-hidden");
                 })
+                .Attributed(new { id = "event-dish-table" })
                 .Empty("No data found")
                 .Pageable(pager =>
                 {

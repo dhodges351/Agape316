@@ -71,4 +71,12 @@ public partial class Event
             return link;
         }
     }
+
+    public string ImageUrlDisplay
+    {
+        get
+        {            
+            return string.Empty;
+        }
+    }
 }

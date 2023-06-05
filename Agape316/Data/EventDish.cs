@@ -68,4 +68,12 @@ public partial class EventDish
             return link;
         }
     }
+
+    public string ImageUrlDisplay
+    {
+        get
+        {
+            return string.Empty;
+        }
+    }
 }

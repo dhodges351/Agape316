@@ -202,7 +202,43 @@
             $('#eventDishModal').on('hidden.bs.modal', function () {
                 window.location = "/";
             });
-        }); 
+        });  
+        
+        $(function () {
+            var tbl = $("#event-table");
+            var rows = $(tbl)[0].rows;            
+            if (rows && rows.length > 0)
+            {                
+                $.each(rows, function (index, value) {
+                    if (index > 0)
+                    {                        
+                        var cells = this.cells;
+                        if (cells) {
+                            var imageUrl = cells[11].innerText;
+                            var newImageUrl = imageUrl.replace("'", "%27");
+                            $(cells[0]).css({ "background-image": "url('" + newImageUrl + "')", "background-size": "contain", "background-repeat": "no-repeat", "background-position": "center" });
+                        }
+                    }                                   
+                });
+            }            
+        });
+
+        $(function () {
+            var tbl = $("#event-dish-table");
+            var rows = $(tbl)[0].rows;
+            if (rows && rows.length > 0) {
+                $.each(rows, function (index, value) {
+                    if (index > 0) {
+                        var cells = this.cells;
+                        if (cells) {
+                            var imageUrl = cells[10].innerText;
+                            var newImageUrl = imageUrl.replace("'","%27");
+                            $(cells[1]).css({ "background-image": "url('" + newImageUrl + "')", "background-size": "contain", "background-repeat": "no-repeat", "background-position": "center" });
+                        }
+                    }
+                });
+            }
+        });
 
         function checkCategory() {
             var selectedCategory = $("#Category").val();
