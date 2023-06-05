@@ -253,6 +253,13 @@
             }
         }
 
+        function validateDeliveryDate()
+        {
+            var startDate = $("#mealScheduleStart").val();
+            var endDate = $("#mealScheduleEnd").val();
+            var selectedDate = $("#DeliveryDate").val();
+        }
+
         function GetSelectedEvent(el)
         {
             var selectedId = parseInt(el.value);
@@ -276,6 +283,28 @@
                 }
             });
         }       
+
+        function GetMealDeliverySelectedEvent(el) {
+            var selectedId = parseInt(el.value);
+            var id = $("#Id").val();
+            $.ajax({
+                type: "GET",
+                url: "/MealDelivery/OnGetCallMealDeliveryViewComponent",
+                data: { "eventId": selectedId, "id": id },
+                success: function (response) {
+                    $("#deliverMealsModal").find(".modal-body").html(response);
+                    $("#deliverMealsModal").modal('show');
+                    $("#mealDeliveryEventContainer").show();
+                    $('#EventId').val(selectedId);
+                },
+                failure: function (response) {
+                    alert('Get Event details failed');
+                },
+                error: function (response) {
+                    alert('Error getting Event details');
+                }
+            });
+        }
 
         function checkHasInvalidSlot()
         {

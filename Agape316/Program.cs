@@ -52,6 +52,7 @@ builder.Services.AddScoped<IUpload, UploadService>();
 builder.Services.AddTransient<IEvent, EventService>();
 builder.Services.AddScoped<IEventDish, EventDishService>();
 builder.Services.AddScoped<IMealSchedule, MealScheduleService>();
+builder.Services.AddScoped<IMealDelivery, MealDeliveryService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

@@ -1,0 +1,105 @@
+﻿@model Agape316.Models.MealDeliveryModel
+@using Agape316.Data
+
+@{
+    var allEvents = ViewData["AgapeEventObjects"] as List<Event>;
+    var selectedEvent = ViewData["SelectedAgapeEvent"] as Event;
+    var selectedEventDate = string.Empty;
+    if (selectedEvent == null)
+    {
+        selectedEvent = new Event();
+    }
+    else
+    {
+        selectedEventDate = selectedEvent.EventDate.ToShortDateString();
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="MealDelivery" asp-action="AddEditMealDelivery" method="post" id="mealDeliveryForm">
+            <div class="row my-2">
+                <div class="form-group">
+                    <label>Events</label>
+                    @Html.DropDownListFor(m => m.EventId, (IEnumerable<SelectListItem>)ViewData["AgapeEvents"], "Please select", new { @onchange = "GetMealDeliverySelectedEvent(this)" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.EventId, "", new { @class = "text-danger" })
+                </div>
+            </div>            
+            <div class="container" id="mealDeliveryEventContainer" style="display:none;">
+                <div class="row mt-2">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedEvent.Title</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedEvent.Description</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedEvent.Location</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedEventDate @selectedEvent.StartTime - @selectedEvent.EndTime</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-small">
+                            <label>@selectedEvent.ContactEmail</label>
+                        </div>
+                    </div>                    
+                </div>               
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName">First Name</label>
+                <input asp-for="FirstName" class="form-control" placeholder="First Name">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName">Last Name</label>
+                <input asp-for="LastName" class="form-control" placeholder="Last Name">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Email (optional)" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone">Phone</label>
+                <input asp-for="Phone" class="form-control" placeholder="Phone (optional)" />
+            </div>           
+            <div class="form-group">
+                <label asp-for="DeliveryDate">Delivery Date</label>
+                <input asp-for="DeliveryDate" class="form-control" placeholder="Delivery Date/Time" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Notes">Notes</label>
+                <textarea asp-for="Notes" rows="3" class="form-control" placeholder="(Special instructions, info, etc.)."></textarea>
+            </div>
+            <div class="form-group my-2">                
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" id="mealDeliverySaveBtn" class="btn btn-submitEvent" onclick="validateDeliveryDate()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
+                <input asp-for="Id" class="form-control" />
+                <input asp-for="EventId" class="form-control" />
+                @*<input asp-for="MealSchedule.StartDate" class="form-control" id="mealScheduleStart" />
+                <input asp-for="MealSchedule.EndDate" class="form-control" id="mealScheduleEnd" />*@
+            </div>            
+        </form>
+    </div>
+</div>
+                        
