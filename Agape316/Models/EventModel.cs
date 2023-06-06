@@ -104,7 +104,7 @@ namespace Agape316.Models
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime EventDate { get; set; }
+        public DateTime EventDate { get; set; } = DateTime.Now.Date;
             
         public string ImageUrl
         {

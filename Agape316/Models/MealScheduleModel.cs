@@ -53,14 +53,7 @@ namespace Agape316.Models
                     RecipientState = mealSchedule.RecipientState;
                     RecipientZipcode = mealSchedule.RecipientZipcode;
                     StartDate = mealSchedule.StartDate;
-                    EndDate = mealSchedule.EndDate;
-                    Monday = mealSchedule.Monday;
-                    Tuesday = mealSchedule.Tuesday;
-                    Wednesday = mealSchedule.Wednesday;
-                    Thursday = mealSchedule.Thursday;
-                    Friday = mealSchedule.Friday;
-                    Saturday = mealSchedule.Saturday;
-                    Sunday = mealSchedule.Sunday;
+                    EndDate = mealSchedule.EndDate;                    
                     FoodAllergies = mealSchedule.FoodAllergies;
                     Notes = mealSchedule.Notes;
                 }
@@ -243,14 +236,7 @@ namespace Agape316.Models
                     RecipientState = model.RecipientState,
                     RecipientZipcode = model.RecipientZipcode,
                     StartDate = model.StartDate,
-                    EndDate = model.EndDate,
-                    Monday = model.Monday,
-                    Tuesday = model.Tuesday,
-                    Wednesday = model.Wednesday,
-                    Thursday = model.Thursday,
-                    Friday = model.Friday,
-                    Saturday = model.Saturday,
-                    Sunday = model.Sunday,
+                    EndDate = model.EndDate,                    
                     FoodAllergies = model.FoodAllergies,
                     Notes = model.Notes
                 };
@@ -274,14 +260,7 @@ namespace Agape316.Models
                 mealSchedule.RecipientState = model.RecipientState;
                 mealSchedule.RecipientZipcode = model.RecipientZipcode;
                 mealSchedule.StartDate = model.StartDate;
-                mealSchedule.EndDate = model.EndDate;
-                mealSchedule.Monday = model.Monday;
-                mealSchedule.Tuesday = model.Tuesday;
-                mealSchedule.Wednesday = model.Wednesday;
-                mealSchedule.Thursday = model.Thursday;
-                mealSchedule.Friday = model.Friday;
-                mealSchedule.Saturday = model.Saturday;
-                mealSchedule.Sunday = model.Sunday;
+                mealSchedule.EndDate = model.EndDate;                
                 mealSchedule.FoodAllergies = model.FoodAllergies;
                 mealSchedule.Notes = model.Notes;
 
@@ -299,9 +278,6 @@ namespace Agape316.Models
                     $" <br /> Phone: {model.RecipientPhone}" +
                     $" <br /> Email: {model.RecipientEmail}" +
                     $" <br /> Address: {model.recipientAddress} {model.recipientCity} {model.recipientState} {model.RecipientZipcode}" +
-                    //$" <br /> Days/Evenings: {(model.Monday ? "Monday" : "")} {(model.Tuesday ? "Tuesday" : "")}" +
-                    //$" {(model.Wednesday ? "Wednesday" : "")} {(model.Thursday ? "Thursday" : "")} {(model.Friday ? "Friday" : "")}" +
-                    //$" {(model.Saturday ? "Saturday" : "")} {(model.Sunday ? "Sunday" : "")} " +               
                     $" <br /> Food Allergies: {model.FoodAllergies}" +
                     $" <br /> Notes: {model.Notes}"
             );

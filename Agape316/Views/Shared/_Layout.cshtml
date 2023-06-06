@@ -153,7 +153,8 @@
 
     <script>
         var fileSize = 0;
-        var filePath = '';        
+        var filePath = '';
+        var noSubmit = '';
 
         // Allowed file types
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
@@ -257,6 +258,38 @@
         {
             var newVal = el.value;
             $("#deliveryDateStr").val(newVal);
+        }
+
+        function checkEndTime() {
+            var end_time = $('#evEndTime').val();
+            var start_time = $('#evStartTime').val();
+
+            var stt = new Date("May 26, 2016 " + start_time);
+            stt = stt.getTime();
+
+            var endt = new Date("May 26, 2016 " + end_time);
+            endt = endt.getTime();
+            if (endt < stt) {
+                alert('End Time cannot be earlier than Start Time.')
+                noSubmit = true;
+            }
+            else
+            {
+                noSubmit = '';
+            }
+        }
+
+        function checkNoSubmit()
+        {
+            event.preventDefault();
+            if (noSubmit != '')
+            {
+                return false;
+            }
+            else
+            {
+                $("#eventForm").submit();
+            }
         }
 
         function validateStartEndDates() {

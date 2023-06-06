@@ -23,14 +23,7 @@ public partial class MealSchedule
     public string? RecipientZipcode { get; set; }
     public DateTime Created { get; set; }
     public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-    public bool Monday { get; set; }
-    public bool Tuesday { get; set; }
-    public bool Wednesday { get; set; }
-    public bool Thursday { get; set; }
-    public bool Friday { get; set; }
-    public bool Saturday { get; set; }
-    public bool Sunday { get; set; }
+    public DateTime EndDate { get; set; }    
     public string? FoodAllergies { get; set; }
     public string? Notes { get; set; }
     public string? UserName
@@ -68,15 +61,7 @@ public partial class MealSchedule
         {
             return $"{RecipientAddress} {RecipientCity} {RecipientState}, {RecipientZipcode}";            
         }
-    }
-
-    public string RecipientMealSchedule
-    {
-        get
-        {            
-            return $"{(Monday ? "Monday" : "")} {(Tuesday ? "Tuesday" : "")} {(Wednesday ? "Wednesday" : "")} {(Thursday ? "Thursday" : "")} {(Friday ? "Friday" : "")} {(Saturday ? "Saturday" : "")} {(Sunday ? "Sunday" : "")} ";           
-        }
-    }
+    }    
 
     public string RecipientFullName
     {
