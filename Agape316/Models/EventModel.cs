@@ -179,7 +179,7 @@ namespace Agape316.Models
             return categoryName;
         }
 
-        public async Task SaveEvent(IEmailSender emailSender, EventModel model, string filePath, IEvent _eventService)
+        public async Task SaveEvent(IEmailSender emailSender, EventModel model, IEvent _eventService)
         {
             if (!model.Id.HasValue)
             {
@@ -189,7 +189,7 @@ namespace Agape316.Models
                     Description = model.Description,
                     Created = DateTime.Now,
                     EventDate = model.EventDate,
-                    ImageUrl = filePath,
+                    ImageUrl = model.ImageUrl,
                     Location = model.Location,
                     CategoryId = model.GetCategoryId(model.Category),
                     ContactEmail = model.ContactEmail,
@@ -229,12 +229,7 @@ namespace Agape316.Models
                 agapeEvent.CleanUpSlots = model.CleanUpSlots;
 
                 _eventService.UpdateEvent(agapeEvent);
-            }
-
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }                  
+            }              
 
             await emailSender.SendEmailAsync(
                     model.ContactEmail,

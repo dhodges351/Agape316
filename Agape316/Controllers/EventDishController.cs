@@ -52,6 +52,7 @@ namespace Agape316.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            string file = string.Empty;
             var fileName = string.Empty;      
 
             if (Upload != null)
@@ -60,7 +61,7 @@ namespace Agape316.Controllers
                 {
                     fileName = Upload.FileName;
 
-                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
+                    file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
 
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
@@ -68,7 +69,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEventDish(_emailSender, model, fileName, _eventDishService);
+            await model.SaveEventDish(_emailSender, model, _eventDishService);
 
             return RedirectToAction("Index", "Home");
         }

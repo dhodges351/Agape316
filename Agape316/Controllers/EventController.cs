@@ -52,7 +52,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEvent(_emailSender, model, file, _eventService);
+            await model.SaveEvent(_emailSender, model, _eventService);
 
             return RedirectToAction("Index", "Home");
         }

@@ -187,7 +187,7 @@ namespace Agape316.Models
 			return retVal;
 		}
 
-		public async Task SaveEventDish(IEmailSender emailSender, EventDishModel model, string fileName, IEventDish _eventDishService)
+		public async Task SaveEventDish(IEmailSender emailSender, EventDishModel model, IEventDish _eventDishService)
         {
             if (!model.Id.HasValue)
             {
