@@ -93,11 +93,10 @@ namespace Agape316.Models
         {
             get => coordinator;
             set => coordinator = new HtmlSanitizer().Sanitize(value);
-        }       
-
-        [Required]
+        }
+        
         [Display(Name = "Coordinator Email")]
-        [StringLength(100, ErrorMessage = "Email is required")]
+        [StringLength(100)]
         [DataType(DataType.EmailAddress)]
         public string CoordEmail
         {

@@ -259,6 +259,126 @@
             $("#deliveryDateStr").val(newVal);
         }
 
+        function validateStartEndDates() {
+            event.preventDefault();
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+
+            if (startDate == "" || endDate == "") {
+                return true;
+            }
+
+            const startDte = new Date(startDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
+            const endDte = new Date(endDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
+
+            var newStartDate = new Date(startDte);
+            var newEndDate = new Date(endDte);
+
+            if (newEndDate < newStartDate) {
+                alert("End Date cannot be earlier than Start Date.");
+                return false;
+            }
+            else {
+                if ($("#msTitle").val() == "") {
+                    $("#valTitle").text("Title is required");
+                    return false;
+                }
+                else {
+                    $("#valTitle").text("");
+                }
+                if ($("#msDescription").val() == "") {
+                    $("#valDescription").text("Description is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valDescription").text("");
+                }
+                if ($("#msCoordinator").val() == "") {
+                    $("#valCoordinator").text("Coordinator is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valCoordinator").text("");
+                }
+                if ($("#msCoordPhone").val() == "") {
+                    $("#valCoordPhone").text("Coordinator Phone is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valCoordPhone").text("");
+                }
+                if ($("#msStartDate").val() == "") {
+                    $("#valStartDate").text("Start Date is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valStartDate").text("");
+                }
+                if ($("#msEndDate").val() == "") {
+                    $("#valEndDate").text("End Date is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valEndDate").text("");                    
+                }
+                if ($("#msRecipientFName").val() == "") {
+                    $("#valRecipientFName").text("Recipient First Name is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientFName").text("");
+                }
+                if ($("#msRecipientLName").val() == "") {
+                    $("#valRecipientLName").text("Recipient Last Name is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientLName").text("");
+                }
+                if ($("#msRecipientAddress").val() == "") {
+                    $("#valRecipientAddress").text("Recipient Address is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientAddress").text("");
+                }
+                if ($("#msRecipientCity").val() == "") {
+                    $("#valRecipientCity").text("Recipient City is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientCity").text("");
+                }
+                if ($("#RecipientState").val() == "") {
+                    $("#valRecipientState").text("Recipient State is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientState").text("");
+                }
+                if ($("#msRecipientZipcode").val() == "") {
+                    $("#valRecipientZipcode").text("Recipient Zipcode is required");
+                    return false;
+                }
+                else
+                {
+                    $("#valRecipientZipcode").text("");
+                }                
+                
+                $("#mealScheduleForm").submit();
+            }
+        }
+
         function validateDeliveryDate()
         {
             event.preventDefault();

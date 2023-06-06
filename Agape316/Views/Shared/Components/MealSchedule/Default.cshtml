@@ -6,47 +6,47 @@
         <form asp-controller="MealSchedule" asp-action="AddEditMealSchedule" method="post" id="mealScheduleForm">                              
             <div class="form-group">
                 <label asp-for="Title">Title</label>
-                <input asp-for="Title" class="form-control" placeholder="Meal Schedule name" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <input asp-for="Title" id="msTitle" class="form-control" placeholder="Meal Schedule name" />
+                <span asp-validation-for="Title" id="valTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description">Description</label>
-                <input asp-for="Description" class="form-control" placeholder="Meal Schedule description">
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <input asp-for="Description" id="msDescription"  class="form-control" placeholder="Meal Schedule description">
+                <span asp-validation-for="Description" id="valDescription" class="text-danger"></span>
             </div>   
             <div class="form-group">
                 <label asp-for="Coordinator">Coordinator</label>
-                <input asp-for="Coordinator" class="form-control" placeholder="Coordinator name" />
-                <span asp-validation-for="Coordinator" class="text-danger"></span>
+                <input asp-for="Coordinator" id="msCoordinator"  class="form-control" placeholder="Coordinator name" />
+                <span asp-validation-for="Coordinator" id="valCoordinator" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CoordEmail">Coordinator Email</label>
                 <input asp-for="CoordEmail" class="form-control" placeholder="Coordinator email" />
-                <span asp-validation-for="CoordEmail" class="text-danger"></span>
             </div>            
             <div class="form-group">
                 <label asp-for="CoordPhone">Coordinator Phone</label>
-                <input asp-for="CoordPhone" class="form-control" placeholder="Coordinator phone" />
+                <input asp-for="CoordPhone" id="msCoordPhone" class="form-control" placeholder="Coordinator phone" />
+                <span asp-validation-for="Coordinator" id="valCoordPhone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate">Start Date</label>
-                <input asp-for="StartDate" class="form-control" placeholder="Start Date" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <input asp-for="StartDate" id="msStartDate" class="form-control" placeholder="Start Date" />
+                <span asp-validation-for="StartDate" id="valStartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndDate">End Date</label>
-                <input asp-for="EndDate" class="form-control" placeholder="End Date" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <input asp-for="EndDate" id="msEndDate" class="form-control" placeholder="End Date" />
+                <span asp-validation-for="EndDate" id="valEndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientFName">Recipient First Name</label>
-                <input asp-for="RecipientFName" class="form-control" placeholder="Recipient first name" />
-                <span asp-validation-for="RecipientFName" class="text-danger"></span>
+                <input asp-for="RecipientFName" id="msRecipientFName" class="form-control" placeholder="Recipient first name" />
+                <span asp-validation-for="RecipientFName" id="valRecipientFName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientLName">Recipient Last Name</label>
-                <input asp-for="RecipientLName" class="form-control" placeholder="Recipient last name">
-                <span asp-validation-for="RecipientLName" class="text-danger"></span>
+                <input asp-for="RecipientLName" id="msRecipientLName"  class="form-control" placeholder="Recipient last name">
+                <span asp-validation-for="RecipientLName" id="valRecipientLName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientEmail">Recipient Email</label>
@@ -58,67 +58,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="RecipientAddress">Recipent Address</label>
-                <input asp-for="RecipientAddress" class="form-control" placeholder="Recipient address" />
-                <span asp-validation-for="RecipientAddress" class="text-danger"></span> 
+                <input asp-for="RecipientAddress" id="msRecipientAddress" class="form-control" placeholder="Recipient address" />
+                <span asp-validation-for="RecipientAddress" id="valRecipientAddress"  class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipientCity">Recipent City</label>
-                <input asp-for="RecipientCity" class="form-control" placeholder="Recipient city" />
-                <span asp-validation-for="RecipientCity" class="text-danger"></span>
+                <input asp-for="RecipientCity" id="msRecipientCity"  class="form-control" placeholder="Recipient city" />
+                <span asp-validation-for="RecipientCity" id="valRecipientCity"  class="text-danger"></span>
             </div>
             <div class="form-group py-2">
                 <label asp-for="RecipientState">Recipent State</label>
                 @Html.DropDownListFor(m => m.RecipientState, (IEnumerable<SelectListItem>)ViewData["States"], "Please select", new { @onchange = "GetSelectedState(this)" })
                 <br />
-                @Html.ValidationMessageFor(m => m.RecipientState, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(m => m.RecipientState, "", new { @class = "text-danger", @id = "valRecipientState" })
             </div>
             <div class="form-group">
                 <label asp-for="RecipientZipcode">Recipent Zipcode</label>
-                <input asp-for="RecipientZipcode" class="form-control" placeholder="Recipient zipcode" />
-                <span asp-validation-for="RecipientZipcode" class="text-danger"></span>
+                <input asp-for="RecipientZipcode" id="msRecipientZipcode" class="form-control" placeholder="Recipient zipcode" />
+                <span asp-validation-for="RecipientZipcode" id="valRecipientZipcode"  class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FoodAllergies">Recipent Food Allergies</label>
                 <input asp-for="FoodAllergies" class="form-control" placeholder="Recipient food allergies" />              
-            </div>           
-           @* <div class="form-group my-2">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Monday">Monday</label>
-                        <input asp-for="Monday" class="text-slots" type="checkbox">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Tuesday">Tuesday</label>
-                        <input asp-for="Tuesday" class="text-slots" type="checkbox">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Wednesday">Wednesday</label>
-                        <input asp-for="Wednesday" class="text-slots" type="checkbox">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Thursday">Thursday</label>
-                        <input asp-for="Thursday" class="text-slots" type="checkbox">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Friday">Friday</label>
-                        <input asp-for="Friday" class="text-slots" type="checkbox">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Saturday">Saturday</label>
-                        <input asp-for="Saturday" class="text-slots" type="checkbox">
-                    </div>
-                </div>
-                <div class="row">                    
-                    <div class="col-md-6">
-                        <label class="label-slots-2" asp-for="Sunday">Sunday</label>
-                        <input asp-for="Sunday" class="text-slots" type="checkbox">
-                    </div>
-                </div>
-            </div>*@
+            </div>
             <div class="form-group my-2">
                 <label asp-for="Notes">Notes</label>
                 <textarea asp-for="Notes" rows="3" class="form-control" placeholder="(Special instructions, ingredients, allergies, etc.)."></textarea>
@@ -126,7 +88,7 @@
             <div class="form-group my-2">                
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <button type="submit" id="mealScheduleSaveBtn" class="btn btn-submitEvent">Submit</button>
+                        <button type="submit" id="mealScheduleSaveBtn" class="btn btn-submitEvent" onclick="return validateStartEndDates();">Submit</button>
                     </div>
                 </div>
             </div>
