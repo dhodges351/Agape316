@@ -253,11 +253,51 @@
             }
         }
 
+        function updateDeliveryDateStr(el)
+        {
+            var newVal = el.value;
+            $("#deliveryDateStr").val(newVal);
+        }
+
         function validateDeliveryDate()
         {
+            event.preventDefault();
             var startDate = $("#mealScheduleStart").val();
             var endDate = $("#mealScheduleEnd").val();
-            var selectedDate = $("#DeliveryDate").val();
+
+            if (startDate == "")
+            {
+                return true;
+            }
+
+            var selectedDate = $("#deliveryDateStr").val();
+            
+            const startDte = new Date(startDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
+            const endDte = new Date(endDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
+            const delDte = new Date(selectedDate).toLocaleDateString('en-US', { timeZone: 'UTC' });            
+
+            if (delDte >= startDte && delDte <= endDte)
+            {
+                // check all other required fields;
+                if ($("#FirstName").val() == "") {
+                    $("#valFirstName").text("First Name is required");
+                }
+                else if ($("#LastName").val() == "") {
+                    $("#valLastName").text("Last Name is required");
+                }
+                else if ($("#DeliveryTime").val() == "") {
+                    $("#valDeliveryTime").text("Delivery Time is required");
+                }
+                else
+                {
+                    $("#mealDeliveryForm").submit();
+                }                
+            }
+            else
+            {
+                alert("Delivery Date must be greater than or equal to Start Date: " + startDte + " and less than or equal to End Date: " + endDte);               
+                return false;
+            }
         }
 
         function GetSelectedEvent(el)
