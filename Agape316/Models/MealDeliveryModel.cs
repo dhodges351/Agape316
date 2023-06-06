@@ -169,13 +169,13 @@ namespace Agape316.Models
             await emailSender.SendEmailAsync(
                     model.Email,
                     "Delivery Information for " + mealSchedule.Title,
-                    $"Descripion: {mealSchedule.Description}" +
+                    $"Description: {mealSchedule.Description}" +
                     $" <br /> Meal Schedule Coordinator: {mealSchedule.Coordinator} " +
                     $" <br /> Meal Schedule Start Date: {mealSchedule.StartDate.ToShortDateString()} " +
                     $" <br /> Meal Schedule End Date: {mealSchedule.EndDate.ToShortDateString()} " +
                     $" <br /> Meal Schedule Recipient: {mealSchedule.RecipientFullName}" +
                     $" <br /> Delivered By: {model.FullName}" +
-                    $" <br /> Delivery Date/Time: {model.DeliveryDate}" +
+                    $" <br /> Delivery Date/Time: {model.DeliveryDate.ToShortDateString()} - {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.DeliveryTime)}" +
                     $" <br /> Contact Email: {model.Email}" +
                     $" <br /> Contact Phone: {model.Phone}" +
                     $" <br /> Notes: {model.Notes}"
