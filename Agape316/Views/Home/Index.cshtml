@@ -128,7 +128,7 @@ else
 </div>
 <div class="modal fade" id="deliverMealsModal" tabindex="-1" aria-labelledby="deliverMealsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content rounded-0 deliverMealsModalContent" style="min-width:475px;">
+        <div class="modal-content rounded-0 deliverMealsModalContent">
             <div class="modal-header eventModalHeader">
                 <h5 class="modal-title" id="deliverMealsModalLabel">Deliver Meals</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -152,7 +152,7 @@ else
 
 <!-- Schedule Meals Start -->
 <div class="container-xxl py-3">
-    <h5 class="sub-heading">Meals Scheduled</h5>
+    <h5 class="sub-heading">Meal Schedules</h5>
     @await Component.InvokeAsync("MealScheduleList")
 	@*<div class="row">
         <div class="col-md-12">
@@ -164,12 +164,13 @@ else
 
 <!-- Deliver Meals Start -->
 <div class="container-xxl py-3">
-    <h5 class="sub-heading">Meals Delivered</h5>
-    <div class="row">
+    <h5 class="sub-heading">Meal Deliveries</h5>
+    @await Component.InvokeAsync("MealDeliveryList")
+	@*<div class="row">
         <div class="col-md-12">
-            @*<a id="deliver-meals">Deliver Meals Here</a>*@
+            <a id="deliver-meals">Deliver Meals Here</a>
         </div>
-    </div>
+	</div>*@
 </div>
 <!-- Deliver Meals End -->
 

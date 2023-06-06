@@ -16,7 +16,7 @@ public partial class MealDelivery
     public DateTime Created { get; set; }
     public DateTime DeliveryDate { get; set; }
     public string? DeliveryTime { get; set; }
-    public string? Notes { get; set; }    
+    public string? Notes { get; set; }
     public string? UserName
     {
         get
@@ -65,7 +65,7 @@ public partial class MealDelivery
             }
             else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(Email))
             {
-                link = $"<a href='#' class='enabled-link' onclick='EditDelivery({Id})'>Edit</a>";
+                link = $"<a href='#' class='enabled-link' onclick='EditDelivery({ScheduleId}, {Id})'>Edit</a>";
             }
             return link;
         }

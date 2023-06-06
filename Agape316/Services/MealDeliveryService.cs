@@ -43,8 +43,7 @@ namespace Agape316.Services
 
         IEnumerable<MealDelivery> IMealDelivery.GetAll()
         {
-            var mealDeliveries = _context.MealDelivery;
-
+            var mealDeliveries = _context.MealDelivery;            
             return mealDeliveries.OrderByDescending(x => x.Created);
         }
     }
