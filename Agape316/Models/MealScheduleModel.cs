@@ -17,14 +17,14 @@ namespace Agape316.Models
 		public string coordPhone { get; private set; }
 		public string recipientFName { get; private set; }
 		public string recipientLName { get; private set; }
-        public string recipientEmail { get; private set; }
-        public string recipientPhone { get; private set; }
+        public string? recipientEmail { get; private set; }
+        public string? recipientPhone { get; private set; }
 		public string recipientAddress { get; private set; }
         public string recipientCity { get; private set; }
         public string recipientState { get; private set; }
         public string recipientZipcode { get; private set; }
-        public string foodAllergies { get; private set; }
-        public string notes { get; private set; }
+        public string? foodAllergies { get; private set; }
+        public string? notes { get; private set; }
 
         public MealScheduleModel()
         {
@@ -191,28 +191,20 @@ namespace Agape316.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public bool Monday { get; set; }
-        public bool Tuesday { get; set; }
-        public bool Wednesday { get; set; }
-        public bool Thursday { get; set; }
-        public bool Friday { get; set; }
-        public bool Saturday { get; set; }
-        public bool Sunday { get; set; }
-
         [Display(Name = "Food Allergies")]
         [StringLength(500)]
-        public string FoodAllergies
+        public string? FoodAllergies
         {
             get => foodAllergies;
-            set => foodAllergies = new HtmlSanitizer().Sanitize(value);
+            set => foodAllergies = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
 
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
-        public string Notes
+        public string? Notes
         {
             get => notes;
-            set => notes = new HtmlSanitizer().Sanitize(value);
+            set => notes = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
 
         public async Task SaveMealSchedule(IEmailSender emailSender, MealScheduleModel model, IMealSchedule _mealScheduleService)

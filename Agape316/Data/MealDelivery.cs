@@ -9,13 +9,13 @@ public partial class MealDelivery
     {}
     public int Id { get; set; }
     public int ScheduleId { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string? Email { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
     public string? Phone { get; set; }
     public DateTime Created { get; set; }
     public DateTime DeliveryDate { get; set; }
-    public string? DeliveryTime { get; set; }
+    public string DeliveryTime { get; set; }
     public string? Notes { get; set; }
     public string? UserName
     {

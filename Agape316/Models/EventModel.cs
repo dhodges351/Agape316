@@ -11,7 +11,7 @@ namespace Agape316.Models
     {
         private readonly IEmailSender _emailSender;
         private readonly IEvent _eventService;
-        public string note { get; private set; }
+        public string? notes { get; private set; }
         public string title { get; private set; }
         public string description { get; private set; }
         public string location { get; private set; }
@@ -74,10 +74,10 @@ namespace Agape316.Models
 
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
-        public string Notes
+        public string? Notes
         {
-            get => note;
-            set => note = new HtmlSanitizer().Sanitize(value);
+            get => notes;
+            set => notes = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
 
         [Required]
@@ -179,7 +179,7 @@ namespace Agape316.Models
             return categoryName;
         }
 
-        public async Task SaveEvent(IEmailSender emailSender, EventModel model, string fileName, IEvent _eventService)
+        public async Task SaveEvent(IEmailSender emailSender, EventModel model, string filePath, IEvent _eventService)
         {
             if (!model.Id.HasValue)
             {
@@ -189,7 +189,7 @@ namespace Agape316.Models
                     Description = model.Description,
                     Created = DateTime.Now,
                     EventDate = model.EventDate,
-                    ImageUrl = "/upload/" + fileName,
+                    ImageUrl = filePath,
                     Location = model.Location,
                     CategoryId = model.GetCategoryId(model.Category),
                     ContactEmail = model.ContactEmail,
@@ -230,6 +230,12 @@ namespace Agape316.Models
 
                 _eventService.UpdateEvent(agapeEvent);
             }
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }                  
+
             await emailSender.SendEmailAsync(
                     model.ContactEmail,
                     model.Title,

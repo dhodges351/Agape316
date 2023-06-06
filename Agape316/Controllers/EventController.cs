@@ -35,7 +35,8 @@ namespace Agape316.Controllers
         [HttpPost]        
         public async Task<IActionResult> AddEditEvent(EventModel model)
         {
-            var fileName = string.Empty;
+            string file = string.Empty;
+            string fileName = string.Empty;
 
             if (Upload != null)
             {
@@ -43,7 +44,7 @@ namespace Agape316.Controllers
                 {
                     fileName = Upload.FileName;
 
-                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
+                    file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
 
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
@@ -51,7 +52,7 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEvent(_emailSender, model, fileName, _eventService);
+            await model.SaveEvent(_emailSender, model, file, _eventService);
 
             return RedirectToAction("Index", "Home");
         }

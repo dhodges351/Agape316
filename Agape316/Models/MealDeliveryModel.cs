@@ -12,8 +12,8 @@ namespace Agape316.Models
         public string firstName { get; private set; }
         public string lastName { get; private set; }
         public string email { get; private set; }
-        public string phone { get; private set; }
-        public string notes { get; private set; }
+        public string? phone { get; private set; }
+        public string? notes { get; private set; }
         public string deliveryTime { get; private set; }
 
         public MealDeliveryModel()
@@ -91,19 +91,20 @@ namespace Agape316.Models
             get => lastName;
             set => lastName = new HtmlSanitizer().Sanitize(value);
         }
-             
-        [StringLength(100)]
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Email is required")]
         [DataType(DataType.EmailAddress)]
         public string Email
         {
             get => email;
-            set => email = new HtmlSanitizer().Sanitize(value == null ? "" : value);
+            set => email = new HtmlSanitizer().Sanitize(value);
         }
         
         [Display(Name = "Phone")]
         [StringLength(20)]
         [DataType(DataType.PhoneNumber)]
-        public string Phone
+        public string? Phone
         {
             get => phone;
             set => phone = new HtmlSanitizer().Sanitize(value == null ? "" : value);
@@ -121,10 +122,10 @@ namespace Agape316.Models
 
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
-        public string Notes
+        public string? Notes
         {
             get => notes;
-            set => notes = new HtmlSanitizer().Sanitize(value);
+            set => notes = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
 
         public async Task SaveMealDelivery(IEmailSender emailSender, MealDeliveryModel model, IMealDelivery _mealDeliveryService, IMealSchedule mealScheduleService)
