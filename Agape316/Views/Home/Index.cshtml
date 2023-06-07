@@ -71,16 +71,14 @@ else
                     <p class="header2-inner-left">
 
                     </p>
-                    <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>
-                    @*<a rel="noopener" href="#schedule-meals" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>*@
+                    <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>                    
                 </div>
             </div>
             <div class="col-lg-6 text-center py-4">
                 <div>
                     <p class="header2-inner-right">
                     </p>
-                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
-                    @*<a rel="noopener" href="#deliver-meals" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>*@
+                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>                    
                 </div>
             </div>
         </div>
@@ -140,83 +138,7 @@ else
     </div>
 </div>
 
-<!-- Team Start -->
-@*<div class="container-xxl pt-5 pb-3">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Agape 316 Ministry</h5>
-            <h1 class="mb-5">Our Caring Team Members</h1>
-        </div>
-        <div class="row g-4">
-            @{
-                for (var i = 0; i < 4; i++)
-                {                    
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/users/default.png" alt="">
-                            </div>
-                            <h5 class="mb-0">Full Name</h5>                           
-                        </div>
-                    </div>
-                }
-            }            
-        </div>
-    </div>
-</div>*@
-<!-- Team End -->
 
-<!-- About Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
-                    </div>
-                    <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG" style="margin-top: 25%;">
-                    </div>
-                    <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
-                    </div>
-                    <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                <h1 class="mb-4">Welcome to Agape 316 Ministry!</h1>
-                <p class="mb-4">We exist to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
-                <p class="mb-4">We welcome new members and hope you will visit Sand Ridge and join us soon!</p>
-                <div class="row g-4 mb-4">
-                    <div class="col-sm-6">
-                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">5</h1>
-                            <div class="ps-4">
-                                <p class="mb-0">Ministry Began With 5 Members</p>
-                                <h6 class="text-uppercase mb-0">January 2022</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">20</h1>
-                            <div class="ps-4">
-                                <p class="mb-0">Current Membership</p>
-                                <h6 class="text-uppercase mb-0">2023</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- About End -->
 <!-- Service Start -->
 <div class="container-xxl pt-2 pb-3">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -237,12 +159,7 @@ else
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Schedules</h5>
     </div>
-    @await Component.InvokeAsync("MealScheduleList")
-	@*<div class="row">
-        <div class="col-md-12">
-           <a id="schedule-meals">Schedule Meals Here</a>
-        </div>
-	</div>*@
+    @await Component.InvokeAsync("MealScheduleList")	
 </div>
 <!-- Schedule Meals End -->
 
@@ -251,14 +168,169 @@ else
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Deliveries</h5>
     </div>
-    @await Component.InvokeAsync("MealDeliveryList")
-	@*<div class="row">
-        <div class="col-md-12">
-            <a id="deliver-meals">Deliver Meals Here</a>
-        </div>
-	</div>*@
+    @await Component.InvokeAsync("MealDeliveryList")	
 </div>
 <!-- Deliver Meals End -->
+
+
+<!-- About Start -->
+<div class="row">
+    <div class="col-md-12">
+    <a id="about-us"></a>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG" style="margin-top: 25%;">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
+                        </div>
+                        <div class="col-6 text-end">
+                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
+                    <h1 class="mb-4">Welcome to Agape 316 Ministry!</h1>
+                    <p class="mb-4">We exist to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
+                    <p class="mb-4">We welcome new members and hope you will visit Sand Ridge and join us soon!</p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">5</h1>
+                                <div class="ps-4">
+                                    <p class="mb-0">Ministry Began With 5 Members</p>
+                                    <h6 class="text-uppercase mb-0">January 2022</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">20</h1>
+                                <div class="ps-4">
+                                    <p class="mb-0">Current Membership</p>
+                                    <h6 class="text-uppercase mb-0">2023</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Team Start -->
+<div class="row">
+    <div class="col-md-12"> 
+        <a id="team-members"></a>
+        <div class="container-xxl pt-5 pb-3">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Agape 316 Ministry</h5>
+                    <h1 class="mb-5">Our Caring Team Members</h1>
+                </div>
+                <div class="row g-4">
+                    @{
+                        for (var i = 0; i < 4; i++)
+                        {
+                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="team-item text-center rounded overflow-hidden">
+                                    <div class="rounded-circle overflow-hidden m-4">
+                                        <img class="img-fluid" src="img/users/default.png" alt="">
+                                    </div>
+                                    <h5 class="mb-0">Full Name</h5>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+
+<!-- Contact Us Start -->
+<div class="container-xxl py-5">
+    <a id="contact-us"></a>
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
+            <h1 class="mb-5">Contact For Any Query</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Planning/Scheduling</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>info@Agape316.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>info@Agape316.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@Agape316.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8768529044696!2d-88.48190346115236!3d35.68003413015614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887c6cd2d480f4b5%3A0x191f19d2c0aa746!2sSand%20Ridge%20Baptist%20Church!5e0!3m2!1sen!2sus!4v1686178361232!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <label for="subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
 
 
 <script>
