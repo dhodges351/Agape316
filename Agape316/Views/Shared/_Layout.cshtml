@@ -44,13 +44,19 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
                     </button>
-                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <div id="navbarCollapse" class="collapse navbar-collapse">                        
                         <div id="mainLinks" class="navbar-nav ms-auto py-0 pe-4">
-                            <a asp-asp-controller="Home" asp-action="Index" class="nav-item nav-link">Home</a>
-                            @*<a href="about.html" class="nav-item nav-link">About</a>*@
-                            @*<a href="contact.html" class="nav-item nav-link">Contact</a>                               *@
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu m-0">                                    
+                                    <a href="#" class="dropdown-item">Contact Us</a>
+                                    <a href="#" class="dropdown-item">Recipes</a>
+                                    <a href="#" class="dropdown-item">Privacy</a>
+                                </div>
+                            </div>
+                            @*<a asp-asp-controller="Home" asp-action="Index" class="nav-item nav-link">Home</a>*@
                         </div>
-                        <partial name="_LoginPartial"></partial> 
+                        <partial name="_LoginPartial"></partial>
                     </div>
                 </div>
             </nav>
@@ -148,7 +154,7 @@
     </script>
 
     <!-- Template Javascript -->
-    @*<script src="js/main.js"></script>*@
+    <script src="js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)   
 
     <script>
