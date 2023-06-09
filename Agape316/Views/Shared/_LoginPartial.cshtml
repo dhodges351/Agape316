@@ -1,17 +1,32 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
 @inject SignInManager<Agape316.Data.ApplicationUser> SignInManager
 @inject UserManager<Agape316.Data.ApplicationUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    if (User != null && User.Identity != null)
-    {
-        Context.Session.SetString("UserName", User.Identity.Name);
-    }
+        string userFirstName = string.Empty;
+        if (User != null && User.Identity != null)
+        {
+            Context.Session.SetString("UserName", User.Identity.Name);
 
+            string connectionString = Agape316.Helpers.ConfigHelper.AppSetting("DefaultConnection");
+            var contextOptions = new DbContextOptionsBuilder<Agape316.Data.ApplicationDbContext>()
+            .UseSqlServer(connectionString)
+            .Options;
+
+            using (var context = new Agape316.Data.ApplicationDbContext(contextOptions))
+            {
+                var currUser = context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+                if (currUser != null)
+                {
+                    userFirstName = currUser.FirstName;
+                }
+            };
+        }
     <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Profile" title="Profile">Hello @User.Identity?.Name!</a>
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Profile" title="Profile">Hello @userFirstName!</a>
     </li>    
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout">Logout</a>

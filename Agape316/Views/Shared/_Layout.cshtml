@@ -46,15 +46,23 @@
                     </button>                    
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <a href="/" class="nav-item nav-link active">Home</a>                            
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
-                                <div class="dropdown-menu m-0">
-                                    <a rel="noopener" href="#about-us" class="dropdown-item">About Us</a>
-                                    <a rel="noopener" href="#team-members" class="dropdown-item">Our Team</a>
-                                    <a rel="noopener" href="#contact-us" class="dropdown-item">Contact Us</a>
-                                </div>
-                            </div>
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <a rel="noopener" href="#about-us" class="nav-item nav-link">About Us</a>
+                            <a rel="noopener" href="#team-members" class="nav-item nav-link">Our Team</a>
+                            <a rel="noopener" href="#contact-us" class="nav-item nav-link">Contact Us</a>
+                            @{
+                                if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+                                        <div class="dropdown-menu m-0">
+                                            <a rel="noopener" href="#" class="dropdown-item">Upload Documents</a>
+                                            <a rel="noopener" href="#" class="dropdown-item">Create Event</a>
+                                            <a rel="noopener" href="#" class="dropdown-item">Create Meal Schedule</a>
+                                        </div>
+                                    </div>
+                                }
+                            }                            
                             <partial name="_LoginPartial"></partial>
                         </div>                       
                     </div>
