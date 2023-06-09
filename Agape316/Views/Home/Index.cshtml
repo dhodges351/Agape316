@@ -140,13 +140,13 @@ else
 
 
 <!-- Service Start -->
-<div class="container-xxl pt-2 pb-3">
+<div class="container-xxl py-5">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Events</h5>        
     </div>
     @await Component.InvokeAsync("EventList")    
 </div>
-<div class="container-xxl pt-2 pb-3">
+<div class="container-xxl py-5">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Dishes</h5>
     </div>
@@ -155,7 +155,7 @@ else
 <!-- Service End -->
 
 <!-- Schedule Meals Start -->
-<div class="container-xxl pt-2 pb-3">
+<div class="container-xxl py-5">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Schedules</h5>
     </div>
@@ -164,7 +164,7 @@ else
 <!-- Schedule Meals End -->
 
 <!-- Deliver Meals Start -->
-<div class="container-xxl pt-2 pb-3">
+<div class="container-xxl py-5">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Deliveries</h5>
     </div>
@@ -172,60 +172,55 @@ else
 </div>
 <!-- Deliver Meals End -->
 
-
 <!-- About Start -->
-<div class="row">
-    <div class="col-md-12">
+<div class="container-xxl py-5">
     <a id="about-us"></a>
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG" style="margin-top: 25%;">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
-                        </div>
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                    <h1 class="mb-4">Welcome to Agape 316 Ministry!</h1>
-                    <p class="mb-4">We exist to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
-                    <p class="mb-4">We welcome new members and hope you will visit Sand Ridge and join us soon!</p>
-                    <div class="row g-4 mb-4">
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">5</h1>
-                                <div class="ps-4">
-                                    <p class="mb-0">Ministry Began With 5 Members</p>
-                                    <h6 class="text-uppercase mb-0">January 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">20</h1>
-                                <div class="ps-4">
-                                    <p class="mb-0">Current Membership</p>
-                                    <h6 class="text-uppercase mb-0">2023</h6>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG" style="margin-top: 25%;">
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
+                    </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
+                <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Agape 316 Ministry</h1>
+                <p class="mb-4">We exist to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
+                <p class="mb-4">We welcome new members and hope you will visit Sand Ridge and join us soon!</p>
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
+                            <div class="ps-4">
+                                <p class="mb-0">Original</p>
+                                <h6 class="text-uppercase mb-0">Members</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
+                            <div class="ps-4">
+                                <p class="mb-0">Current</p>
+                                <h6 class="text-uppercase mb-0">Membership</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 <!-- About End -->
@@ -235,7 +230,7 @@ else
 <div class="row">
     <div class="col-md-12"> 
         <a id="team-members"></a>
-        <div class="container-xxl pt-5 pb-3">
+        <div class="container-xxl py-5 pb-3">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Agape 316 Ministry</h5>
