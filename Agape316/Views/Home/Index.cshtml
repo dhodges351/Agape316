@@ -48,40 +48,60 @@ else
                 </button>
             </form>
         </div>
-        <div class="row gx-4">
-            <div class="col-lg-6 text-center py-4">
-                <div>
-                    <p class="header-inner-left">
-                        
-                    </p>
-                    <a href="#" onclick="showPlanEventModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Plan An Event</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center py-4">
-                <div>
-                    <p class="header-inner-right">
-                    </p>
-                    <a href="#" onclick="showEventDishModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
-                </div>
-            </div>
-        </div>
-        <div class="row gx-4">
-            <div class="col-lg-6 text-center py-4">
-                <div>
-                    <p class="header2-inner-left">
+        @if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name) && User.IsInRole("Admin"))
+        {
+            <div class="row gx-4">
+                <div class="col-lg-6 text-center py-3">
+                    <div>
+                        <p class="header-inner-left">
 
-                    </p>
-                    <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>                    
+                        </p>
+                        <a href="#" onclick="showPlanEventModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Plan An Event</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center py-3">
+                    <div>
+                        <p class="header-inner-right">
+                        </p>
+                        <a href="#" onclick="showEventDishModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center py-4">
-                <div>
+            <div class="row gx-4">
+                <div class="col-lg-6 text-center py-3">
+                    <div>
+                        <p class="header2-inner-left">
+
+                        </p>
+                        <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center py-3">
+                    <div>
+                        <p class="header2-inner-right">
+                        </p>
+                        <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else 
+        {
+            <div class="row gx-4">
+                <div class="col-lg-6 text-center py-3">
+                    <div>
+                        <p class="header-inner-right">
+                        </p>
+                        <a href="#" onclick="showEventDishModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center py-3">
                     <p class="header2-inner-right">
                     </p>
-                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>                    
+                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
                 </div>
             </div>
-        </div>
+        }        
     </div>
 </div>
 <!-- Navbar & Hero End -->
@@ -140,13 +160,13 @@ else
 
 
 <!-- Service Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Events</h5>        
     </div>
     @await Component.InvokeAsync("EventList")    
 </div>
-<div class="container-xxl py-5">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Dishes</h5>
     </div>
@@ -155,7 +175,7 @@ else
 <!-- Service End -->
 
 <!-- Schedule Meals Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Schedules</h5>
     </div>
@@ -164,7 +184,7 @@ else
 <!-- Schedule Meals End -->
 
 <!-- Deliver Meals Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Deliveries</h5>
     </div>
@@ -382,15 +402,16 @@ else
         }        
     }
 
-    function showEventDishModal() {    
-        checkLoggedIn();
+    function showEventDishModal() {   
+        $("#eventDishModal").modal("show");
+        //checkLoggedIn();
 
-        if (!isLoggedIn) {
-            alert('You must be an logged in to use this feature.')
-        }        
-        else {
-            $("#eventDishModal").modal("show");
-        }
+        //if (!isLoggedIn) {
+        //    alert('You must be an logged in to use this feature.')
+        //}        
+        //else {
+        //    $("#eventDishModal").modal("show");
+        //}
     }    
 
     function showScheduleMealsModal() {    
@@ -405,14 +426,15 @@ else
     }    
 
     function showDeliverMealsModal() {
-        checkLoggedIn();
+        $("#deliverMealsModal").modal("show");
+        //checkLoggedIn();
 
-        if (!isLoggedIn) {
-            alert('You must be an logged in to use this feature.')
-        }
-        else {
-            $("#deliverMealsModal").modal("show");
-        }
+        //if (!isLoggedIn) {
+        //    alert('You must be an logged in to use this feature.')
+        //}
+        //else {
+        //    $("#deliverMealsModal").modal("show");
+        //}
     }
     
 
