@@ -22,6 +22,7 @@
                 if (currUser != null)
                 {
                     userFirstName = currUser.FirstName;
+                    Context.Session.SetString("UserInfo", currUser.Id);
                 }
             };
         }

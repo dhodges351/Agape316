@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Agape316.Models;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agape316.Controllers
@@ -6,10 +8,12 @@ namespace Agape316.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IEmailSender _emailSender;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender)
         {
-            _logger = logger;       
+            _logger = logger;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -20,6 +24,13 @@ namespace Agape316.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ContactUsAsync(HomeIndexModel model)
+        {
+            await model.SendContactUsEmail(_emailSender, model);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Error()
