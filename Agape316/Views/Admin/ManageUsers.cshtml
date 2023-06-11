@@ -1,0 +1,58 @@
+﻿@model Agape316.Models.ManageUsersViewModel
+@using NonFactors.Mvc.Grid
+
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Users";
+}
+<p style="height:100px;">
+</p>
+<div class="container-xxl py-6">
+    <style>
+        tr.mvc-grid-headers {
+            text-align: center;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model.Users != null && Model.Users.Any())
+            {
+                @(
+                    Html
+                    .Grid(Model.Users)
+                    .Build(columns =>
+                    {                        
+                        columns.Add(model => @Html.Raw(model.ProfileImageUrl)).Titled("Photo");
+                        columns.Add(model => @Html.Raw(model.FirstName)).Titled("First Name");
+                        columns.Add(model => @Html.Raw(model.LastName)).Titled("Last Name");
+                        columns.Add(model => @Html.Raw(model.Email)).Titled("Email");                        
+                        columns.Add(model => @Html.Raw(model.IsActive)).Titled("Active");
+                        columns.Add(model => @Html.Raw(model.PhoneNumber)).Titled("Phone");
+                        columns.Add(model => @Html.Raw(model.MemberSince)).Titled("Registered");
+                        columns.Add(model => @Html.Raw(model.Id)).Hidden();
+                    })
+                    .Attributed(new { id = "all-users-table" })
+                    .Empty("No data found")
+                    .Pageable(pager =>
+                    {
+                        pager.RowsPerPage = 6;
+                    })
+                    )
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Users have registered yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

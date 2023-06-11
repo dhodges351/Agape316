@@ -1,0 +1,58 @@
+﻿@model Agape316.Models.AdminViewModel
+
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p style="height:100px;">
+</p>
+<div class="container-xxl py-6">
+    <div class="wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-controller="Admin" asp-action="UploadDocument" method="post" id="adminForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <input asp-for="Description" class="form-control">
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FileType">File Type</label>
+                        <input asp-for="FileType" class="form-control" />
+                        <span asp-validation-for="FileType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Author">Author</label>
+                        <input asp-for="Author" class="form-control" />
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+                    <div class="form-group my-2">
+                        <label asp-for="Notes">Notes</label>
+                        <textarea asp-for="Notes" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div id="upload" class="form-group my-2">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <label class="btn btn-default btn-file">
+                                    Select File <input type="file" name="Upload" style="display:none;" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" id="adminSaveBtn" class="btn btn-submitEvent">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>
+
+
