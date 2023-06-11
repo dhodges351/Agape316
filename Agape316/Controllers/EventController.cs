@@ -33,17 +33,14 @@ namespace Agape316.Controllers
 
         [HttpPost]        
         public async Task<IActionResult> AddEditEvent(EventModel model)
-        {
-            string file = string.Empty;
-            string fileName = string.Empty;
-
+        { 
             if (Upload != null)
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    fileName = Upload.FileName;
+                    var fileName = Upload.FileName;
 
-                    file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
+                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
 
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
