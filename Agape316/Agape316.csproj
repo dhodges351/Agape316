@@ -8,6 +8,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\js\tinymce\icons\**" />
+    <Compile Remove="wwwroot\js\tinymce\langs\**" />
+    <Compile Remove="wwwroot\js\tinymce\models\**" />
+    <Compile Remove="wwwroot\js\tinymce\plugins\**" />
+    <Compile Remove="wwwroot\js\tinymce\skins\**" />
+    <Compile Remove="wwwroot\js\tinymce\themes\**" />
+    <Content Remove="wwwroot\js\tinymce\icons\**" />
+    <Content Remove="wwwroot\js\tinymce\langs\**" />
+    <Content Remove="wwwroot\js\tinymce\models\**" />
+    <Content Remove="wwwroot\js\tinymce\plugins\**" />
+    <Content Remove="wwwroot\js\tinymce\skins\**" />
+    <Content Remove="wwwroot\js\tinymce\themes\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\icons\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\langs\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\models\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\plugins\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\skins\**" />
+    <EmbeddedResource Remove="wwwroot\js\tinymce\themes\**" />
+    <None Remove="wwwroot\js\tinymce\icons\**" />
+    <None Remove="wwwroot\js\tinymce\langs\**" />
+    <None Remove="wwwroot\js\tinymce\models\**" />
+    <None Remove="wwwroot\js\tinymce\plugins\**" />
+    <None Remove="wwwroot\js\tinymce\skins\**" />
+    <None Remove="wwwroot\js\tinymce\themes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\tinymce\tinymce.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Properties\serviceDependencies.json" />
     <None Remove="Properties\serviceDependencies.local.json" />
   </ItemGroup>
@@ -27,6 +58,7 @@
     <PackageReference Include="SendGrid" Version="9.28.1" />
     <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="TinyMCE" Version="6.4.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +66,8 @@
     <None Include="Views\Shared\MvcGrid\_Grid.cshtml" />
     <None Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <None Include="wwwroot\js\mvc-grid\mvc-grid.js" />
+    <None Include="wwwroot\js\tinymce\tinymce.js" />
+    <None Include="wwwroot\js\tinymce\tinymce.min.js" />
   </ItemGroup>
 
   <ItemGroup>

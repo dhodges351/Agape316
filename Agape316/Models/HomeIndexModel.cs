@@ -46,7 +46,7 @@ namespace Agape316.Models
         public string Message
         {
             get => message;
-            set => message = new HtmlSanitizer().Sanitize(value);
+            set => message = value;
         }
 
         public async Task SendContactUsEmail(IEmailSender emailSender, HomeIndexModel model)
