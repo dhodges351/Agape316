@@ -1,8 +1,8 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
-using Agape316.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Agape316.Controllers
 {
@@ -11,12 +11,16 @@ namespace Agape316.Controllers
         private readonly IMealDelivery _mealDeliveryService;
         private readonly IMealSchedule _mealScheduleService;
         private readonly IEmailSender _emailSender;
+        private readonly INotyfService _toastNotification;
 
-        public MealDeliveryController(IMealDelivery mealDeliveryService, IMealSchedule mealScheduleService, IEmailSender emailSender)
+        public MealDeliveryController(IMealDelivery mealDeliveryService, 
+            IMealSchedule mealScheduleService, IEmailSender emailSender,
+            INotyfService toastNotification)
         {
             _mealDeliveryService = mealDeliveryService;
             _mealScheduleService = mealScheduleService;
             _emailSender = emailSender;
+            _toastNotification = toastNotification;
         }       
 
         [HttpGet]
@@ -29,7 +33,7 @@ namespace Agape316.Controllers
         public async Task<IActionResult> AddEditMealDelivery(MealDeliveryModel model)
         {  
             await model.SaveMealDelivery(_emailSender, model, _mealDeliveryService, _mealScheduleService);
-
+            _toastNotification.Success("Thank you, your Meal Delivery has been saved!", 5);
             return RedirectToAction("Index", "Home");
         }
     }

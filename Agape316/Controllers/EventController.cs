@@ -1,12 +1,8 @@
-﻿using Agape316.Areas.Identity.Pages.Account;
-using Agape316.Data;
+﻿using Agape316.Data;
 using Agape316.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using System.Data;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Agape316.Controllers
 {
@@ -15,16 +11,19 @@ namespace Agape316.Controllers
         private readonly IEmailSender _emailSender;
         private readonly IEvent _eventService;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
+        private readonly INotyfService _toastNotification;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         public EventController(IEmailSender emailSender, IEvent eventService,
-            Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
+            Microsoft.AspNetCore.Hosting.IHostingEnvironment environment, 
+            INotyfService toastNotification)
         {
             _emailSender = emailSender;
             _eventService = eventService;
             _environment = environment;
+            _toastNotification = toastNotification;
         }
         
         public IActionResult Index()
@@ -53,7 +52,7 @@ namespace Agape316.Controllers
             }
 
             await model.SaveEvent(_emailSender, model, _eventService);
-
+            _toastNotification.Success("Thank you, your Event has been saved!", 5);
             return RedirectToAction("Index", "Home");
         }
         

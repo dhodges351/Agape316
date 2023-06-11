@@ -8,6 +8,9 @@ using SendGrid.Extensions.DependencyInjection;
 using AppContext = Agape316.Helpers.AppContext;
 using Serilog;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification;
+using NToastNotify;
+using AspNetCoreHero.ToastNotification.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +37,20 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+    ProgressBar = true,
+    Timeout = 5000
+});
+
+// Add ToastNotification
+builder.Services.AddNotyf(config =>
+{
+    config.DurationInSeconds = 5;
+    config.IsDismissable = true;
+    config.Position = NotyfPosition.TopRight;
+});
+
 builder.Services.AddMvc(options =>
 {
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
@@ -76,6 +92,9 @@ AppContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseNToastNotify();
+app.UseNotyf();
 
 #pragma warning disable ASP0014 // Suggest using top level route registrations
 app.UseEndpoints(endpoints =>

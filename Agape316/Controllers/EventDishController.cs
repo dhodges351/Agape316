@@ -2,6 +2,7 @@
 using Agape316.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Agape316.Controllers
 {
@@ -11,17 +12,21 @@ namespace Agape316.Controllers
         private readonly IEventDish _eventDishService;
         private readonly IEmailSender _emailSender;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
+        private readonly INotyfService _toastNotification;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         public EventDishController(IEvent eventService, IEventDish eventDishService,
-            IEmailSender emailSender, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
+            IEmailSender emailSender, 
+            Microsoft.AspNetCore.Hosting.IHostingEnvironment environment,
+            INotyfService toastNotification)
         {
             _eventService = eventService;
             _eventDishService = eventDishService;
             _environment = environment;
             _emailSender = emailSender;
+            _toastNotification = toastNotification;
         }
         
         public IActionResult Index()
@@ -70,7 +75,7 @@ namespace Agape316.Controllers
             }
 
             await model.SaveEventDish(_emailSender, model, _eventDishService);
-
+            _toastNotification.Success("Thank you, your Event Dish has been saved!", 5);
             return RedirectToAction("Index", "Home");
         }
 

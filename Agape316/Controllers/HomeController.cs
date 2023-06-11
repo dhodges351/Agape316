@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Agape316.Controllers
 {
@@ -9,11 +10,13 @@ namespace Agape316.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly INotyfService _toastNotification;
 
-        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender)
+        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender, INotyfService toastNotification)
         {
             _logger = logger;
             _emailSender = emailSender;
+            _toastNotification = toastNotification; 
         }
 
         public IActionResult Index()
@@ -30,6 +33,7 @@ namespace Agape316.Controllers
         public async Task<IActionResult> ContactUsAsync(HomeIndexModel model)
         {
             await model.SendContactUsEmail(_emailSender, model);
+            _toastNotification.Success("Thank you for contacting Agape 316 Ministry!", 5);
             return RedirectToAction("Index", "Home");
         }
 
