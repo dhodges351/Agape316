@@ -29,6 +29,15 @@ else
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    .no-display {
+        display: none;
+    }
+    .go-display {
+        display: inline:block;
+    }
+</style>
+
 <!-- Navbar & Hero Start --> 
 <div class="container-xxl top-container bg-dark">    
     <div class="container top-inner-container"> 
@@ -44,15 +53,42 @@ else
                 </p>
             </div>            
         </div>
-        
         <div class="row align-items-start">
-            <form asp-controller="Search" asp-action="Search" method="post" role="form" id="homeSearchForm">
+            <form asp-controller="Home" asp-action="Index" method="post" role="form" id="homeSearchForm">
                 <input asp-for="SearchQuery" id="txtSearch" type="text" class="homeSearch" placeholder="Search..." onfocus="clearThis(this)" />
                 <button type="submit" class="btn btn-forumSearch" onclick="return checkEntry()">
                     <i class="material-icons">search</i>
                 </button>
-            </form>
+                <div id="divSearchResults" class="container-xxl bg-light py-4 @Model.Events == null ? 'no-display' : 'go-display'">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (Model.Events != null && Model.Events.Any())
+                            {
+                                <h3>Search Results</h3>
+                                <table class="table-bordered" width="100%">
+                                    <tr>
+                                        <td>Title</td>
+                                        <td>Description</td>
+                                        <td>Contact Email</td>
+                                        <td>Event Date/Time</td>
+                                    </tr>
+                                    @foreach (var evt in Model.Events)
+                                    {
+                                        <tr>
+                                            <td>@evt.Title</td>
+                                            <td>@evt.Description</td>
+                                            <td>@evt.ContactEmail</td>
+                                            <td>@evt.EventDate.ToShortDateString() @evt.StartTime - @evt.EndTime</td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>            
         </div>
+        
         @if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name) && User.IsInRole("Admin"))
         {
             <div class="row gx-4">
@@ -359,20 +395,20 @@ else
     var isAdmin = false;   
 
     function checkEntry()
-    {        
+    {                
         var searchVal = $("#txtSearch").val();
         if (searchVal == "")
         {
             return false;
         }
-        else
-        {
+        else {
             $("#homeSearchForm").submit;
         }
     }
 
     function clearThis(target) {
-            target.value = "";
+        target.value = "";
+        $("#divSearchResults").hide();
     }
 
     function checkLoggedIn() {

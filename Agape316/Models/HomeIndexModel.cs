@@ -1,13 +1,28 @@
 ﻿using Agape316.Data;
-using Agape316.Services;
 using Ganss.Xss;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;using System.Linq;
 
 namespace Agape316.Models
 {    
     public class HomeIndexModel
     {
+        private readonly IEvent _eventService;
+
+        public HomeIndexModel(IEvent eventService, string searchQuery)
+        {
+            _eventService = eventService;
+            var events = _eventService.GetFilteredEvents(searchQuery).ToList();
+            if (events.Any())
+            {
+                Events = new List<EventModel>();
+                foreach (var evt in events)
+                {
+                    Events.Add(new EventModel { Title = evt.Title, Description = evt.Description, EventDate = evt.EventDate, StartTime = evt.StartTime, EndTime = evt.EndTime, ContactEmail = evt.ContactEmail });
+                }
+            }
+        }
+
         public string name { get; private set; }
         public string email { get; private set; }
         public string subject { get; private set; }
@@ -49,10 +64,10 @@ namespace Agape316.Models
             set => message = value;
         }
 
-        public IEnumerable<EventModel>? Events { get; set; }
-        public IEnumerable<EventDishModel>? EventDishes { get; set; }
-        public IEnumerable<MealScheduleModel>? MealSchedules { get; set; }
-        public IEnumerable<MealDeliveryModel>? MealDeliveries { get; set; }
+        public List<EventModel>? Events { get; set; }
+        public List<EventDishModel>? EventDishes { get; set; }
+        public List<MealScheduleModel>? MealSchedules { get; set; }
+        public List<MealDeliveryModel>? MealDeliveries { get; set; }
         public bool EmptySearchResults { get; set; }
         public int EventCount { get; set; } = 0;
 

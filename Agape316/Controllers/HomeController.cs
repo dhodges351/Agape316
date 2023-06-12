@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Agape316.Data;
 
 namespace Agape316.Controllers
 {
@@ -11,18 +12,25 @@ namespace Agape316.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IEmailSender _emailSender;
         private readonly INotyfService _toastNotification;
+        private readonly IEvent _eventService;
 
-        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender, INotyfService toastNotification)
+        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender, INotyfService toastNotification, IEvent eventService)
         {
             _logger = logger;
             _emailSender = emailSender;
             _toastNotification = toastNotification; 
+            _eventService = eventService;
         }
 
-        public IActionResult Index()
-        {                   
-            return View();
-        }       
+        public IActionResult Index(string searchQuery)
+        {
+            var model = new HomeIndexModel(_eventService, searchQuery);
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                model.Events = null;
+            }
+            return View(model);
+        }
 
         public IActionResult Privacy()
         {
