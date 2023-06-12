@@ -17,6 +17,11 @@ namespace Agape316.Data
 		public string? ProfileImageUrl { get; set; }
         public DateTime MemberSince { get; set; }
         public bool IsActive { get; set; }
+
+        [NotMapped]
+        public bool IsAdmin { get; set; }
+
+        [NotMapped]
         public string ImageUrlDisplay
         {
             get

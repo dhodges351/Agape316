@@ -8,6 +8,8 @@
 @{
     ViewData["Title"] = "Users";
 }
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <p style="height:100px;">
 </p>
 <div class="container-xxl py-6">
@@ -19,6 +21,9 @@
             width: 50px;
             height: 50px;
         }
+        .is-admin {
+            text-align: center !important;
+        }
     </style>
     <div class="row">
         <div class="col-md-12">
@@ -26,19 +31,19 @@
             {
                 @(
                 Html
-                .Grid(Model.Users)
-                .Build(columns =>
-                {
-                    columns.Add(model => @Html.Raw(model.ImageUrlDisplay)).Titled("Photo").Css("member-photo");
-                    columns.Add(model => @Html.Raw(model.FirstName)).Titled("First Name");
-                    columns.Add(model => @Html.Raw(model.LastName)).Titled("Last Name");
-                    columns.Add(model => @Html.Raw(model.Email)).Titled("Email");                        
-                    columns.Add(model => @Html.Raw(model.IsActive)).Titled("Active");
-                    columns.Add(model => @Html.Raw(model.PhoneNumber)).Titled("Phone");
-                    columns.Add(model => @Html.Raw(model.MemberSince)).Titled("Registered");
-                    columns.Add(model => @Html.Raw(model.Id)).Hidden();
-                    columns.Add(model => @Html.Raw(model.ProfileImageUrl)).Hidden();
-                })
+                    .Grid(Model.Users)
+                    .Build(columns =>
+                    {
+                        columns.Add(model => @Html.Raw(model.ImageUrlDisplay)).Titled("Photo").Css("member-photo");
+                        columns.Add(model => @Html.Raw(model.FirstName)).Titled("First Name");
+                        columns.Add(model => @Html.Raw(model.LastName)).Titled("Last Name");
+                        columns.Add(model => @Html.Raw(model.Email)).Titled("Email");
+                        columns.Add(model => @Html.Raw($"<input type='checkbox' title='Check/uncheck to toggle Admin role.' {(model.Email == "dhodges351@gmail.com" ? "disabled" : "")} {(model.IsAdmin == true ? "checked" : "")} onchange='toggleUserAdmin(this, \"{model.Email}\")' />")).Titled("Admin").Css("is-admin");
+                        columns.Add(model => @Html.Raw(model.PhoneNumber)).Titled("Phone");
+                        columns.Add(model => @Html.Raw(model.MemberSince)).Titled("Member Since");
+                        columns.Add(model => @Html.Raw(model.Id)).Hidden();
+                        columns.Add(model => @Html.Raw(model.ProfileImageUrl)).Hidden();
+                    })
                 .Attributed(new { id = "all-users-table" })
                 .Empty("No data found")
                 .Pageable(pager =>
@@ -59,5 +64,57 @@
         </div>
     </div>
 </div>
+<script>
+    function toggleUserAdmin(el, email)
+    {
+        event.preventDefault();
+        if (el.checked)
+        {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/MakeUserAdmin",
+                data: { "email": email },
+                success: function (response) {
+                    Toastify({
+                        text: "Added Admin role for " + email,
+                        className: "info",
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+                },
+                failure: function (response) {
+                    alert('Make User Admin failed');
+                },
+                error: function (response) {
+                    alert('Error making User an Admin');
+                }
+            });
+        }
+        else
+        {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/RemoveUserAdmin",
+                data: { "email": email },
+                success: function (response) {
+                    Toastify({
+                        text: "Removed Admin role for " + email,
+                        className: "info",
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+                },
+                failure: function (response) {
+                    alert('Remove User Admin failed');
+                },
+                error: function (response) {
+                    alert('Remove making User an Admin');
+                }
+            });
+        }        
+    }
+</script>
 
 
