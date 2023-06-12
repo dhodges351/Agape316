@@ -31,14 +31,17 @@
 			<br />
 			Email: @Model.Email
 			<br />
-			Member Since: @Model.MemberSince.ToShortDateString()
+			Member Since: @Model.MemberSince.ToShortDateString()			
 		</div>			
-	</div>		
+	</div>	
 	<div class="row">
 		<div class="col-12 text-center">
 			@if (User?.Identity?.Name == Model.Email)
 			{
 				<form method="post" id="uploadForm" enctype="multipart/form-data" asp-area="Identity" asp-page="/Account/Profile">
+					<div class="mt-0 mb-2">
+						Phone Number: <input type="text" width="50" asp-for="PhoneNumber" value="@Model.PhoneNumber" />
+					</div>
 					<div id="upload">
 						<label class="btn btn-primary">
 							Upload Profile Image <input type="file" id="txtFile" name="Upload" style="display:none;" />

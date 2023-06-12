@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace Agape316.Data
@@ -16,10 +12,17 @@ namespace Agape316.Data
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        public string LastName { get; set; }
+        public string LastName { get; set; }		
 
-        public string? ProfileImageUrl { get; set; }
+		public string? ProfileImageUrl { get; set; }
         public DateTime MemberSince { get; set; }
         public bool IsActive { get; set; }
+        public string ImageUrlDisplay
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
     }
 }

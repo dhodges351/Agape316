@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Agape 3:16</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     <!-- Google Web Fonts -->
@@ -21,9 +21,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -46,6 +43,20 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="/" class="nav-item nav-link active">Home</a>
+                        @{
+                            if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+                                    <div class="dropdown-menu m-0">
+                                        <a rel="noopener" href="/Admin/Index" class="dropdown-item">Upload Documents</a>
+                                        <a rel="noopener" href="/Admin/ManageUsers" class="dropdown-item">Manage Users</a>
+                                        <a rel="noopener" href="#" class="dropdown-item">Send Notification</a>
+                                    </div>
+                                </div>
+                            }
+                            <a class="nav-item nav-link active" asp-area="Identity" asp-page="/Account/Logout">Logout</a>
+                        }
                     </div>                       
                 </div>
             </div>
@@ -125,418 +136,34 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+   
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="~/js/mvc-grid/mvc-grid.js"></script>	
-	<script src="~/lib/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        tinymce.init({
-            selector: '#Message',
-            promotion: false
-        });
-    </script>
+    <!-- Template Javascript -->  
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>  
     <script>
         document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
-    @await Component.InvokeAsync("NToastNotify")
-    @await Component.InvokeAsync("Notyf")
 
     <script>
-        var fileSize = 0;
-        var filePath = '';
-        var noSubmit = '';
-
-        // Allowed file types
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-
-        function checkFile(page) {
-            event.preventDefault();
-
-            if (filePath == "") {
-                alert("Please select an image file.");
-                return false;
-            }
-
-            if (fileSize > 1) {
-                alert("File must be less than or equal to 1000KB.");
-                return false;
-            }
-
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Invalid file type, valid file types are: jpg, jpeg, png, gif.');
-                $("#txtFile").val("");
-                return false;
-            }
-
-            if (page == 'Profile') {
-                $("#uploadForm").submit();
-            }
-            else if (page == 'CreateTopic') {
-                $("#createForumForm").submit();
-            }
-        }
-
-        $('#txtFile').on('change', function () {
-            fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
-            filePath = $("#txtFile").val();
-        });
-
 
         $(function () {
-            $('#planEventModal').on('hidden.bs.modal', function () {
-                // Clears fields in Event modal for new Event.
-                window.location.reload();
-            });
-        });
-
-        $(function () {
-            $('#eventDishModal').on('hidden.bs.modal', function () {
-                window.location = "/";
-            });
-        });  
-        
-        $(function () {
-            var tbl = $("#event-table");
-            var rows = $(tbl)[0].rows;            
-            if (rows && rows.length > 0)
-            {                
-                $.each(rows, function (index, value) {
-                    if (index > 0)
-                    {                        
-                        var cells = this.cells;
-                        if (cells) {
-                            var imageUrl = cells[11].innerText;
-                            var newImageUrl = imageUrl.replace("'", "%27");
-                            $(cells[0]).css({ "background-image": "url('" + newImageUrl + "')", "background-size": "contain", "background-repeat": "no-repeat", "background-position": "center" });
-                        }
-                    }                                   
-                });
-            }            
-        });
-
-        $(function () {
-            var tbl = $("#event-dish-table");
+            var tbl = $("#all-users-table");
             var rows = $(tbl)[0].rows;
             if (rows && rows.length > 0) {
                 $.each(rows, function (index, value) {
                     if (index > 0) {
                         var cells = this.cells;
                         if (cells) {
-                            var imageUrl = cells[10].innerText;
-                            var newImageUrl = imageUrl.replace("'","%27");
-                            $(cells[1]).css({ "background-image": "url('" + newImageUrl + "')", "background-size": "contain", "background-repeat": "no-repeat", "background-position": "center" });
+                            var imageUrl = cells[8].innerText;
+                            var newImageUrl = imageUrl.replace("'", "%27");
+                            $(cells[0]).css({ "background-image": "url('" + newImageUrl + "')", "background-size": "contain", "background-repeat": "no-repeat", "background-position": "center" });
                         }
                     }
                 });
             }
         });
-
-        function checkCategory() {
-            var selectedCategory = $("#Category").val();
-            if (selectedCategory == "")
-            {
-                alert("Please select a Category.");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        function updateDeliveryDateStr(el)
-        {
-            var newVal = el.value;
-            $("#deliveryDateStr").val(newVal);
-        }
-
-        function checkEndTime() {
-            var end_time = $('#evEndTime').val();
-            var start_time = $('#evStartTime').val();
-
-            var stt = new Date("May 26, 2016 " + start_time);
-            stt = stt.getTime();
-
-            var endt = new Date("May 26, 2016 " + end_time);
-            endt = endt.getTime();
-            if (endt < stt) {
-                alert('End Time cannot be earlier than Start Time.')
-                noSubmit = true;
-            }
-            else
-            {
-                noSubmit = '';
-            }
-        }
-
-        function checkNoSubmit()
-        {
-            event.preventDefault();
-            if (noSubmit != '')
-            {
-                return false;
-            }
-            else
-            {
-                $("#eventForm").submit();
-            }
-        }
-
-        function validateStartEndDates() {
-            event.preventDefault();
-            var startDate = $("#StartDate").val();
-            var endDate = $("#EndDate").val();
-
-            if (startDate == "" || endDate == "") {
-                return true;
-            }
-
-            const startDte = new Date(startDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
-            const endDte = new Date(endDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
-
-            var newStartDate = new Date(startDte);
-            var newEndDate = new Date(endDte);
-
-            if (newEndDate < newStartDate) {
-                alert("End Date cannot be earlier than Start Date.");
-                return false;
-            }
-            else {
-                if ($("#msTitle").val() == "") {
-                    $("#valTitle").text("Title is required");
-                    return false;
-                }
-                else {
-                    $("#valTitle").text("");
-                }
-                if ($("#msDescription").val() == "") {
-                    $("#valDescription").text("Description is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valDescription").text("");
-                }
-                if ($("#msCoordinator").val() == "") {
-                    $("#valCoordinator").text("Coordinator is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valCoordinator").text("");
-                }
-                if ($("#msCoordPhone").val() == "") {
-                    $("#valCoordPhone").text("Coordinator Phone is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valCoordPhone").text("");
-                }
-                if ($("#msStartDate").val() == "") {
-                    $("#valStartDate").text("Start Date is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valStartDate").text("");
-                }
-                if ($("#msEndDate").val() == "") {
-                    $("#valEndDate").text("End Date is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valEndDate").text("");                    
-                }
-                if ($("#msRecipientFName").val() == "") {
-                    $("#valRecipientFName").text("Recipient First Name is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientFName").text("");
-                }
-                if ($("#msRecipientLName").val() == "") {
-                    $("#valRecipientLName").text("Recipient Last Name is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientLName").text("");
-                }
-                if ($("#msRecipientAddress").val() == "") {
-                    $("#valRecipientAddress").text("Recipient Address is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientAddress").text("");
-                }
-                if ($("#msRecipientCity").val() == "") {
-                    $("#valRecipientCity").text("Recipient City is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientCity").text("");
-                }
-                if ($("#RecipientState").val() == "") {
-                    $("#valRecipientState").text("Recipient State is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientState").text("");
-                }
-                if ($("#msRecipientZipcode").val() == "") {
-                    $("#valRecipientZipcode").text("Recipient Zipcode is required");
-                    return false;
-                }
-                else
-                {
-                    $("#valRecipientZipcode").text("");
-                }                
-                
-                $("#mealScheduleForm").submit();
-            }
-        }
-
-        function validateDeliveryDate()
-        {
-            event.preventDefault();
-            var startDate = $("#mealScheduleStart").val();
-            var endDate = $("#mealScheduleEnd").val();
-
-            if (startDate == "")
-            {
-                return true;
-            }
-
-            var selectedDate = $("#deliveryDateStr").val();
-            
-            const startDte = new Date(startDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
-            const endDte = new Date(endDate).toLocaleDateString('en-US', { timeZone: 'UTC' });
-            const delDte = new Date(selectedDate).toLocaleDateString('en-US', { timeZone: 'UTC' });            
-
-            if (delDte >= startDte && delDte <= endDte)
-            {
-                // check all other required fields;
-                if ($("#FirstName").val() == "") {
-                    $("#valFirstName").text("First Name is required");
-                }
-                else if ($("#LastName").val() == "") {
-                    $("#valLastName").text("Last Name is required");
-                }
-                else if ($("#DeliveryTime").val() == "") {
-                    $("#valDeliveryTime").text("Delivery Time is required");
-                }
-                else
-                {
-                    $("#mealDeliveryForm").submit();
-                }                
-            }
-            else
-            {
-                alert("Delivery Date must be greater than or equal to Start Date: " + startDte + " and less than or equal to End Date: " + endDte);               
-                return false;
-            }
-        }
-
-        function GetSelectedEvent(el)
-        {
-            var selectedId = parseInt(el.value);
-            var eventDate = $("#hidEventDate").val();
-            $.ajax({
-                type: "GET",
-                url: "/EventDish/OnGetCallEventDishViewComponent",
-                data: { "eventId": selectedId },
-                success: function (response) {
-                    $("#eventDishModal").find(".modal-body").html(response);
-                    $("#eventDishModal").modal('show');
-                    $("#eventContainer").show();
-                    $('#EventId').val(selectedId);
-                    $('#EventDate').val(eventDate);
-                },
-                failure: function (response) {
-                    alert('Get Event Dish details failed');
-                },
-                error: function (response) {
-                    alert('Error getting Event Dish details');
-                }
-            });
-        }       
-
-        function GetSelectedSchedule(el) {
-            var selectedId = parseInt(el.value);
-            var id = $("#Id").val();
-            $.ajax({
-                type: "GET",
-                url: "/MealDelivery/OnGetCallMealDeliveryViewComponent",
-                data: { "scheduleId": selectedId, "id": id },
-                success: function (response) {
-                    $("#deliverMealsModal").find(".modal-body").html(response);
-                    $("#deliverMealsModal").modal('show');
-                    $("#scheduleContainer").show();
-                    $('#ScheduleId').val(selectedId);
-                },
-                failure: function (response) {
-                    alert('Get Meal Schedule details failed');
-                },
-                error: function (response) {
-                    alert('Error getting Meal Schedule details');
-                }
-            });
-        }
-
-        function checkHasInvalidSlot()
-        {
-            event.preventDefault();
-            if ($("#HasInvalidSlot").val() == "True") {
-                alert('Please check reserved dishes for available Event slots.');
-                return false;
-            }      
-            else
-            {
-                $("#eventDishForm").submit();
-            }
-        }        
-
-        function CheckEventSlot(el) {
-            var eventId = $("#EventId").val();
-            if ($("#EventId").val() == "") {
-                return;
-            }
-            else
-            {                
-                $.ajax({
-                    type: "GET",
-                    url: "/EventDish/CheckEventSlot",
-                    data: { "eventId": eventId, "slotName": el.id, "slotQuantity": el.value },
-                    success: function (response) {
-                        $("#HasInvalidSlot").val(response.data.Message);
-                    },
-                    failure: function (response) {
-                        alert('Check Event slot failed');
-                    },
-                    error: function (response) {
-                        alert('Error checking Event slot');
-                    }
-                });
-            }            
-        }
     </script>
 </body>
 </html>

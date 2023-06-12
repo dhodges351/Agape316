@@ -1,7 +1,6 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
-
 using Agape316.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,12 +22,15 @@ namespace Agape316.Areas.Identity.Pages.Account
         public string Email { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }
-        public string ProfileImageUrl { get; set; }
+		public string ProfileImageUrl { get; set; }
         public bool IsAdmin { get; set; }
         public DateTime MemberSince { get; set; }
 
 		[BindProperty]
 		public IFormFile Upload { get; set; }
+
+		[BindProperty]
+		public string PhoneNumber { get; set; }
 
 		public ProfileModel(
             UserManager<ApplicationUser> userManager,
@@ -56,6 +58,8 @@ namespace Agape316.Areas.Identity.Pages.Account
 					ProfileImageUrl = user.ProfileImageUrl;
                     IsAdmin = await _userManager.IsInRoleAsync(user, "ADMIN");
                     UserId = user.Id;
+                    MemberSince = user.MemberSince;
+                    PhoneNumber = user.PhoneNumber;
 				}
             }            
         }
@@ -67,6 +71,8 @@ namespace Agape316.Areas.Identity.Pages.Account
 				var user = _appUserService.GetByUsername(User.Identity.Name);
 
                 var fileName = Upload.FileName;
+
+                user.PhoneNumber = PhoneNumber;
 
 				var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
 

@@ -132,7 +132,8 @@ namespace Agape316.Areas.Identity.Pages.Account
                     UserName = Input.Email,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                    LastName = Input.LastName,
+                    MemberSince = DateTime.Now
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
              

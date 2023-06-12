@@ -1,4 +1,5 @@
 ﻿using Agape316.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Agape316.Models
 {
@@ -9,7 +10,7 @@ namespace Agape316.Models
         public ManageUsersViewModel(IApplicationUser appUserService)
         {
             _appUserService = appUserService;
-            Users = _appUserService.GetAll().ToList();
+            Users = _appUserService.GetAll().ToList();            
         }
 
         public IFormFile ImageUpload { get; set; }
