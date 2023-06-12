@@ -13,5 +13,6 @@ namespace Agape316.Data
         Task Create(Event agapeEvent);
         Task Delete(int id);
         void UpdateEvent(Event agapeEvent);
+        IEnumerable<Event> GetFilteredEvents(string searchQuery);
     }
 }

@@ -69,5 +69,16 @@ namespace Agape316.Services
             _context.Update(agapeEvent);
             _context.SaveChanges();
         }
+
+        public IEnumerable<Event> GetFilteredEvents(string searchQuery)
+        {
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                return new List<Event>();
+            }
+            return GetAll().Where(evt
+                    => evt != null && (evt.Title.ToLower().Contains(searchQuery.ToLower())
+                    || evt.Description.ToLower().Contains(searchQuery.ToLower())));
+        }
     }
 }

@@ -42,11 +42,22 @@ namespace Agape316.Services
             _context.SaveChanges();
         }
 
-        IEnumerable<MealSchedule> IMealSchedule.GetAll()
+        public IEnumerable<MealSchedule> GetAll()
         {
             var mealSchedules = _context.MealSchedule;
 
             return mealSchedules.OrderByDescending(x => x.Created);
+        }
+
+        public IEnumerable<MealSchedule> GetFilteredMealSchedules(string searchQuery)
+        {
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                return new List<MealSchedule>();
+            }
+            return GetAll().Where(sched
+                    => sched != null && (sched.Title.ToLower().Contains(searchQuery.ToLower())
+                    || sched.Description.ToLower().Contains(searchQuery.ToLower())));
         }
     }
 }

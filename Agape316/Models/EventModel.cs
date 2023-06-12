@@ -164,7 +164,7 @@ namespace Agape316.Models
             return catId + 1;
         }
 
-        public string GetCategoryName(int categoryId)
+        public static string GetCategoryName(int categoryId)
         {
             var categoryName = string.Empty;
             var categories = Enum.GetNames(typeof(CategoryEnum)).ToList();

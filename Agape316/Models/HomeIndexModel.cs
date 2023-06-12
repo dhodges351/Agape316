@@ -49,6 +49,13 @@ namespace Agape316.Models
             set => message = value;
         }
 
+        public IEnumerable<EventModel>? Events { get; set; }
+        public IEnumerable<EventDishModel>? EventDishes { get; set; }
+        public IEnumerable<MealScheduleModel>? MealSchedules { get; set; }
+        public IEnumerable<MealDeliveryModel>? MealDeliveries { get; set; }
+        public bool EmptySearchResults { get; set; }
+        public int EventCount { get; set; } = 0;
+
         public async Task SendContactUsEmail(IEmailSender emailSender, HomeIndexModel model)
         {
             await emailSender.SendEmailAsync(

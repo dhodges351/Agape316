@@ -41,10 +41,21 @@ namespace Agape316.Services
             _context.SaveChanges();
         }
 
-        IEnumerable<MealDelivery> IMealDelivery.GetAll()
+        public IEnumerable<MealDelivery> GetAll()
         {
             var mealDeliveries = _context.MealDelivery;            
             return mealDeliveries.OrderByDescending(x => x.Created);
+        }
+
+        public IEnumerable<MealDelivery> GetFilteredMealDeliveries(string searchQuery)
+        {
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                return new List<MealDelivery>();
+            }
+            return GetAll().Where(del
+                    => del != null && (del.ContactFullName.ToLower().Contains(searchQuery.ToLower())
+                    || del.DeliveryDate.ToShortDateString().Contains(searchQuery)));
         }
     }
 }

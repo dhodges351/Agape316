@@ -58,11 +58,22 @@ namespace Agape316.Services
             _context.SaveChanges();
         }
 
-        IEnumerable<EventDish> IEventDish.GetAll()
+        public IEnumerable<EventDish> GetAll()
         {
             var eventDishes = _context.EventDish;
 
             return eventDishes.OrderByDescending(x => x.Created);
+        }
+
+        public IEnumerable<EventDish> GetFilteredEventDishes(string searchQuery)
+        {
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                return new List<EventDish>();
+            }
+            return GetAll().Where(evt
+                    => evt != null && (evt.Title.ToLower().Contains(searchQuery.ToLower())
+                    || evt.Description.ToLower().Contains(searchQuery.ToLower())));
         }
     }
 }
