@@ -8,19 +8,19 @@ namespace Agape316.Models
     public class HomeIndexModel
     {
         private readonly IEvent _eventService;
+        private readonly IEventDish _eventDishService;
+        private readonly IMealSchedule _mealScheduleService;
+        private readonly IMealDelivery _mealDeliveryService;
 
-        public HomeIndexModel(IEvent eventService, string searchQuery)
+        public HomeIndexModel(IEvent eventService,
+            IEventDish eventDishService,
+            IMealSchedule mealScheduleService,
+            IMealDelivery mealDeliveryService)
         {
             _eventService = eventService;
-            var events = _eventService.GetFilteredEvents(searchQuery).ToList();
-            if (events.Any())
-            {
-                Events = new List<EventModel>();
-                foreach (var evt in events)
-                {
-                    Events.Add(new EventModel { Title = evt.Title, Description = evt.Description, EventDate = evt.EventDate, StartTime = evt.StartTime, EndTime = evt.EndTime, ContactEmail = evt.ContactEmail });
-                }
-            }
+            _eventDishService = eventDishService;
+            _mealScheduleService = mealScheduleService;
+            _mealDeliveryService = mealDeliveryService;
         }
 
         public string name { get; private set; }
@@ -70,6 +70,9 @@ namespace Agape316.Models
         public List<MealDeliveryModel>? MealDeliveries { get; set; }
         public bool EmptySearchResults { get; set; }
         public int EventCount { get; set; } = 0;
+        public int EventDishCount { get; set; } = 0;
+        public int MealScheduleCount { get; set; } = 0;
+        public int MealDeliveryCount { get; set; } = 0;
 
         public async Task SendContactUsEmail(IEmailSender emailSender, HomeIndexModel model)
         {
@@ -78,6 +81,53 @@ namespace Agape316.Models
                     model.Subject,
                     model.Message
             );
+        }
+
+        public void GetSearchResults(string searchQuery)
+        {
+            var events = _eventService.GetFilteredEvents(searchQuery).ToList();
+            if (events.Any())
+            {
+                Events = new List<EventModel>();
+                foreach (var evt in events)
+                {
+                    Events.Add(new EventModel { EditLink = evt.EditLink, Title = evt.Title, Description = evt.Description, EventDate = evt.EventDate, StartTime = evt.StartTime, EndTime = evt.EndTime, ContactEmail = evt.ContactEmail });
+                }
+                EventCount = Events.Count;
+            }
+
+            var eventDishes = _eventDishService.GetFilteredEventDishes(searchQuery).ToList();
+            if (eventDishes.Any())
+            {
+                EventDishes = new List<EventDishModel>();
+                foreach (var evtDish in eventDishes)
+                {
+                    EventDishes.Add(new EventDishModel { EditLink = evtDish.EditLink, Title = evtDish.Title, Description = evtDish.Description, Created = evtDish.Created.Value, ContactEmail = evtDish.ContactEmail });
+                }
+                EventDishCount = EventDishes.Count;
+            }
+
+            var mealSchedules = _mealScheduleService.GetFilteredMealSchedules(searchQuery).ToList();
+            if (mealSchedules.Any())
+            {
+                MealSchedules = new List<MealScheduleModel>();
+                foreach (var sched in mealSchedules)
+                {
+                    MealSchedules.Add(new MealScheduleModel { EditLink = sched.EditLink, Title = sched.Title, Description = sched.Description, StartDate = sched.StartDate, EndDate = sched.EndDate, CoordEmail = sched.CoordEmail });
+                }
+                MealScheduleCount = MealSchedules.Count;
+            }
+
+            var mealDeliveries = _mealDeliveryService.GetFilteredMealDeliveries(searchQuery).ToList();
+            if (mealDeliveries.Any())
+            {
+                MealDeliveries = new List<MealDeliveryModel>();
+                foreach (var del in mealDeliveries)
+                {
+                    MealDeliveries.Add(new MealDeliveryModel { EditLink = del.EditLink, DeliveryDate = del.DeliveryDate, DeliveryTime = del.DeliveryTime, FirstName = del.FirstName, LastName = del.LastName });
+                }
+                MealDeliveryCount = MealDeliveries.Count;
+            }
         }
     }
 }

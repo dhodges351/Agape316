@@ -14,5 +14,6 @@ namespace Agape316.Data
         Task Create(EventDish eventDish);
         Task Delete(int Id);
         void UpdateEventDish(EventDish eventDish);
+        IEnumerable<EventDish> GetFilteredEventDishes(string searchQuery);
     }
 }

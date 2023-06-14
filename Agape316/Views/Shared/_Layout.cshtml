@@ -173,6 +173,23 @@
         var filePath = '';
         var noSubmit = '';
 
+        if ($("#txtSearch").val() == "") {
+            $("#divSearchResults").hide();
+        }
+        else
+        {
+            if ($("#EventCount").val() == "0"
+                && $("#EventDishCount").val() == "0"
+                && $("#MealScheduleCount").val() == "0"
+                && $("#MealDeliveryCount").val() == "0") {
+                $("#divSearchResults").hide();
+            }
+            else
+            {
+                $("#divSearchResults").show();
+            }            
+        }
+
         // Allowed file types
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 

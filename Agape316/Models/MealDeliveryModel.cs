@@ -116,7 +116,9 @@ namespace Agape316.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DeliveryDate { get; set; } = DateTime.Now.Date;
 
-        public string DeliveryDateStr => DeliveryDate.ToShortDateString();
+        public string? DeliveryDateStr => DeliveryDate.ToShortDateString();
+
+        public string? EditLink { get; set; }
 
         public string? FullName => $"{FirstName} {LastName}";
 

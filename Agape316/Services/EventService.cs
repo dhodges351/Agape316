@@ -77,7 +77,9 @@ namespace Agape316.Services
                 return new List<Event>();
             }
             return GetAll().Where(evt
-                    => evt != null && (evt.Title.ToLower().Contains(searchQuery.ToLower())
+                    => evt != null && (evt.ContactEmail.ToLower().Contains(searchQuery.ToLower())  
+                    || evt.EventDate.ToShortDateString().Contains(searchQuery) 
+                    || evt.Title.ToLower().Contains(searchQuery.ToLower())
                     || evt.Description.ToLower().Contains(searchQuery.ToLower())));
         }
     }

@@ -131,7 +131,8 @@ namespace Agape316.Models
             get => endTime;
             set => endTime = new HtmlSanitizer().Sanitize(value);
         }
-       
+
+        public string? EditLink { get; set; }       
         public int? CategoryId { get; set; }
         public int? Id { get; set; }
         public int? SandwichSlots { get; set; }

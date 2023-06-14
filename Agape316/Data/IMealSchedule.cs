@@ -7,5 +7,6 @@
         Task Create(MealSchedule mealSchedule);
         Task Delete(int Id);
         void UpdateMealSchedule(MealSchedule mealSchedule);
+        IEnumerable<MealSchedule> GetFilteredMealSchedules(string searchQuery);
     }
 }

@@ -100,6 +100,7 @@ namespace Agape316.Models
             get => category;
             set => category = new HtmlSanitizer().Sanitize(value);
         }
+        public string? EditLink { get; set; }
         public int? Id { get; set; }
         [Required(ErrorMessage = "Please select an Event")] 
         public int? EventId { get; set; }

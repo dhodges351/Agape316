@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Agape316.Data;
+using Agape316.Services;
 
 namespace Agape316.Controllers
 {
@@ -13,21 +14,35 @@ namespace Agape316.Controllers
         private readonly IEmailSender _emailSender;
         private readonly INotyfService _toastNotification;
         private readonly IEvent _eventService;
+        private readonly IEventDish _eventDishService;
+        private readonly IMealSchedule _mealScheduleService;
+        private readonly IMealDelivery _mealDeliveryService;
 
-        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender, INotyfService toastNotification, IEvent eventService)
+        public HomeController(ILogger<HomeController> logger, 
+            IEmailSender emailSender, 
+            INotyfService toastNotification, 
+            IEvent eventService,
+            IEventDish eventDishService,
+            IMealSchedule mealScheduleService,
+            IMealDelivery mealDeliveryService)
         {
             _logger = logger;
             _emailSender = emailSender;
             _toastNotification = toastNotification; 
             _eventService = eventService;
+            _eventDishService = eventDishService;
+            _mealScheduleService = mealScheduleService;
+            _mealDeliveryService = mealDeliveryService;            
         }
 
         public IActionResult Index(string searchQuery)
         {
-            var model = new HomeIndexModel(_eventService, searchQuery);
-            if (string.IsNullOrEmpty(searchQuery))
+            var model = new HomeIndexModel(_eventService,
+                   _eventDishService, _mealScheduleService,
+                   _mealDeliveryService);
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                model.Events = null;
+                model.GetSearchResults(searchQuery);
             }
             return View(model);
         }

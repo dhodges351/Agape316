@@ -7,5 +7,6 @@
         Task Create(MealDelivery mealDelivery);
         Task Delete(int Id);
         void UpdateMealDelivery(MealDelivery mealDelivery);
+        IEnumerable<MealDelivery> GetFilteredMealDeliveries(string searchQuery);
     }
 }
