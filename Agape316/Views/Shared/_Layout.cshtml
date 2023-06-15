@@ -191,7 +191,7 @@
         }
 
         // Allowed file types
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.txt|\.pdf|\.docx|\.xlsx|\.png|\.gif)$/i;
 
         function checkFile(page) {
             event.preventDefault();
@@ -217,6 +217,9 @@
             }
             else if (page == 'CreateTopic') {
                 $("#createForumForm").submit();
+            }
+            else if (page == 'UploadDocument') {
+                $("#uploadDocumentForm").submit();
             }
         }
 

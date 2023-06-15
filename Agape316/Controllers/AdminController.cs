@@ -1,21 +1,32 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace Agape316.Controllers
 {
-	public class AdminController : Controller
+    public class AdminController : Controller
 	{
         private readonly IApplicationUser _appUserService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdminController(IApplicationUser appUserService, UserManager<ApplicationUser> userManager)
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
+        private readonly INotyfService _toastNotification;
+
+        [BindProperty]
+        public IFormFile Upload { get; set; }
+
+        public AdminController(IApplicationUser appUserService, 
+            UserManager<ApplicationUser> userManager,
+            Microsoft.AspNetCore.Hosting.IHostingEnvironment environment,
+            INotyfService toastNotification)
         {
             _appUserService = appUserService;
             _userManager = userManager;
+            _environment = environment;
+            _toastNotification = toastNotification;
         }
 
         [Authorize(Roles = "Admin")]
@@ -25,9 +36,23 @@ namespace Agape316.Controllers
 		}
 
         [Authorize(Roles = "Admin")]
-        public IActionResult UploadDocument()
+        public async Task<IActionResult> UploadDocumentAsync()
         {
-            return View();
+            if (Upload != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var fileName = Upload.FileName;
+
+                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
+                    ViewData["RootPath"] = _environment.WebRootPath + "\\upload";
+
+                    using var fileStream = new FileStream(file, FileMode.Create);
+                    await Upload.CopyToAsync(fileStream);
+                }
+            }
+            _toastNotification.Success("Thank you, your File has been Uploaded!", 5);
+            return RedirectToAction("Index", "Admin");
         }
 
         [Authorize(Roles = "Admin")]

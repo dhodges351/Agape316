@@ -1,16 +1,18 @@
-﻿@model Agape316.Models.AdminViewModel
+﻿@using Agape316.Enums;
+@model Agape316.Models.AdminViewModel
 
 @{
     Layout = "/Views/Shared/_AdminLayout.cshtml";
 }
 
 <p style="height:100px;">
+    <h1>Upload Document</h1>
 </p>
 <div class="container-xxl py-6">
     <div class="wow fadeInUp" data-wow-delay="0.1s">
         <div class="row">
-            <div class="col-md-12">
-                <form asp-controller="Admin" asp-action="UploadDocument" method="post" id="adminForm" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <form asp-controller="Admin" asp-action="UploadDocument" method="post" id="uploadDocumentForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label asp-for="Title">Title</label>
                         <input asp-for="Title" class="form-control" />
@@ -21,9 +23,11 @@
                         <input asp-for="Description" class="form-control">
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group my-2">
                         <label asp-for="FileType">File Type</label>
-                        <input asp-for="FileType" class="form-control" />
+                        @Html.DropDownListFor(m => m.FileType,
+                        new SelectList(Enum.GetValues(typeof(FileTypeEnum))),
+                        "Select File Type")
                         <span asp-validation-for="FileType" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -45,14 +49,35 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <button type="submit" id="adminSaveBtn" class="btn btn-submitEvent">Submit</button>
+                                <button type="submit" id="adminSaveBtn" class="btn btn-submitEvent" onclick="checkFile('UploadDocument')">Submit</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+            <div class="col-md-6">
+                @{
+                    var files = from file in Directory.EnumerateFiles(@"F:\source\repos\Agape316\Agape316\wwwroot\upload")
+                                select file;
+                    <div class="form-group">
+                        <h1>Upload Directory Listing</h1>
+                    </div>
+                    foreach (var file in files)
+                    {
+                        FileInfo info = new FileInfo(file);                       
+                        <div class="form-group">
+                            <label asp-for="Title">@System.IO.Path.GetFileName(file) @info.Length</label>
+                        </div>                      
+                                             
+                    }
+                }               
+            </div>
         </div>
     </div>    
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
 
 
