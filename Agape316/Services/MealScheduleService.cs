@@ -56,11 +56,13 @@ namespace Agape316.Services
                 return new List<MealSchedule>();
             }
             return GetAll().Where(sched
-                    => sched != null && (sched.CoordEmail.ToLower().Contains(searchQuery.ToLower())
-                    || sched.StartDate.ToShortDateString().Contains(searchQuery)
-                    || sched.EndDate.ToShortDateString().Contains(searchQuery)
-                    || sched.Title.ToLower().Contains(searchQuery.ToLower())
-                    || sched.Description.ToLower().Contains(searchQuery.ToLower())));
+                    => sched != null && (!string.IsNullOrEmpty(sched.RecipientFullName)) &&
+                    sched.RecipientFullName.ToLower().Contains(searchQuery.ToLower())
+                    || (sched.CoordEmail.ToLower().Contains(searchQuery.ToLower())
+                    || (sched.StartDate.ToShortDateString().Contains(searchQuery))
+                    || (sched.EndDate.ToShortDateString().Contains(searchQuery))
+                    || (sched.Title.ToLower().Contains(searchQuery.ToLower()))
+                    || (sched.Description.ToLower().Contains(searchQuery.ToLower()))));
         }
     }
 }

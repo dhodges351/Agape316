@@ -131,7 +131,7 @@ else
                                                 <td>@sched.Title</td>
                                                 <td>@sched.Description</td>
                                                 <td>@sched.CoordEmail</td>
-                                                <td>@sched.Created.ToShortDateString()</td>
+                                                <td>@sched.StartDate.ToShortDateString() - @sched.EndDate.ToShortDateString()</td>
                                                 <td class="editLink">@Html.Raw(sched.EditLink)</td>
                                             </tr>
                                         }

@@ -1,4 +1,5 @@
 ﻿using Agape316.Data;
+using EllipticCurve.Utils;
 
 namespace Agape316.Services
 {
@@ -54,11 +55,11 @@ namespace Agape316.Services
                 return new List<MealDelivery>();
             }
             return GetAll().Where(del
-                    => del != null && (del.FirstName.ToLower().Contains(searchQuery.ToLower())
-                    || del.LastName.ToLower().Contains(searchQuery.ToLower())
+                    => del != null && (!string.IsNullOrEmpty(del.FirstName) && del.FirstName.ToLower().Contains(searchQuery.ToLower())
+                    || (!string.IsNullOrEmpty(del.LastName) && del.LastName.ToLower().Contains(searchQuery.ToLower())
                     || (!string.IsNullOrEmpty(del.Phone) && del.Phone.ToLower().Contains(searchQuery.ToLower()))
                     || del.ContactFullName.ToLower().Contains(searchQuery.ToLower())
-                    || del.DeliveryDate.ToShortDateString().Contains(searchQuery)));
+                    || del.DeliveryDate.ToShortDateString().Contains(searchQuery))));
         }
     }
 }
