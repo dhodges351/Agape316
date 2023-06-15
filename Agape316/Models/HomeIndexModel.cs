@@ -124,7 +124,7 @@ namespace Agape316.Models
                 MealDeliveries = new List<MealDeliveryModel>();
                 foreach (var del in mealDeliveries)
                 {
-                    MealDeliveries.Add(new MealDeliveryModel { EditLink = del.EditLink, DeliveryDate = del.DeliveryDate, DeliveryTime = del.DeliveryTime, FirstName = del.FirstName, LastName = del.LastName });
+                    MealDeliveries.Add(new MealDeliveryModel { EditLink = del.EditLink, DeliveryDate = del.DeliveryDate, DeliveryTime = del.DeliveryTime, Email = del.Email });
                 }
                 MealDeliveryCount = MealDeliveries.Count;
             }

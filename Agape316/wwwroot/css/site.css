@@ -20,6 +20,24 @@ html {
     }
 }
 
+@media screen and (max-width: 600px) {
+    table#searchResultsTable {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: left;
+    }
+
+        table#searchResultsTable tr {
+            display: flex;
+            flex-direction: column;
+        }
+
+        table#searchResultsTable td {
+            white-space: nowrap;
+        }
+}
+
+
 td {
     font-size: small !important;
     vertical-align: text-top !important;

@@ -33,11 +33,18 @@ else
     .searchResultsHeader
     {
         font-weight:bold;
-        text-align: center;
+        text-align: left;
     }
 
     .editLink {
         text-align: center;
+    }
+
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+        overflow: scroll;
     }
 
 </style>
@@ -69,7 +76,7 @@ else
                 <button type="submit" class="btn btn-forumSearch" onclick="return checkEntry()">
                     <i class="material-icons">search</i>
                 </button>
-                <div id="divSearchResults" class="container-xxl bg-light py-4 no-display">
+                <div id="divSearchResults" class="container-xxl bg-light py-4">
                     <div class="row">
                         <div class="col-md-12">
                             @if (Model.Events != null && Model.Events.Any()
@@ -78,7 +85,7 @@ else
                             || (Model.MealDeliveries != null && Model.MealDeliveries.Any()))
                             {                                
                                 <h3>Search Results</h3>
-                                <table class="table-bordered" width="100%" cellpadding="5">
+                                <table id="searchResultsTable" cellpadding="2" cellspacing="2">
                                     <tr>
                                         <td class="searchResultsHeader">Type</td>
                                         <td class="searchResultsHeader">Title</td>
