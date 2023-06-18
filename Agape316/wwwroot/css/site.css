@@ -112,7 +112,7 @@ div.login-logout-tab li.nav-item {
 .header-inner-left {
     min-height: 300px;
     background-image: url('/img/planmeal.jpg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -120,7 +120,7 @@ div.login-logout-tab li.nav-item {
 .header-inner-right {
     min-height: 300px;
     background-image: url('/img/casserole.jpg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -128,7 +128,7 @@ div.login-logout-tab li.nav-item {
 .header2-inner-left {
     min-height: 300px;
     background-image: url('/img/schedule-event.jpg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
