@@ -19,12 +19,8 @@
                     columns.Add(model => @Html.Raw(model.Title)).Titled("Title");
                     columns.Add(model => @Html.Raw(model.Description)).Titled("Description");                                        
                     columns.Add(model => @Html.Raw(model.CoordinatorProfileLink)).Titled("Coordinator");
-                    columns.Add(model => @Html.Raw(model.CoordEmail)).Titled("Coordinator Email");
-                    columns.Add(model => @Html.Raw(model.CoordPhone)).Titled("Coordinator Phone");
-                    columns.Add(model => @Html.Raw(model.RecipientFullName)).Titled("Recipient Name");
-                    columns.Add(model => @Html.Raw(model.RecipientInfo)).Titled("Recipient Info");
+                    columns.Add(model => @Html.Raw(model.RecipientInfoLink)).Titled("Recipient");
                     columns.Add(model => @Html.Raw($"{model.StartDate.ToShortDateString()}-{model.EndDate.ToShortDateString()}")).Titled("Starts/Ends");                    
-                    columns.Add(model => @Html.Raw(model.FoodAllergies)).Titled("Food Allergies");
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
                     columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit").Css("edit-event");
                     columns.Add(model => @Html.Raw(model.Id)).Hidden();
@@ -65,5 +61,13 @@
                 alert('Error getting Meal Schedule details');
             }
         });        
+    }
+
+    function showRecipientModal(fullName, fullAddress, foodAllergies)
+    {
+        $("#recipientFullName").text(fullName);
+        $("#recipientAddress").text(fullAddress);
+        $("#recipientFoodAllergies").text(foodAllergies);
+        $("#recipientInfoModal").modal("show");
     }
 </script>

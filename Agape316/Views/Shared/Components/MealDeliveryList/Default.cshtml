@@ -23,9 +23,7 @@
                     columns.Add(model => @Html.Raw(relatedSchedules.Where(x => x.Id.Equals(model.ScheduleId)).FirstOrDefault().Title)).Titled("Meal Schedule");
                     columns.Add(model => @Html.Raw(relatedSchedules.Where(x => x.Id.Equals(model.ScheduleId)).FirstOrDefault().RecipientFullName)).Titled("Recipient");
                     columns.Add(model => @Html.Raw(model.ContactFullName)).Titled("Name");
-                    columns.Add(model => @Html.Raw(model.ContactProfileLink)).Titled("Profile");
-                    columns.Add(model => @Html.Raw(model.Email)).Titled("Email");
-                    columns.Add(model => @Html.Raw(model.Phone)).Titled("Phone");
+                    columns.Add(model => @Html.Raw(model.ContactProfileLink)).Titled("Profile");                    
                     columns.Add(model => @Html.Raw($"{model.DeliveryDate.ToShortDateString()} - {Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(model.DeliveryTime)}")).Titled("Delivery Date/Time");
                     columns.Add(model => @Html.Raw(model.Notes)).Titled("Notes");
                     columns.Add(model => @Html.Raw(model.EditLink)).Titled("Edit").Css("edit-event");

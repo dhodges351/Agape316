@@ -267,6 +267,34 @@ else
         </div>
     </div>
 </div>
+<div class="modal fade" id="recipientInfoModal" tabindex="-1" aria-labelledby="recipientInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0 recipientInfoModalContent">
+            <div class="modal-header eventModalHeader">
+                <h5 class="modal-title" id="recipientInfoModalLabel">Recipient Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Full Name: </label>
+                            <label id="recipientFullName"></label>                        
+                        </div>
+                        <div class="form-group">
+                            <label>Address: </label>
+                            <label id="recipientAddress">Recipient Address</label>                          
+                        </div>                       
+                        <div class="form-group">
+                            <label>Food Allergies: </label>
+                            <label id="recipientFoodAllergies"></label>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Service Start -->
@@ -325,30 +353,29 @@ else
             </div>
             <div class="col-lg-6">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Agape 316 Ministry</h1>
-                <p class="mb-4">We exist to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
-                <p class="mb-4">We welcome new members and hope you will visit Sand Ridge and join us soon!</p>
-                <div class="row g-4 mb-4">
-                    <div class="col-sm-6">
-                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
-                            <div class="ps-4">
-                                <p class="mb-0">Original</p>
-                                <h6 class="text-uppercase mb-0">Members</h6>
+                <h1 class="mb-4">Agape 316 Ministry</h1>
+                <p class="mb-4">Our aim is to serve the members of Sand Ridge Baptist Church and the surrounding communities.</p>
+                <p class="mb-4">We welcome new members and hope you will visit us at Sand Ridge Baptist and join our ministry!</p>                
+                <a class="btn btn-primary py-3 px-5 mt-2" href="#" onclick="showReadMoreModal()">Read More</a>
+                <div class="modal fade" id="readMoreModal" tabindex="-1" aria-labelledby="readMoreModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-0 readMoreModalContent">
+                            <div class="modal-header eventModalHeader">
+                                <h5 class="modal-title" id="readMoreModalLabel">About Sand Ridge Agape Ministry</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
-                            <div class="ps-4">
-                                <p class="mb-0">Current</p>
-                                <h6 class="text-uppercase mb-0">Membership</h6>
+                            <div class="modal-body">                                
+                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
             </div>
         </div>
     </div>
@@ -366,20 +393,8 @@ else
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Agape 316 Ministry</h5>
                     <h1 class="mb-5">Our Caring Team Members</h1>
                 </div>
-                <div class="row g-4">
-                    @{
-                        for (var i = 0; i < 4; i++)
-                        {
-                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="team-item text-center rounded overflow-hidden">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/users/default.png" alt="">
-                                    </div>
-                                    <h5 class="mb-0">Full Name</h5>
-                                </div>
-                            </div>
-                        }
-                    }
+				<div class="row">
+                    <div class="col-md-12 agape-group-photo"></div>
                 </div>
             </div>
         </div>
@@ -524,6 +539,18 @@ else
         //    $("#eventDishModal").modal("show");
         //}
     }    
+
+    function showReadMoreModal() {
+        $("#readMoreModal").modal("show");
+        //checkLoggedIn();
+
+        //if (!isLoggedIn) {
+        //    alert('You must be an logged in to use this feature.')
+        //}
+        //else {
+        //    $("#eventDishModal").modal("show");
+        //}
+    }
 
     function showScheduleMealsModal() {    
         checkLoggedIn();

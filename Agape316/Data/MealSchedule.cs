@@ -61,6 +61,23 @@ public partial class MealSchedule
         {
             return $"{RecipientAddress} {RecipientCity} {RecipientState}, {RecipientZipcode}";            
         }
+    }
+
+    public string RecipientInfoLink
+    {
+        get
+        {            
+            string link = string.Empty;
+            if (string.IsNullOrEmpty(UserName))
+            {
+                link = $"<a href='#' class='disabled-link'>Recipient</a>";
+            }
+            else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(CoordEmail))
+            {
+                link = $"<a href='#' class='enabled-link' onclick='showRecipientModal(\"{RecipientFullName}\", \"{RecipientFullAddress}\", \"{FoodAllergies}\")'>Recipient</a>";
+            }
+            return link;
+        }
     }    
 
     public string RecipientFullName
@@ -68,6 +85,14 @@ public partial class MealSchedule
         get
         {
             return $"{RecipientFName} {RecipientLName}";
+        }
+    }
+
+    public string RecipientFullAddress
+    {
+        get
+        {
+            return $"{RecipientAddress} {RecipientCity} {RecipientState}, {RecipientZipcode}";            
         }
     }
 

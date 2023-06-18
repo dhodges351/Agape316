@@ -12,7 +12,7 @@
     <div class="wow fadeInUp" data-wow-delay="0.1s">
         <div class="row">
             <div class="col-md-6">
-                <form asp-controller="Admin" asp-action="UploadDocument" method="post" id="uploadDocumentForm" enctype="multipart/form-data">
+                <form asp-controller="Admin" asp-action="AddEditDocument" method="post" id="uploadDocumentForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label asp-for="Title">Title</label>
                         <input asp-for="Title" class="form-control" />
@@ -57,7 +57,12 @@
             </div>
             <div class="col-md-6">
                 @{
-                    var files = from file in Directory.EnumerateFiles(@"F:\source\repos\Agape316\Agape316\wwwroot\upload")
+                    var rootPath = string.Empty; 
+                    if (ViewData["RootPath"] != null)
+                    {
+                        rootPath = ViewData["RootPath"].ToString();
+                    }
+                    var files = from file in Directory.EnumerateFiles(rootPath)
                                 select file;
                     <div class="form-group">
                         <h1>Upload Directory Listing</h1>

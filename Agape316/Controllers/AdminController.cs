@@ -1,8 +1,10 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
+using Agape316.Services;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agape316.Controllers
@@ -32,28 +34,9 @@ namespace Agape316.Controllers
         [Authorize(Roles = "Admin")]
 		public IActionResult Index()
 		{
-			return View();
+            ViewData["RootPath"] = _environment.WebRootPath + "\\upload";
+            return View();
 		}
-
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UploadDocumentAsync()
-        {
-            if (Upload != null)
-            {
-                if (User.Identity.IsAuthenticated)
-                {
-                    var fileName = Upload.FileName;
-
-                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
-                    ViewData["RootPath"] = _environment.WebRootPath + "\\upload";
-
-                    using var fileStream = new FileStream(file, FileMode.Create);
-                    await Upload.CopyToAsync(fileStream);
-                }
-            }
-            _toastNotification.Success("Thank you, your File has been Uploaded!", 5);
-            return RedirectToAction("Index", "Admin");
-        }
 
         [Authorize(Roles = "Admin")]
         public IActionResult ManageUsers()
@@ -87,6 +70,28 @@ namespace Agape316.Controllers
             var model = new ManageUsersViewModel(_appUserService, _userManager);
             await model.RemoveUserAdminAsync(email, _userManager);
             return Json("Done");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEditDocument(AdminViewModel model)
+        {
+            if (Upload != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var fileName = Upload.FileName;
+
+                    var file = Path.Combine(_environment.WebRootPath, "upload", Upload.FileName);
+
+                    using var fileStream = new FileStream(file, FileMode.Create);
+                    await Upload.CopyToAsync(fileStream);
+                }
+            }
+           
+            //await model.SaveDocument(model, _eventService);
+
+            //_toastNotification.Success("Thank you, your File has been Uploaded!", 5);
+            return RedirectToAction("Index", "Admin");
         }
     }
 }
