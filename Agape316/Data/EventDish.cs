@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace Agape316.Data;
@@ -56,8 +57,32 @@ public partial class EventDish
     {
         get
         {
-            string link = string.Empty;           
-            if (string.IsNullOrEmpty(UserName))
+            string link = string.Empty;
+            Event agapeEvent = null;
+            DateTime date1 = DateTime.Now;
+            DateTime? date2 = null;
+            bool isExpired = true;
+
+            string connectionString = Agape316.Helpers.ConfigHelper.AppSetting("DefaultConnection");
+            var contextOptions = new DbContextOptionsBuilder<Agape316.Data.ApplicationDbContext>()
+            .UseSqlServer(connectionString)
+            .Options;
+
+            using (var context = new Agape316.Data.ApplicationDbContext(contextOptions))
+            {
+                agapeEvent = context.Event.Where(x => x.Id == EventId).FirstOrDefault();
+                if (agapeEvent != null)
+                {
+                    date2 = DateTime.Parse($"{agapeEvent.EventDate.ToShortDateString()} {agapeEvent.EndTime}");
+                    int result = DateTime.Compare(date1, date2.Value);
+                    if (result <= 0)
+                    {
+                        isExpired = false;
+                    }
+                }
+            };
+
+            if (string.IsNullOrEmpty(UserName) || isExpired)
             {
                 link = $"<a href='#' class='disabled-link')'>Edit</a>";
             }

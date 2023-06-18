@@ -101,7 +101,17 @@ public partial class MealSchedule
         get
         {
             string link = string.Empty;
-            if (string.IsNullOrEmpty(UserName))
+            DateTime date1 = DateTime.Now;
+            DateTime date2 = DateTime.Parse($"{EndDate.ToShortDateString()}");
+            int result = DateTime.Compare(date1, date2);
+            bool isExpired = true;
+
+            if (result <= 0)
+            {
+                isExpired = false;
+            }
+
+            if (string.IsNullOrEmpty(UserName) || isExpired)
             {
                 link = $"<a href='#' class='disabled-link')'>Edit</a>";
             }

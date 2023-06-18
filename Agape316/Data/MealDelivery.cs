@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace Agape316.Data;
@@ -59,7 +60,31 @@ public partial class MealDelivery
         get
         {
             string link = string.Empty;
-            if (string.IsNullOrEmpty(UserName))
+            MealSchedule mealSchedule = null;
+            DateTime date1 = DateTime.Now;
+            DateTime? date2 = null;
+            bool isExpired = true;
+
+            string connectionString = Agape316.Helpers.ConfigHelper.AppSetting("DefaultConnection");
+            var contextOptions = new DbContextOptionsBuilder<Agape316.Data.ApplicationDbContext>()
+            .UseSqlServer(connectionString)
+            .Options;
+
+            using (var context = new Agape316.Data.ApplicationDbContext(contextOptions))
+            {
+                mealSchedule = context.MealSchedule.Where(x => x.Id == ScheduleId).FirstOrDefault();
+                if (mealSchedule != null)
+                {
+                    date2 = DateTime.Parse($"{mealSchedule.EndDate.ToShortDateString()}");
+                    int result = DateTime.Compare(date1, date2.Value);
+                    if (result <= 0)
+                    {
+                        isExpired = false;
+                    }
+                }
+            };
+
+            if (string.IsNullOrEmpty(UserName) || isExpired)
             {
                 link = $"<a href='#' class='disabled-link')'>Edit</a>";
             }
