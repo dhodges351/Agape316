@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace Agape316.Data;
+﻿namespace Agape316.Data;
 
 public partial class AgapeDocument
 {        

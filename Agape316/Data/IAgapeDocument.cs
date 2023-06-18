@@ -11,7 +11,6 @@ namespace Agape316.Data
         IEnumerable<AgapeDocument> GetAll();
         Task Create(AgapeDocument agapeDocument);
         Task Delete(int id);
-        void UpdateAgapeDocument(AgapeDocument agapeDocument);
-        IEnumerable<AgapeDocument> GetFilteredAgapeDocuments(string searchQuery);
+        void UpdateAgapeDocument(AgapeDocument agapeDocument);        
     }
 }

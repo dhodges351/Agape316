@@ -7,12 +7,10 @@ namespace Agape316.Services
     public class AgapeDocumentService : IAgapeDocument
     {
         private readonly ApplicationDbContext _context;
-        private readonly IAgapeDocument _agapeDocumentService;
 
-        public AgapeDocumentService(ApplicationDbContext context, IAgapeDocument agapeDocumentService)
+        public AgapeDocumentService(ApplicationDbContext context)
         {
             _context = context;
-            _agapeDocumentService = agapeDocumentService;   
         }
 
         public async Task Create(AgapeDocument agapeDocument)
@@ -33,26 +31,21 @@ namespace Agape316.Services
 
         public IEnumerable<AgapeDocument> GetAll()
         {
-            return _context.AgapeDocuments;
+            return _context.AgapeDocument;
         }
 
         public AgapeDocument GetById(int id)
         {
-            var agapeEvent = _context.AgapeDocuments.Where(x => x.Id == id)                
+            var agapeDocument = _context.AgapeDocument.Where(x => x.Id == id)                
                 .FirstOrDefault();
 
-            return agapeEvent;
+            return agapeDocument;
         }
 
         public void UpdateAgapeDocument(AgapeDocument agapeDocument)
         {
             _context.Update(agapeDocument);
             _context.SaveChanges();
-        }
-
-        public IEnumerable<AgapeDocument> GetFilteredAgapeDocuments(string searchQuery)
-        {
-            throw new NotImplementedException();
         }
     }
 }

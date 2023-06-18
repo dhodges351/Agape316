@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using System;
 
 namespace Agape316.Controllers
 {
@@ -16,6 +18,7 @@ namespace Agape316.Controllers
 
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
         private readonly INotyfService _toastNotification;
+        private readonly IAgapeDocument _agapeDocumentService;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
@@ -23,12 +26,14 @@ namespace Agape316.Controllers
         public AdminController(IApplicationUser appUserService, 
             UserManager<ApplicationUser> userManager,
             Microsoft.AspNetCore.Hosting.IHostingEnvironment environment,
-            INotyfService toastNotification)
+            INotyfService toastNotification,
+            IAgapeDocument agapeDocumentService)
         {
             _appUserService = appUserService;
             _userManager = userManager;
             _environment = environment;
             _toastNotification = toastNotification;
+            _agapeDocumentService = agapeDocumentService;
         }
 
         [Authorize(Roles = "Admin")]
@@ -73,6 +78,7 @@ namespace Agape316.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddEditDocument(AdminViewModel model)
         {
             if (Upload != null)
@@ -85,13 +91,21 @@ namespace Agape316.Controllers
 
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
-                }
-            }
-           
-            //await model.SaveDocument(model, _eventService);
 
-            //_toastNotification.Success("Thank you, your File has been Uploaded!", 5);
+                    await model.SaveDocument(model, _agapeDocumentService);
+                }
+            }           
+            
             return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Download(string fileName)
+        {
+            var filepath = Path.Combine(_environment.WebRootPath, "upload", fileName);
+            var mimeType = Agape316.Helpers.MiscHelpers.GetMimeTypeForFileExtension(filepath);
+            return File(System.IO.File.ReadAllBytes(filepath), mimeType, System.IO.Path.GetFileName(filepath));
         }
     }
 }

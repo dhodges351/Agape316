@@ -65,15 +65,21 @@
                     var files = from file in Directory.EnumerateFiles(rootPath)
                                 select file;
                     <div class="form-group">
-                        <h1>Upload Directory Listing</h1>
+                        <h1>Download Document</h1>
                     </div>
                     foreach (var file in files)
                     {
-                        FileInfo info = new FileInfo(file);                       
-                        <div class="form-group">
-                            <label asp-for="Title">@System.IO.Path.GetFileName(file) @info.Length</label>
-                        </div>                      
-                                             
+                        FileInfo info = new FileInfo(file);
+                        var ext = info.Extension.ToLower();
+                        if (ext == ".txt"
+                        || ext == ".docx"
+                        || ext == ".pdf"
+                        || ext == ".xlsx")
+                        {
+                            <div class="form-group">
+                                <a href="/Admin/Download?fileName=@System.IO.Path.GetFileName(file)" title="file size: @info.Length">@System.IO.Path.GetFileName(file)</a>
+                            </div>
+                        }                                        
                     }
                 }               
             </div>

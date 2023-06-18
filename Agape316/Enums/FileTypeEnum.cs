@@ -5,10 +5,6 @@
         PDF,
         TXT,
         DOCX,
-        XLSX,
-        JPG,
-        JPEG,
-        PNG,
-        GIF
+        XLSX        
     }
 }

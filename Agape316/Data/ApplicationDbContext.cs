@@ -14,6 +14,6 @@ namespace Agape316.Data
         public virtual DbSet<EventDish> EventDish { get; set; }
         public virtual DbSet<MealSchedule> MealSchedule { get; set; }
         public virtual DbSet<MealDelivery> MealDelivery { get; set; }
-        public virtual DbSet<AgapeDocument> AgapeDocuments { get; set; }
+        public virtual DbSet<AgapeDocument> AgapeDocument { get; set; }
     }
 }

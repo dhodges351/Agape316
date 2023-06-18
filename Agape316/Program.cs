@@ -70,6 +70,7 @@ builder.Services.AddScoped<IEventDish, EventDishService>();
 builder.Services.AddScoped<IMealSchedule, MealScheduleService>();
 builder.Services.AddScoped<IMealDelivery, MealDeliveryService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IAgapeDocument, AgapeDocumentService>();
 
 var app = builder.Build();
 
