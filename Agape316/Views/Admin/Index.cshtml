@@ -57,30 +57,48 @@
             </div>
             <div class="col-md-6">
                 @{
-                    var rootPath = string.Empty; 
+                    var rootPath = string.Empty;
+                    List<string> files = new List<string>();
                     if (ViewData["RootPath"] != null)
                     {
                         rootPath = ViewData["RootPath"].ToString();
-                    }
-                    var files = from file in Directory.EnumerateFiles(rootPath)
-                                select file;
+                        files = Directory.EnumerateFiles(rootPath).ToList();
+                    }                    
                     <div class="form-group">
                         <h1>Download Document</h1>
                     </div>
-                    foreach (var file in files)
+                    if (files.Count > 0)
                     {
-                        FileInfo info = new FileInfo(file);
-                        var ext = info.Extension.ToLower();
-                        if (ext == ".txt"
-                        || ext == ".docx"
-                        || ext == ".pdf"
-                        || ext == ".xlsx")
-                        {
-                            <div class="form-group">
-                                <a href="/Admin/Download?fileName=@System.IO.Path.GetFileName(file)" title="file size: @info.Length">@System.IO.Path.GetFileName(file)</a>
-                            </div>
-                        }                                        
-                    }
+                        <table>
+                           <tr>
+                                <td class="doc-table-cell">Filename</td>
+                                <td class="doc-table-cell">File Size</td>
+                                <td class="doc-table-cell">Last Modified</td>
+                           </tr>
+                            @foreach (var file in files)
+                            {
+                                FileInfo info = new FileInfo(file);
+                                var ext = info.Extension.ToLower();
+                                if (ext == ".txt"
+                                || ext == ".docx"
+                                || ext == ".pdf"
+                                || ext == ".xlsx")
+                                {
+                                    <tr>
+                                        <td class="doc-table-cell">
+                                            <a href="/Admin/Download?fileName=@System.IO.Path.GetFileName(file)">@System.IO.Path.GetFileName(file)</a>
+                                        </td>
+                                        <td class="doc-table-cell">
+                                            @info.Length
+                                        </td>
+                                        <td class="doc-table-cell">
+                                            @info.LastWriteTime
+                                        </td>
+                                    </tr>                                    
+                                }                                        
+                            }
+                        </table>
+                    }                    
                 }               
             </div>
         </div>

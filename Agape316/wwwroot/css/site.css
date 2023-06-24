@@ -285,3 +285,8 @@ div#eventContainer {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.doc-table-cell {    
+    width: 200px !important;
+}
+
