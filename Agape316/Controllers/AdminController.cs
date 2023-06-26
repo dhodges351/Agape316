@@ -40,7 +40,8 @@ namespace Agape316.Controllers
 		public IActionResult Index()
 		{
             ViewData["RootPath"] = _environment.WebRootPath + "\\upload";
-            return View();
+            var model = new AdminViewModel(_agapeDocumentService);
+            return View(model);
 		}
 
         [Authorize(Roles = "Admin")]
@@ -92,11 +93,12 @@ namespace Agape316.Controllers
                     using var fileStream = new FileStream(file, FileMode.Create);
                     await Upload.CopyToAsync(fileStream);
 
+                    model.NameOfFile = fileName;
                     await model.SaveDocument(model, _agapeDocumentService);
                 }
-            }           
-            
-            return RedirectToAction("Index", "Admin");
+            }
+
+           return RedirectToAction("Index", "Admin");
         }
 
         [HttpGet]

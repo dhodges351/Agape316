@@ -9,6 +9,7 @@ public partial class AgapeDocument
     public string Description { get; set; }
     public string? Notes { get; set; }
     public string Author { get; set; }
+    public string NameOfFile { get; set; }
     public string FileType { get; set; }
     public DateTime Created { get; set; }
     public string UserName

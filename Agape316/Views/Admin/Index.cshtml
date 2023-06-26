@@ -74,6 +74,7 @@
                                 <td class="doc-table-cell">Filename</td>
                                 <td class="doc-table-cell">File Size</td>
                                 <td class="doc-table-cell">Last Modified</td>
+                                <td class="doc-table-cell">Modified By</td>
                            </tr>
                             @foreach (var file in files)
                             {
@@ -84,15 +85,27 @@
                                 || ext == ".pdf"
                                 || ext == ".xlsx")
                                 {
+                                    var nameOfFile = System.IO.Path.GetFileName(file);
                                     <tr>
                                         <td class="doc-table-cell">
-                                            <a href="/Admin/Download?fileName=@System.IO.Path.GetFileName(file)">@System.IO.Path.GetFileName(file)</a>
+                                            <a href="/Admin/Download?fileName=@nameOfFile">@nameOfFile</a>
                                         </td>
                                         <td class="doc-table-cell">
                                             @info.Length
                                         </td>
-                                        <td class="doc-table-cell">
+                                        <td class="doc-table-cell">                                            
                                             @info.LastWriteTime
+                                        </td>
+                                        <td class="doc-table-cell">
+                                            @if (Model != null && Model.AgapeDocuments != null 
+                                                && Model.AgapeDocuments.Count > 0)
+                                            {
+                                                var matchingDoc = Model.AgapeDocuments.Where(x => x.NameOfFile == nameOfFile).FirstOrDefault();
+                                                if (matchingDoc != null)
+                                                {                                                    
+                                                    @matchingDoc.Author
+                                                }
+                                            }
                                         </td>
                                     </tr>                                    
                                 }                                        
