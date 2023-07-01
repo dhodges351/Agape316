@@ -22,6 +22,9 @@ namespace Agape316.Helpers
 
         public static string GetStandardTimeFromMilitaryTime(string timeToCheck)
         {
+            if (string.IsNullOrEmpty(timeToCheck))
+            { return string.Empty; }
+
             string output = string.Empty;
             int militaryHour = Convert.ToInt32(timeToCheck.Split(':')[0]);
             string militaryMinutes = timeToCheck.Split(":")[1];
