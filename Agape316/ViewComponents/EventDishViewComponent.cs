@@ -29,6 +29,7 @@ namespace Agape316.ViewComponents
 
             var agapeEvents = _eventService.GetAll().ToList();
             var filteredAgapeEvents = new List<Event>();
+            filteredAgapeEvents.AddRange(agapeEvents);
             
             // Filter out expired events.
             if (agapeEvents != null && agapeEvents.Count > 0)
@@ -38,13 +39,13 @@ namespace Agape316.ViewComponents
                     DateTime date1 = DateTime.Now;                    
                     DateTime date2 = DateTime.Parse($"{agapeEvent.EventDate.ToShortDateString()} {agapeEvent.EndTime}");
                     int result = DateTime.Compare(date1, date2);
-                    if (result <= 0)
+                    if (result > 0)
                     {
-                        filteredAgapeEvents.Add(agapeEvent);
+                        filteredAgapeEvents.Remove(agapeEvent);
                     }                    
                 }
             }
-            ViewData["AgapeEventObjects"] = filteredAgapeEvents.Count > 0 ? filteredAgapeEvents : agapeEvents;
+            ViewData["AgapeEventObjects"] = filteredAgapeEvents;
 
             var agapeEventModels = new List<AgapeEventModel>();
             if (filteredAgapeEvents != null && filteredAgapeEvents.Count > 0)
@@ -57,13 +58,7 @@ namespace Agape316.ViewComponents
                 ViewData["AgapeEvents"] = new SelectList(agapeEventModels, "EventId", "Title");
                 return View(model);
             }
-            if (agapeEvents != null && agapeEvents.Count > 0)
-            {
-                foreach (var agapeEvent in agapeEvents)
-                {
-                    agapeEventModels.Add(new AgapeEventModel { EventId = agapeEvent.Id, Title = agapeEvent.Title });
-                }                
-            }
+            
             ViewData["AgapeEvents"] = new SelectList(agapeEventModels, "EventId", "Title");
             return View(model);
         }
