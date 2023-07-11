@@ -47,6 +47,10 @@ else
         overflow: scroll;
     }
 
+    .info-message {
+        color: white;
+        font-size: large;
+    }
 </style>
 
 <!-- Navbar & Hero Start --> 
@@ -192,7 +196,7 @@ else
                 </div>
             </div>
         }
-        else 
+        else if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name))
         {
             <div class="row gx-4">
                 <div class="col-lg-6 text-center py-3">
@@ -208,7 +212,18 @@ else
                     <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
                 </div>
             </div>
-        }        
+        }    
+        else
+        {
+            <div class="row gx-4">
+                <div class="col-lg-12 text-center py-3">
+                    <div class="info-message">
+                        Please Log In or Register to Create an Event, Bring a Dish, Schedule a Meal, or Deliver a Meal. 
+                        Thank you.
+                    </div>
+                </div>                
+            </div>
+        }
     </div>
 </div>
 <!-- Navbar & Hero End -->
