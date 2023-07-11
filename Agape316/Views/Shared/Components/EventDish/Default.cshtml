@@ -4,7 +4,22 @@
 @{
     var allEvents = ViewData["AgapeEventObjects"] as List<Event>;
     var selectedEvent = ViewData["SelectedAgapeEvent"] as Event;
-    var selectedEventDate = string.Empty;
+    int sideDishSlots = 0;
+    int sandwichSlots = 0;
+    int mainDishSlots = 0;
+    int dessertSlots = 0;
+    int setupSlots = 0;
+    int serveSlots = 0;
+    int cleanUpSlots = 0;
+    Model.SandwichSlot = !Model.SandwichSlot.HasValue ? 0 : Model.SandwichSlot;
+    Model.SideDishSlot = !Model.SideDishSlot.HasValue ? 0 : Model.SideDishSlot;
+    Model.MainDishSlot = !Model.MainDishSlot.HasValue ? 0 : Model.MainDishSlot;
+    Model.DessertSlot = !Model.DessertSlot.HasValue ? 0 : Model.DessertSlot;
+    Model.SetUpSlot = !Model.SetUpSlot.HasValue ? 0 : Model.SetUpSlot;
+    Model.ServeSlot = !Model.ServeSlot.HasValue ? 0 : Model.ServeSlot;
+    Model.CleanUpSlot = !Model.CleanUpSlot.HasValue ? 0 : Model.CleanUpSlot;
+
+    var selectedEventDate = string.Empty;    
     if (selectedEvent == null)
     {
         selectedEvent = new Event();       
@@ -12,8 +27,50 @@
     else
     {
         selectedEventDate = selectedEvent.EventDate.ToShortDateString();
+        selectedEvent.SandwichSlots = !selectedEvent.SandwichSlots.HasValue ? 0 : selectedEvent.SandwichSlots;
+        selectedEvent.SideDishSlots = !selectedEvent.SideDishSlots.HasValue ? 0 : selectedEvent.SideDishSlots;
+        selectedEvent.MainDishSlots = !selectedEvent.MainDishSlots.HasValue ? 0 : selectedEvent.MainDishSlots;
+        selectedEvent.DessertSlots = !selectedEvent.DessertSlots.HasValue ? 0 : selectedEvent.DessertSlots;
+        selectedEvent.SetUpSlots = !selectedEvent.SetUpSlots.HasValue ? 0 : selectedEvent.SetUpSlots;
+        selectedEvent.ServeSlots = !selectedEvent.ServeSlots.HasValue ? 0 : selectedEvent.ServeSlots;
+        selectedEvent.CleanUpSlots = !selectedEvent.CleanUpSlots.HasValue ? 0 : selectedEvent.CleanUpSlots;
+
+        if (selectedEvent.SandwichSlots.Value > Model.SandwichSlot.Value)
+        {
+            sandwichSlots = selectedEvent.SandwichSlots.Value - Model.SandwichSlot.Value;
+        }
+        if (selectedEvent.SideDishSlots.Value > Model.SideDishSlot.Value)
+        {
+            sideDishSlots = selectedEvent.SideDishSlots.Value - Model.SideDishSlot.Value;
+        }
+        if (selectedEvent.MainDishSlots.Value > Model.MainDishSlot.Value)
+        {
+            mainDishSlots = selectedEvent.MainDishSlots.Value - Model.MainDishSlot.Value;
+        }
+        if (selectedEvent.DessertSlots.Value > Model.DessertSlot.Value)
+        {
+            dessertSlots = selectedEvent.DessertSlots.Value - Model.DessertSlot.Value;
+        }
+        if (selectedEvent.SetUpSlots.Value > Model.SetUpSlot.Value)
+        {
+            setupSlots = selectedEvent.SetUpSlots.Value - Model.SetUpSlot.Value;
+        }
+        if (selectedEvent.ServeSlots.Value > Model.ServeSlot.Value)
+        {
+            serveSlots = selectedEvent.ServeSlots.Value - Model.ServeSlot.Value;
+        }
+        if (selectedEvent.CleanUpSlots.Value > Model.CleanUpSlot.Value)
+        {
+            cleanUpSlots = selectedEvent.CleanUpSlots.Value - Model.CleanUpSlot.Value;
+        }
     }
 }
+<style>
+    .text-small {
+        font-size: 10pt;
+        color: red;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
         <form asp-controller="EventDish" asp-action="AddEditEventDish" method="post" id="eventDishForm" enctype="multipart/form-data">
@@ -48,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+				@*<div class="row">
                     <div class="col-sm-6">
                         <div class="form-group form-group-small">
                             <label>@selectedEvent.ContactEmail</label>
@@ -107,7 +164,7 @@
                             <label>&nbsp;</label>
                         </div>
                     </div>                    
-                </div>
+                </div>*@
             </div>            
             <div class="form-group">
                 <label asp-for="Title">Title</label>
@@ -133,36 +190,43 @@
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SandwichSlot">Sandwich</label>
                         <input asp-for="SandwichSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@sandwichSlots left</span>
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SideDishSlot">Side Dish</label>
                         <input asp-for="SideDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@sideDishSlots left</span>
                     </div>                                   
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="MainDishSlot">Main Dish</label>
                         <input asp-for="MainDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@mainDishSlots left</span>
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="DessertSlot">Dessert</label>
                         <input asp-for="DessertSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@dessertSlots left</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SetUpSlot">Set Up</label>
                         <input asp-for="SetUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@setupSlots left</span>
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="ServeSlot">Serve</label>
                         <input asp-for="ServeSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@serveSlots left</span>
                     </div>                   
                 </div>
                 <div class="row">                    
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="CleanUpSlot">Clean Up</label>
                         <input asp-for="CleanUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
+                        <span class="text-small">@cleanUpSlots left</span>
                     </div>
                 </div>
             </div>
