@@ -190,43 +190,64 @@
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SandwichSlot">Sandwich</label>
                         <input asp-for="SandwichSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@sandwichSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@sandwichSlots left</span>
+                        }                        
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SideDishSlot">Side Dish</label>
                         <input asp-for="SideDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@sideDishSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@sideDishSlots left</span>
+                        }                        
                     </div>                                   
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="MainDishSlot">Main Dish</label>
                         <input asp-for="MainDishSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@mainDishSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@mainDishSlots left</span>
+                        }                        
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="DessertSlot">Dessert</label>
                         <input asp-for="DessertSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@dessertSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@dessertSlots left</span>
+                        }                        
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="SetUpSlot">Set Up</label>
                         <input asp-for="SetUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@setupSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@setupSlots left</span>
+                        }                        
                     </div>
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="ServeSlot">Serve</label>
                         <input asp-for="ServeSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@serveSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@serveSlots left</span>
+                        }                        
                     </div>                   
                 </div>
                 <div class="row">                    
                     <div class="col-md-6">
                         <label class="label-slots-2" asp-for="CleanUpSlot">Clean Up</label>
                         <input asp-for="CleanUpSlot" class="text-slots" min="0" step="any" type="number" onchange="CheckEventSlot(this)">
-                        <span class="text-small">@cleanUpSlots left</span>
+                        @if (selectedEvent.Id > 0)
+                        {
+                            <span class="text-small">@cleanUpSlots left</span>
+                        }                        
                     </div>
                 </div>
             </div>
