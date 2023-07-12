@@ -40,8 +40,7 @@
                  <div class="container">
                     <a id="logoLink" href="#" class="navbar-brand p-0">
                         <h1 class="text-primary m-0"><img src="~/img/agape316logo.png" alt="logo" />Agape 3:16</h1>
-                    </a>
-                    @*<img src="~/img/hero-small-removebg-preview.png" alt="grill" class="logo-grill" />*@
+                    </a>                    
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
                     </button>                    
@@ -60,6 +59,7 @@
                                             <a rel="noopener" href="/Admin/Index" class="dropdown-item">Upload/Download Docs</a>
                                             <a rel="noopener" href="/Admin/ManageUsers" class="dropdown-item">Manage Users</a>
                                             <a rel="noopener" href="#" class="dropdown-item">Send Notification</a>
+                                            <a rel="noopener" href="/Admin/ViewEvents" class="dropdown-item">View Events</a>
                                         </div>
                                     </div>
                                 }
@@ -244,7 +244,10 @@
         
         $(function () {
             var tbl = $("#event-table");
-            var rows = $(tbl)[0].rows;            
+            var rows;
+            if ($(tbl)[0]) {
+                rows = $(tbl)[0].rows;
+            }
             if (rows && rows.length > 0)
             {                
                 $.each(rows, function (index, value) {
@@ -263,7 +266,10 @@
 
         $(function () {
             var tbl = $("#event-dish-table");
-            var rows = $(tbl)[0].rows;
+            var rows;
+            if ($(tbl)[0]) {
+                rows = $(tbl)[0].rows;
+            }
             if (rows && rows.length > 0) {
                 $.each(rows, function (index, value) {
                     if (index > 0) {

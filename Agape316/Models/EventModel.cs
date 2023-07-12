@@ -40,6 +40,7 @@ namespace Agape316.Models
                     ImageUrl = agapeEvent.ImageUrl;
                     Location = agapeEvent.Location;
                     CategoryId = agapeEvent.CategoryId;
+                    Category = GetCategoryName(agapeEvent.CategoryId);
                     ContactEmail = agapeEvent.ContactEmail;
                     StartTime = agapeEvent.StartTime;
                     EndTime = agapeEvent.EndTime;

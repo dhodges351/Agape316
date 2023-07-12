@@ -1,0 +1,58 @@
+﻿@model Agape316.Models.ViewEventsModel
+
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "View Events";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<p style="height:100px;">
+</p>
+<div class="container-xxl">   
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model != null)
+            {
+                <div class="form-group my-2">
+                    <label>Events</label>
+                    @Html.DropDownListFor(m => m.EventId, (IEnumerable<SelectListItem>)ViewData["AgapeEvents"], "Please select", new { @onchange = "GetSelectedAgapeEvent(this)" })
+                    <br />
+                </div>
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Events have been created yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+    </div>    
+</div>
+<script>
+    function GetSelectedAgapeEvent(el) {
+        var selectedId = parseInt(el.value);
+        window.location = "/Admin/EventDetails?eventId=" + selectedId;
+        //var eventDate = $("#hidEventDate").val();
+        //$.ajax({
+        //    type: "GET",
+        //    url: "/Admin/GetEventDetails",
+        //    data: { "eventId": selectedId },
+        //    success: function (response) {
+        //        console.log(response);
+        //    },
+        //    failure: function (response) {
+        //        alert('Get Event details failed');
+        //    },
+        //    error: function (response) {
+        //        alert('Error getting Event details');
+        //    }
+        //});
+    }
+</script>
+

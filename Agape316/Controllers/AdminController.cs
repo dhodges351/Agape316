@@ -1,6 +1,7 @@
 ﻿using Agape316.Data;
 using Agape316.Models;
 using Agape316.Services;
+using Agape316.ViewComponents;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,25 +16,30 @@ namespace Agape316.Controllers
 	{
         private readonly IApplicationUser _appUserService;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private readonly IEvent _eventService;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
         private readonly INotyfService _toastNotification;
         private readonly IAgapeDocument _agapeDocumentService;
+        private readonly IEmailSender _emailSender;
 
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         public AdminController(IApplicationUser appUserService, 
             UserManager<ApplicationUser> userManager,
+            IEvent eventService,
             Microsoft.AspNetCore.Hosting.IHostingEnvironment environment,
             INotyfService toastNotification,
-            IAgapeDocument agapeDocumentService)
+            IAgapeDocument agapeDocumentService,
+            IEmailSender emailSender)
         {
             _appUserService = appUserService;
             _userManager = userManager;
+            _eventService = eventService;
             _environment = environment;
             _toastNotification = toastNotification;
             _agapeDocumentService = agapeDocumentService;
+            _emailSender = emailSender; 
         }
 
         [Authorize(Roles = "Admin")]
@@ -108,6 +114,22 @@ namespace Agape316.Controllers
             var filepath = Path.Combine(_environment.WebRootPath, "upload", fileName);
             var mimeType = Agape316.Helpers.MiscHelpers.GetMimeTypeForFileExtension(filepath);
             return File(System.IO.File.ReadAllBytes(filepath), mimeType, System.IO.Path.GetFileName(filepath));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult ViewEvents()
+        {
+            var model = new ViewEventsModel(_eventService);            
+            ViewData["AgapeEvents"] = model.Events;
+            return View(model);
+        }
+       
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult EventDetails(int eventId)
+        {
+            var model = new EventModel(_emailSender, _eventService, eventId);
+            return View("EventDetails", model);
         }
     }
 }
