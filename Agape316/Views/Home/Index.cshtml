@@ -92,8 +92,7 @@ else
                                         <td class="searchResultsHeader">Title</td>
                                         <td class="searchResultsHeader">Description</td>
                                         <td class="searchResultsHeader">Contact Email</td>
-                                        <td class="searchResultsHeader">Event Date/Time</td>
-                                        <td></td>
+                                        <td class="searchResultsHeader">Event Date/Time</td>                                        
                                     </tr>
                                     @if (Model.Events != null && Model.Events.Any())
                                     {
@@ -104,8 +103,7 @@ else
                                                 <td>@evt.Title</td>
                                                 <td>@evt.Description</td>
                                                 <td>@evt.ContactEmail</td>
-                                                <td>@evt.EventDate.ToShortDateString() @evt.StartTime - @evt.EndTime</td>
-                                                <td class="editLink">@Html.Raw(evt.EditLink)</td>
+                                                <td>@evt.EventDate.ToShortDateString() @evt.StartTime - @evt.EndTime</td>                                                
                                             </tr>
                                         }
                                     }                                    
@@ -119,7 +117,6 @@ else
                                                 <td>@evtDish.Description</td>
                                                 <td>@evtDish.ContactEmail</td>
                                                 <td>@evtDish.Created.ToShortDateString()</td>
-                                                <td class="editLink">@Html.Raw(evtDish.EditLink)</td>
                                             </tr>
                                         }
                                     }
@@ -132,8 +129,7 @@ else
                                                 <td>@sched.Title</td>
                                                 <td>@sched.Description</td>
                                                 <td>@sched.CoordEmail</td>
-                                                <td>@sched.StartDate.ToShortDateString() - @sched.EndDate.ToShortDateString()</td>
-                                                <td class="editLink">@Html.Raw(sched.EditLink)</td>
+                                                <td>@sched.StartDate.ToShortDateString() - @sched.EndDate.ToShortDateString()</td>                                                
                                             </tr>
                                         }
                                     }
@@ -147,7 +143,6 @@ else
                                                 <td>@del.LastName</td>
                                                 <td>@del.Email</td>
                                                 <td>@del.DeliveryDate.ToShortDateString()</td>
-                                                <td class="editLink">@Html.Raw(del.EditLink)</td>
                                             </tr>
                                         }
                                     }
