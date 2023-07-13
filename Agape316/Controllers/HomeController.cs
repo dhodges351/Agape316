@@ -47,9 +47,9 @@ namespace Agape316.Controllers
             return View(model);
         }
 
-        public IActionResult Privacy()
+        public ActionResult OnGetCallEventViewComponent()
         {
-            return View();
+            return ViewComponent("PreviouslySaved");
         }
 
         [HttpPost]

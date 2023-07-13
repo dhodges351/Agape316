@@ -130,6 +130,8 @@ namespace Agape316.Models
             set => notes = new HtmlSanitizer().Sanitize(value == null ? "" : value);
         }
 
+        public string Title { get; set; }
+
         public async Task SaveMealDelivery(IEmailSender emailSender, MealDeliveryModel model, IMealDelivery _mealDeliveryService, IMealSchedule mealScheduleService)
         {
             if (!model.Id.HasValue)

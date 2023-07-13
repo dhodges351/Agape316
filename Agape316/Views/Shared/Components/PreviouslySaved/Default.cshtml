@@ -1,0 +1,116 @@
+﻿@model Agape316.Models.PreviouslySavedModel
+
+@{
+    ViewData["Title"] = "View Previously Saved";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<style>
+    .ddl-label  {
+        font-weight: bold;
+    }
+</style>
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model != null)
+            {
+                <div class="form-group my-2">
+                    <label class="ddl-label">Events:</label>
+                    @Html.DropDownListFor(m => m.EventId, Model.Events, "Please select", new { @id = "ddlEvents", @onchange = "GetSelectedAgapeEvent(this)" })
+                    <br />
+                </div>
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Events have been created yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            @if (Model != null)
+            {
+                <div class="form-group my-2">
+                    <label class="ddl-label">Event Dishes:</label>
+                    @Html.DropDownListFor(m => m.Id, Model.EventDishes, "Please select", new { @id = "ddlEventDishes", @onchange = "GetSelectedEventDish(this)" })
+                    <br />
+                </div>
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Event Dishes have been created yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model != null)
+            {
+                <div class="form-group my-2">
+                    <label class="ddl-label">Meal Schedules:</label>
+                    @Html.DropDownListFor(m => m.Id, Model.MealSchedules, "Please select", new { @id = "ddlMealSchedules", @onchange = "GetSelectedMealSchedule(this)" })
+                    <br />
+                </div>
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Meal Schedules have been created yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            @if (Model != null)
+            {
+                <div class="form-group my-2">
+                    <label class="ddl-label">Meal Deliveries:</label>
+                    @Html.DropDownListFor(m => m.Id, Model.MealDeliveries, "Please select", new { @id = "ddlMealDeliveries", @onchange = "GetSelectedMealDelivery(this)" })
+                    <br />
+                </div>
+            }
+            else
+            {
+                <div class="noPosts">
+                    <i class="material-icons md-72">question_answer</i>
+                    <h3>
+                        No Meal Deliveries have been created yet. <br />
+                    </h3>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function GetSelectedAgapeEvent(el) {
+        var selectedId = parseInt(el.value);
+        window.location = "/Admin/EventDetails?eventId=" + selectedId;        
+    }
+
+    $(document).ready(function () {
+        if ($("#logged").val() == "true") {
+            $('#ddlEvents').attr('disabled', false);
+            $('#ddlEventDishes').attr('disabled', false);
+            $('#ddlMealSchedules').attr('disabled', false);
+            $('#ddlMealDeliveries').attr('disabled', false);
+        }
+        else {
+            $('#ddlEvents').attr('disabled', true);
+            $('#ddlEventDishes').attr('disabled', true);
+            $('#ddlMealSchedules').attr('disabled', true);
+            $('#ddlMealDeliveries').attr('disabled', true);
+        }
+    });
+</script>
+
