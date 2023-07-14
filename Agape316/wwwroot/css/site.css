@@ -9,13 +9,27 @@ html {
   }  
 }
 
+@media (max-width: 1199px) {
+    div.container-xxl.top-container.bg-dark {
+        margin-top: 50px !important;
+        padding-top: 50px !important;
+        padding-bottom: 0;
+    }
+
+    div.top-inner-container {
+        margin-top: 50px !important;
+        padding-top: 50px !important;
+    }
+}
+
 @media (max-width: 991px) {
     div.container-xxl.top-container.bg-dark {
-        padding-top: 0;
+        margin-top: -40px !important;
+        padding-top: 0 !important;
         padding-bottom: 0;
     }
     div.top-inner-container {
-        margin-top: 0 !important;
+        margin-top: -50px !important;
         padding-top: 0 !important;
     }
 }
