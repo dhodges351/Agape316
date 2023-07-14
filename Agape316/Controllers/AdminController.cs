@@ -115,21 +115,5 @@ namespace Agape316.Controllers
             var mimeType = Agape316.Helpers.MiscHelpers.GetMimeTypeForFileExtension(filepath);
             return File(System.IO.File.ReadAllBytes(filepath), mimeType, System.IO.Path.GetFileName(filepath));
         }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult ViewEvents()
-        {
-            var model = new ViewEventsModel(_eventService);            
-            ViewData["AgapeEvents"] = model.Events;
-            return View(model);
-        }
-       
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult EventDetails(int eventId)
-        {
-            var model = new EventModel(_emailSender, _eventService, eventId);
-            return View("EventDetails", model);
-        }
     }
 }
