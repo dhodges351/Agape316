@@ -48,6 +48,8 @@ namespace Agape316.Models
                     Phone = mealDelivery.Phone;
                     DeliveryDate = mealDelivery.DeliveryDate;
                     Notes = mealDelivery.Notes;
+                    EditLink = mealDelivery.EditLink;
+                    DeliveryTime = Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(mealDelivery.DeliveryTime);
                 }
                 else
                 {
@@ -145,8 +147,7 @@ namespace Agape316.Models
                     DeliveryDate = model.DeliveryDate,
                     DeliveryTime = model.DeliveryTime,
                     ScheduleId = model.ScheduleId ?? 0,
-                    Notes = model.Notes,
-                    
+                    Notes = model.Notes,                    
                     Created = DateTime.Now,
                 };
                 await _mealDeliveryService.Create(mealDelivery);

@@ -644,6 +644,25 @@
             });        
         }
 
+        function EditDelivery(scheduleId, id) {
+            event.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "/MealDelivery/OnGetCallMealDeliveryViewComponent",
+                data: { "scheduleId": scheduleId, "id": id },
+                success: function (response) {
+                    $("#deliverMealsModal").find(".modal-body").html(response);
+                    $("#deliverMealsModal").modal('show');
+                },
+                failure: function (response) {
+                    alert('Get Meal Delivery details failed');
+                },
+                error: function (response) {
+                    alert('Error getting Meal Delivery details');
+                }
+            });
+        }
+
         function showRecipientModal(fullName, fullAddress, foodAllergies)
         {
             $("#recipientFullName").text(fullName);

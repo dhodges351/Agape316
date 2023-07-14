@@ -86,7 +86,7 @@ public partial class MealDelivery
 
             if (string.IsNullOrEmpty(UserName) || isExpired)
             {
-                link = $"<a href='#' class='disabled-link')'>Edit</a>";
+                link = $"<a href='#' class='disabled-link'>Edit</a>";
             }
             else if (!string.IsNullOrEmpty(UserName) && UserName.Equals(Email))
             {

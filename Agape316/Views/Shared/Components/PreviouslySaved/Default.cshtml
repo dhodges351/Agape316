@@ -126,6 +126,7 @@
                 $(".selected-item").show();
                 $(".selected-event-dish").hide();
                 $(".selected-meal-schedule").hide();
+                $(".selected-meal-delivery").hide();
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -166,6 +167,7 @@
                 $(".selected-event-dish").show();
                 $(".selected-item").hide();
                 $(".selected-meal-schedule").hide();
+                $(".selected-meal-delivery").hide();
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -204,6 +206,41 @@
                 $("#mealScheduleFoodAllergies").text(response.data.FoodAllergies);
                 $("#mealScheduleEditLink").html(response.data.EditLink);
                 $(".selected-meal-schedule").show();
+                $(".selected-item").hide();
+                $(".selected-event-dish").hide();
+                $(".selected-meal-delivery").hide();
+            },
+            failure: function (response) {
+                alert('Get selected item details failed');
+            },
+            error: function (response) {
+                alert('Error getting selected item details');
+            }
+        });
+    }
+
+    function GetSelectedMealDelivery(el) {
+        event.preventDefault();
+        var selectedId = parseInt(el.value);
+        if (el.value == "") {
+            $(".selected-meal-delivery").hide();
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetMealDeliveryDetails",
+            data: { "selectedId": selectedId },
+            success: function (response) {                
+                $("#mealDeliveryFullName").text(response.data.FirstName + " " + response.data.LastName);                
+                $("#mealDeliveryEmail").text(response.data.Email);
+                $("#mealDeliveryPhoneNumber").text(response.data.Phone);
+                $("#mealDeliveryDate").text(response.data.DeliveryDateStr);
+                $("#mealDeliveryTime").text(response.data.DeliveryTime);
+                $("#mealDeliveryNotes").text(response.data.Notes);
+                $("#mealDeliveryEditLink").html(response.data.EditLink);
+                $(".selected-meal-delivery").show();
+                $(".selected-meal-schedule").hide();
                 $(".selected-item").hide();
                 $(".selected-event-dish").hide();
             },
