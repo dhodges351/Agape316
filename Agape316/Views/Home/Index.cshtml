@@ -103,7 +103,7 @@ else
 </style>
 
 <!-- Navbar & Hero Start --> 
-<div class="container-xxl top-container bg-dark">    
+<div class="container-xxl top-container bg-dark py-3 px-3">    
     <div class="container top-inner-container"> 
         <div class="row align-items-start">
             <div class="col-md-12">
@@ -352,38 +352,37 @@ else
     </div>
 </div>
 
-
 <!-- Service Start -->
-@*<div class="container-xxl py-4">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Previously Saved</h5>        
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Events</h5>        
     </div>    
     @await Component.InvokeAsync("EventList")
-</div>*@
-@*<div class="container-xxl py-4">
+</div>
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Dishes</h5>
     </div>
     @await Component.InvokeAsync("EventDishList")
-</div>*@
+</div>
 <!-- Service End -->
 
 <!-- Schedule Meals Start -->
-@*<div class="container-xxl py-4">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Schedules</h5>
     </div>
     @await Component.InvokeAsync("MealScheduleList")	
-</div>*@
+</div>
 <!-- Schedule Meals End -->
 
 <!-- Deliver Meals Start -->
-@*<div class="container-xxl py-4">
+<div class="container-xxl py-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Deliveries</h5>
     </div>
     @await Component.InvokeAsync("MealDeliveryList")	
-</div>*@
+</div>
 <!-- Deliver Meals End -->
 
 <!-- About Start -->
@@ -458,9 +457,10 @@ else
 <!-- Team End -->
 
 <div class="container-xxl py-4">
+    <a id="previously-saved"></a>
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">Previously Saved</h5>
-    </div>
+    </div>    
     @await Component.InvokeAsync("PreviouslySaved")
     <partial name="_EventPartial" />
     <partial name="_EventDishPartial" />
