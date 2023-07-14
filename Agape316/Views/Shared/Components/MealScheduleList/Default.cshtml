@@ -43,31 +43,3 @@
         }
     </div>    
 </div>
-<script>
-    function EditMealSchedule(id) {
-        event.preventDefault();
-        $.ajax({
-            type: "GET",            
-            url: "/MealSchedule/OnGetCallMealScheduleViewComponent",
-            data: { "id": id },
-            success: function (response) {
-                $("#scheduleMealsModal").find(".modal-body").html(response);
-                $("#scheduleMealsModal").modal('show');
-            },
-            failure: function (response) {
-                alert('Get Meal Schedule details failed');
-            },
-            error: function (response) {
-                alert('Error getting Meal Schedule details');
-            }
-        });        
-    }
-
-    function showRecipientModal(fullName, fullAddress, foodAllergies)
-    {
-        $("#recipientFullName").text(fullName);
-        $("#recipientAddress").text(fullAddress);
-        $("#recipientFoodAllergies").text(foodAllergies);
-        $("#recipientInfoModal").modal("show");
-    }
-</script>

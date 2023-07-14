@@ -72,6 +72,26 @@ else
         background-position: center;
     }
 
+    .selected-meal-schedule {
+        min-height: 200px;
+        height: auto;
+        display: none;
+        background-image: url('/img/lightbluesky.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .selected-meal-delivery {
+        min-height: 200px;
+        height: auto;
+        display: none;
+        background-image: url('/img/lightbluesky.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
     .tbl-header {
         font-weight: bold;
         font-size: medium;
@@ -444,6 +464,7 @@ else
     @await Component.InvokeAsync("PreviouslySaved")
     <partial name="_EventPartial" />
     <partial name="_EventDishPartial" />
+    <partial name="_MealSchedulePartial" />
 </div>
 
 <!-- Contact Us Start -->

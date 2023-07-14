@@ -56,6 +56,8 @@ namespace Agape316.Models
                     EndDate = mealSchedule.EndDate;                    
                     FoodAllergies = mealSchedule.FoodAllergies;
                     Notes = mealSchedule.Notes;
+                    EditLink = mealSchedule.EditLink;
+                    StartAndEndDates = $"{mealSchedule.StartDate.ToShortDateString()} - {mealSchedule.EndDate.ToShortDateString()}";
                 }
 			}
 		}
@@ -63,6 +65,8 @@ namespace Agape316.Models
         public int? Id { get; set; }
 
         public DateTime Created { get; set; }
+
+        public string StartAndEndDates { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Title is required")]

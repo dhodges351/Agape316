@@ -123,7 +123,9 @@
                 $("#eventNotes").text(response.data.Notes);
                 $("#eventPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
                 $("#eventEditLink").html(response.data.EditLink);
-                $(".selected-item").show();                
+                $(".selected-item").show();
+                $(".selected-event-dish").hide();
+                $(".selected-meal-schedule").hide();
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -138,7 +140,7 @@
         event.preventDefault();
         var selectedId = parseInt(el.value);
         if (el.value == "") {
-            $(".selected-item").hide();
+            $(".selected-event-dish").hide();
             return;
         }
 
@@ -162,6 +164,48 @@
                 $("#eventDishPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
                 $("#eventDishEditLink").html(response.data.EditLink);
                 $(".selected-event-dish").show();
+                $(".selected-item").hide();
+                $(".selected-meal-schedule").hide();
+            },
+            failure: function (response) {
+                alert('Get selected item details failed');
+            },
+            error: function (response) {
+                alert('Error getting selected item details');
+            }
+        });
+    }
+
+    function GetSelectedMealSchedule(el) {
+        event.preventDefault();
+        var selectedId = parseInt(el.value);
+        if (el.value == "") {
+            $(".selected-meal-schedule").hide();
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetMealScheduleDetails",
+            data: { "selectedId": selectedId },
+            success: function (response) {
+                $("#mealScheduleTitle").text(response.data.Title);
+                $("#mealScheduleDescription").text(response.data.Description);
+                $("#mealScheduleCoordinator").text(response.data.Coordinator);
+                $("#mealScheduleCoordinatorEmail").text(response.data.CoordEmail);
+                $("#mealScheduleCoordinatorPhone").text(response.data.CoordPhone);
+                $("#mealScheduleFullName").text(response.data.RecipientFName + " " + response.data.RecipientLName);
+                $("#mealScheduleAddress").text(response.data.RecipientAddress + " " + response.data.RecipientCity + ", " + response.data.RecipientState + " " + response.data.RecipientZipcode);
+                $("#mealScheduleEmail").text(response.data.RecipientEmail);
+                $("#mealSchedulePhone").text(response.data.RecipientPhone);
+                $("#mealScheduleServeSlots").text(response.data.ServeSlot);
+                $("#mealScheduleStartAndEndDates").text(response.data.StartAndEndDates);
+                $("#mealScheduleNotes").text(response.data.Notes);   
+                $("#mealScheduleFoodAllergies").text(response.data.FoodAllergies);
+                $("#mealScheduleEditLink").html(response.data.EditLink);
+                $(".selected-meal-schedule").show();
+                $(".selected-item").hide();
+                $(".selected-event-dish").hide();
             },
             failure: function (response) {
                 alert('Get selected item details failed');

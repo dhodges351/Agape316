@@ -67,6 +67,12 @@ namespace Agape316.Controllers
             return new JsonResult(new { data = model });
         }
 
+        public IActionResult GetMealScheduleDetails(int selectedId)
+        {
+            var model = new MealScheduleModel(_mealScheduleService, selectedId);
+            return new JsonResult(new { data = model });
+        }
+
         [HttpPost]
         public async Task<IActionResult> ContactUsAsync(HomeIndexModel model)
         {
