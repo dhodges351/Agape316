@@ -45,6 +45,7 @@ namespace Agape316.Models
                     StartTime = agapeEvent.StartTime;
                     EndTime = agapeEvent.EndTime;
                     Notes = agapeEvent.Notes;
+                    EditLink = agapeEvent.EditLink;
                     SandwichSlots = agapeEvent.SandwichSlots;
                     SideDishSlots = agapeEvent.SideDishSlots;
                     MainDishSlots = agapeEvent.MainDishSlots;

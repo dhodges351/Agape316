@@ -55,9 +55,15 @@ namespace Agape316.Controllers
             return ViewComponent("PreviouslySaved");
         }
 
-        public IActionResult GetItemDetails(string itemType, int selectedId)
+        public IActionResult GetEventDetails(int selectedId)
         {
             var model = new EventModel(null, _eventService, selectedId);
+            return new JsonResult(new { data = model });
+        }
+
+        public IActionResult GetEventDishDetails(int selectedId)
+        {
+            var model = new EventDishModel(null, _eventDishService, null, selectedId);
             return new JsonResult(new { data = model });
         }
 

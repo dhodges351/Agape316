@@ -50,24 +50,3 @@
         }
     </div>    
 </div>
-<script>
-    function EditEventDish(eventId, id)
-    {
-        event.preventDefault();
-        $.ajax({
-            type: "GET",            
-            url: "/EventDish/OnGetCallEventDishViewComponent",
-            data: { "eventId": eventId, "id": id },
-            success: function (response) {
-                $("#eventDishModal").find(".modal-body").html(response);
-                $("#eventDishModal").modal('show');
-            },
-            failure: function (response) {
-                alert('Get Event Dish details failed');
-            },
-            error: function (response) {
-                alert('Error getting Event Dish details');
-            }
-        });        
-    }
-</script>

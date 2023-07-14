@@ -29,11 +29,9 @@ namespace Agape316.Models
             _eventService = eventService;
             _eventDishService = eventDishService;
 
-            if (!eventId.HasValue)
-            {
-                var eventDishes = _eventDishService.GetEventDishesByEventId(eventId ?? 0);                
-            }
-            else if (id.HasValue)
+            var eventDishes = _eventDishService.GetEventDishesByEventId(eventId ?? 0);
+
+            if (id.HasValue)
             {
                 var eventDish = _eventDishService.GetById(id ?? 0);
                 if (eventDish != null)
@@ -52,6 +50,7 @@ namespace Agape316.Models
                     ServeSlot = eventDish.ServeSlot;
                     CleanUpSlot = eventDish.CleanUpSlot;
                     Category = eventDish.Category;
+                    EditLink = eventDish.EditLink;
                 }               
             }
         }

@@ -104,8 +104,8 @@
      
         $.ajax({
             type: "GET",
-            url: "/Home/GetItemDetails",
-            data: { "itemType": "Event", "selectedId": selectedId },
+            url: "/Home/GetEventDetails",
+            data: { "selectedId": selectedId },
             success: function (response) { 
                 $("#eventTitle").text(response.data.Title);
                 $("#eventDescription").text(response.data.Description);
@@ -122,7 +122,46 @@
                 $("#eventCleanUpSlots").text(response.data.CleanUpSlots);
                 $("#eventNotes").text(response.data.Notes);
                 $("#eventPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
+                $("#eventEditLink").html(response.data.EditLink);
                 $(".selected-item").show();                
+            },
+            failure: function (response) {
+                alert('Get selected item details failed');
+            },
+            error: function (response) {
+                alert('Error getting selected item details');
+            }
+        });
+    }
+
+    function GetSelectedEventDish(el) {
+        event.preventDefault();
+        var selectedId = parseInt(el.value);
+        if (el.value == "") {
+            $(".selected-item").hide();
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetEventDishDetails",
+            data: { "selectedId": selectedId },
+            success: function (response) {
+                $("#eventDishTitle").text(response.data.Title);
+                $("#eventDishDescription").text(response.data.Description);
+                $("#eventDishContactEmail").text(response.data.ContactEmail);
+                $("#eventDishCategory").text(response.data.Category);
+                $("#eventDishSandwichSlots").text(response.data.SandwichSlot);
+                $("#eventDishSideDishSlots").text(response.data.SideDishSlot);
+                $("#eventDishMainDishSlots").text(response.data.MainDishSlot);
+                $("#eventDishDessertSlots").text(response.data.DessertSlot);
+                $("#eventDishSetUpSlots").text(response.data.SetUpSlot);
+                $("#eventDishServeSlots").text(response.data.ServeSlot);
+                $("#eventDishCleanUpSlots").text(response.data.CleanUpSlot);
+                $("#eventDishNotes").text(response.data.Notes);
+                $("#eventDishPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
+                $("#eventDishEditLink").html(response.data.EditLink);
+                $(".selected-event-dish").show();
             },
             failure: function (response) {
                 alert('Get selected item details failed');
