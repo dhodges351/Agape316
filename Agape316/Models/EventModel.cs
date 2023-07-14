@@ -52,6 +52,7 @@ namespace Agape316.Models
                     SetUpSlots = agapeEvent.SetUpSlots;
                     ServeSlots = agapeEvent.ServeSlots;
                     CleanUpSlots = agapeEvent.CleanUpSlots;
+                    DateAndTime = $"{agapeEvent.EventDate.ToShortDateString()} {EventHelpers.GetStandardTimeFromMilitaryTime(agapeEvent.StartTime)} - {EventHelpers.GetStandardTimeFromMilitaryTime(agapeEvent.EndTime)}";
                 }
             }
             _emailSender = emailSender;
@@ -143,6 +144,7 @@ namespace Agape316.Models
         public int? SetUpSlots { get; set; }
         public int? ServeSlots { get; set; }
         public int? CleanUpSlots { get; set; }
+        public string DateAndTime { get; set; }
 
         [Required]        
         [StringLength(50, ErrorMessage = "Category is required")]

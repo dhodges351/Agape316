@@ -15,12 +15,19 @@ namespace Agape316.Models
         public HomeIndexModel(IEvent eventService,
             IEventDish eventDishService,
             IMealSchedule mealScheduleService,
-            IMealDelivery mealDeliveryService)
+            IMealDelivery mealDeliveryService,
+            string itemType = null,
+            int? selectedId = null)
         {
             _eventService = eventService;
             _eventDishService = eventDishService;
             _mealScheduleService = mealScheduleService;
             _mealDeliveryService = mealDeliveryService;
+
+            if (itemType == "Event" && selectedId.HasValue)
+            {
+                AgapeEvent = _eventService.GetByEventId(selectedId.Value);
+            }
         }
 
         public string name { get; private set; }
@@ -63,6 +70,8 @@ namespace Agape316.Models
             get => message;
             set => message = value;
         }
+
+        public Event AgapeEvent { get; set; }
 
         public List<EventModel>? Events { get; set; }
         public List<EventDishModel>? EventDishes { get; set; }

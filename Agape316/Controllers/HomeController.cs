@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Agape316.Data;
-using Agape316.Services;
+using System.Text.Json;
+using Microsoft.CodeAnalysis.Elfie.Model.Tree;
+
 
 namespace Agape316.Controllers
 {
@@ -44,12 +46,19 @@ namespace Agape316.Controllers
             {
                 model.GetSearchResults(searchQuery);
             }
+           
             return View(model);
         }
 
         public ActionResult OnGetCallEventViewComponent()
         {
             return ViewComponent("PreviouslySaved");
+        }
+
+        public IActionResult GetItemDetails(string itemType, int selectedId)
+        {
+            var model = new EventModel(null, _eventService, selectedId);
+            return new JsonResult(new { data = model });
         }
 
         [HttpPost]

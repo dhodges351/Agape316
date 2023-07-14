@@ -94,11 +94,46 @@
 </div>
 <script>
     function GetSelectedAgapeEvent(el) {
-        var selectedId = parseInt(el.value);
-        window.location = "/Admin/EventDetails?eventId=" + selectedId;        
+        event.preventDefault();
+        var selectedId = parseInt(el.value);    
+        if (el.value == "")
+        {
+            $(".selected-item").hide();
+            return;
+        }
+     
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetItemDetails",
+            data: { "itemType": "Event", "selectedId": selectedId },
+            success: function (response) { 
+                $("#eventTitle").text(response.data.Title);
+                $("#eventDescription").text(response.data.Description);
+                $("#eventLocation").text(response.data.Location);
+                $("#eventDateAndTime").text(response.data.DateAndTime);
+                $("#eventContactEmail").text(response.data.ContactEmail);
+                $("#eventCategory").text(response.data.Category);
+                $("#eventSandwichSlots").text(response.data.SandwichSlots);
+                $("#eventSideDishSlots").text(response.data.SideDishSlots);
+                $("#eventMainDishSlots").text(response.data.MainDishSlots);
+                $("#eventDessertSlots").text(response.data.DessertSlots);
+                $("#eventSetUpSlots").text(response.data.SetUpSlots);
+                $("#eventServeSlots").text(response.data.ServeSlots);
+                $("#eventCleanUpSlots").text(response.data.CleanUpSlots);
+                $("#eventNotes").text(response.data.Notes);
+                $("#eventPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
+                $(".selected-item").show();                
+            },
+            failure: function (response) {
+                alert('Get selected item details failed');
+            },
+            error: function (response) {
+                alert('Error getting selected item details');
+            }
+        });
     }
 
-    $(document).ready(function () {
+    $(document).ready(function () {        
         if ($("#logged").val() == "true") {
             $('#ddlEvents').attr('disabled', false);
             $('#ddlEventDishes').attr('disabled', false);

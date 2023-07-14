@@ -1,0 +1,131 @@
+﻿@model Agape316.Data.Event
+@using Agape316.Enums
+
+<h3>Event Data</h3>
+
+@if (Model != null)
+{
+    var evt = TempData["EventData"] as Agape316.Data.Event;
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Title:</label>
+                <label>@evt.Title</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Description:</label>
+                <label>@evt.Description</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Location:</label>
+                <label>@evt.Location</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Date/Time:</label>
+                <label>@evt.EventDate.ToShortDateString() @Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(@evt.StartTime) - @Agape316.Helpers.EventHelpers.GetStandardTimeFromMilitaryTime(@evt.EndTime)</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Contact Email:</label>
+                <label>@evt.ContactEmail</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Category:</label>
+                <label>@evt.CategoryId</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Sandwich Slots:</label>
+                <label>@evt.SandwichSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Side Dish Slots:</label>
+                <label>@evt.SideDishSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Main Dish Slots:</label>
+                <label>@evt.MainDishSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Dessert Slots:</label>
+                <label>@evt.DessertSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Set Up Slots:</label>
+                <label>@evt.SetUpSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Serve Slots:</label>
+                <label>@evt.ServeSlots</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Clean Up Slots:</label>
+                <label>@evt.CleanUpSlots</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Event Photo:</label>
+                <img src="@evt.ImageUrl" height="50" width="50" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="form-group-label">Event Notes:</label>
+                <label>@evt.Notes</label>
+            </div>
+        </div>
+    </div>
+}
