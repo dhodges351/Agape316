@@ -30,6 +30,10 @@ namespace Agape316.Models
             }
         }
 
+        public HomeIndexModel()
+        {
+        }
+
         public string name { get; private set; }
         public string email { get; private set; }
         public string subject { get; private set; }

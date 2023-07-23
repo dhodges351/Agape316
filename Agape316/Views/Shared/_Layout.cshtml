@@ -237,6 +237,40 @@
         });
 
         $(function () {
+            $('#planEventModal').on('shown.bs.modal', function () {
+                if (!isLoggedIn)
+                {
+                    $('#planEventModal').modal('hide');
+                }
+            });
+        });
+
+        $(function () {
+            $('#eventDishModal').on('shown.bs.modal', function () {
+                if (!isLoggedIn) {
+                    $('#eventDishModal').modal('hide');
+                }
+            });
+        });
+
+        $(function () {
+            $('#scheduleMealsModal').on('shown.bs.modal', function () {
+                if (!isLoggedIn) {
+                    $('#scheduleMealsModal').modal('hide');
+                }
+            });
+        });
+
+        $(function () {
+            $('#deliverMealsModal').on('shown.bs.modal', function () {
+                if (!isLoggedIn) {
+                    $('#deliverMealsModal').modal('hide');
+                }
+            });
+        });
+        
+
+        $(function () {
             $('#eventDishModal').on('hidden.bs.modal', function () {
                 window.location = "/";
             });

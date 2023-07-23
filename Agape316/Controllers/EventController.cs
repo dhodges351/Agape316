@@ -48,8 +48,12 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEvent(_emailSender, model, _eventService);
-            _toastNotification.Success("Thank you, your Event has been saved!", 5);
+            if (User.Identity.IsAuthenticated)
+            {
+                 await model.SaveEvent(_emailSender, model, _eventService);
+                _toastNotification.Success("Thank you, your Event has been saved!", 5);
+            }
+
             return RedirectToAction("Index", "Home");
         }
         

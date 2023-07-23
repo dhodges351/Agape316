@@ -29,9 +29,13 @@ namespace Agape316.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddEditMealSchedule(MealScheduleModel model)
-        {  
-            await model.SaveMealSchedule(_emailSender, model, _mealScheduleService);
-            _toastNotification.Success("Thank you, your Meal Schedule has been saved!", 5);
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await model.SaveMealSchedule(_emailSender, model, _mealScheduleService);
+                _toastNotification.Success("Thank you, your Meal Schedule has been saved!", 5);
+            }
+            
             return RedirectToAction("Index", "Home");
         }
     }

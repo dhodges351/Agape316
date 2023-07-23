@@ -74,8 +74,12 @@ namespace Agape316.Controllers
                 }
             }
 
-            await model.SaveEventDish(_emailSender, model, _eventDishService);
-            _toastNotification.Success("Thank you, your Event Dish has been saved!", 5);
+            if (User.Identity.IsAuthenticated)
+            {
+                await model.SaveEventDish(_emailSender, model, _eventDishService);
+                _toastNotification.Success("Thank you, your Event Dish has been saved!", 5);
+            }
+               
             return RedirectToAction("Index", "Home");
         }
 
