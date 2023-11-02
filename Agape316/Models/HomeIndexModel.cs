@@ -1,7 +1,8 @@
 ﻿using Agape316.Data;
 using Ganss.Xss;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using System.ComponentModel.DataAnnotations;using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Agape316.Models
 {    

@@ -50,7 +50,7 @@
                             <a rel="noopener" href="#about-us" class="nav-item nav-link">About</a>
                             <a rel="noopener" href="#team-members" class="nav-item nav-link">Team</a>
                             <a rel="noopener" href="#contact-us" class="nav-item nav-link">Contact</a>
-                            <a rel="noopener" href="#previously-saved" class="nav-item nav-link">Listings</a>
+                            @* <a rel="noopener" href="#previously-saved" class="nav-item nav-link">Listings</a> *@
                             @{
                                 if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
