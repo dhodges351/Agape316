@@ -1,12 +1,9 @@
 ﻿@model Agape316.Models.EventModel
-@using Agape316.Enums       
+@using Agape316.Enums 
 
-@{
-    Layout = "/Views/Shared/_AdminLayout.cshtml";
-}
 <p style="height:95px;">
 </p>
-<div class="container-xxl" style="background-color:tan;"> 
+<div class="container-xxl"> 
     <br />
     <div class="row text-center"><h3>Create Event</h3></div>
     <div class="row align-items-center">
@@ -120,3 +117,6 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
