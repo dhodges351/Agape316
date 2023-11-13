@@ -86,6 +86,61 @@ body {
     margin-bottom: 60px;
 }
 
+.searchResultsHeader {
+    font-weight: bold;
+    text-align: left;
+}
+
+.editLink {
+    text-align: center;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: scroll;
+}
+
+.info-message {
+    color: white;
+    font-size: large;
+}
+
+div.container.selected-item {
+    display: none;    
+    width: 100%;
+    min-height: 200px;
+    height: auto;
+}
+
+.selected-event-dish {
+    min-height: 200px;
+    height: auto;
+    display: none;
+}
+
+.selected-meal-schedule {
+    min-height: 200px;
+    height: auto;
+    display: none;
+}
+
+.selected-meal-delivery {
+    min-height: 200px;
+    height: auto;
+    display: none;
+}
+
+.tbl-header {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.form-group-label {
+    font-weight: bold;
+}
+
 /*for tab control*/
 div.login-logout-tab div.card-header {
     padding: 0px 0px 12px 0px;

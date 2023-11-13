@@ -123,6 +123,7 @@
                 $("#eventNotes").text(response.data.Notes);
                 $("#eventPhoto").html("<img src='" + response.data.ImageUrl + "' height=50 width=50 />");
                 $("#eventEditLink").html(response.data.EditLink);
+                $(".selected-event").show();
                 $(".selected-item").show();
                 $(".selected-event-dish").hide();
                 $(".selected-meal-schedule").hide();

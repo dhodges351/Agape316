@@ -29,79 +29,6 @@ else
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    .searchResultsHeader
-    {
-        font-weight:bold;
-        text-align: left;
-    }
-
-    .editLink {
-        text-align: center;
-    }
-
-    table {
-        border: 1px solid black;
-        border-collapse: collapse;
-        width: 100%;
-        overflow: scroll;
-    }
-
-    .info-message {
-        color: white;
-        font-size: large;
-    }
-
-    .selected-item {
-        min-height: 200px;
-        height: auto;
-        display: none;
-        background-image: url('/img/lightbluesky.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .selected-event-dish {
-        min-height: 200px;
-        height: auto;
-        display: none;
-        background-image: url('/img/lightbluesky.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .selected-meal-schedule {
-        min-height: 200px;
-        height: auto;
-        display: none;
-        background-image: url('/img/lightbluesky.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .selected-meal-delivery {
-        min-height: 200px;
-        height: auto;
-        display: none;
-        background-image: url('/img/lightbluesky.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .tbl-header {
-        font-weight: bold;
-        font-size: medium;
-    }
-
-    .form-group-label {
-        font-weight: bold;
-    }
-</style>
-
 <div class="container-fluid bg-dark text-light my-5 py-5">
    <div class="container py-5">
         <div class="row align-items-center g-5">
@@ -133,8 +60,19 @@ else
     </div>    
 </div>
 
+<div class="container-xxl py-5">
+    <a id="previously-saved"></a>
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal mb-4">Previously Saved</h5>
+    </div>    
+    @await Component.InvokeAsync("PreviouslySaved")
+    <partial name="_EventPartial" />
+    <partial name="_EventDishPartial" />
+    <partial name="_MealSchedulePartial" />
+    <partial name="_MealDeliveryPartial" />
+</div>
 
-    <div class="row">
+<div class="row">
         <div class="col-md-12"> 
             <a id="team-members"></a>
             <div class="container-xxl py-5 pb-3">
@@ -263,7 +201,7 @@ else
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
-                <h1 class="mb-5">Contact Us For Any Query</h1>
+                <h1 class="mb-5">We'd Love to Hear From You!</h1>
             </div>
             <div class="row g-4">
                 <div class="col-12">
@@ -696,133 +634,7 @@ else
 </div> *@
 <!-- Deliver Meals End -->
 
-<!-- About Start -->
-@* <div class="container-xxl py-5">
-    <a id="about-us"></a>
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
-                    </div>
-                    <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG" style="margin-top: 25%;">
-                    </div>
-                    <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
-                    </div>
-                    <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                <h1 class="mb-4">Agape 316 Ministry</h1>
-                <p class="mb-4">Our aim is to serve the members of Sand Ridge Baptist Church and people in surrounding communities.</p>
-                <p class="mb-4">We welcome new members and hope you will visit us at Sand Ridge Baptist Church and join our ministry!</p>                
-                <a class="btn btn-primary py-3 px-5 mt-2" href="#" onclick="showReadMoreModal()">Read More</a>
-                <div class="modal fade" id="readMoreModal" tabindex="-1" aria-labelledby="readMoreModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content rounded-0 readMoreModalContent">
-                            <div class="modal-header eventModalHeader">
-                                <h5 class="modal-title" id="readMoreModalLabel">About Sand Ridge Agape Ministry</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">                                
-                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
-<!-- About End -->
 
-<!-- Team Start -->
-@* <div class="row">
-    <div class="col-md-12"> 
-        <a id="team-members"></a>
-        <div class="container-xxl py-5 pb-3">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Agape 316 Ministry</h5>
-                    <h1 class="mb-5">Our Caring Team Members</h1>
-                    <div class="container">                
-                        <div class="row g-4">
-                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="team-item text-center rounded overflow-hidden">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/users/team-1.jpg" alt="">
-                                    </div>
-                                    <h5 class="mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="team-item text-center rounded overflow-hidden">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/users/team-2.jpg" alt="">
-                                    </div>
-                                    <h5 class="mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="team-item text-center rounded overflow-hidden">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/users/team-3.jpg" alt="">
-                                    </div>
-                                    <h5 class="mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                                <div class="team-item text-center rounded overflow-hidden">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/users/team-4.jpg" alt="">
-                                    </div>
-                                    <h5 class="mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-    </div>
-        </div>
-    </div>
-</div> *@
-<!-- Team End -->
 
 @* <div class="container-xxl py-4">
     <a id="previously-saved"></a>
@@ -836,74 +648,6 @@ else
     <partial name="_MealDeliveryPartial" />
 </div> *@
 
-<!-- Contact Us Start -->
-@* <div class="container-xxl py-5">
-    <a id="contact-us"></a>
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
-            <h1 class="mb-5">Contact Us For Any Query</h1>
-        </div>
-        <div class="row g-4">
-            <div class="col-12">
-                <div class="row gy-4">
-                    <div class="col-md-4">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Planning/Scheduling</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:sandridgeagape@gmail.com">sandridgeagape@gmail.com</a></p>
-                    </div>
-                    <div class="col-md-4">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:sandridgeagape@gmail.com">sandridgeagape@gmail.com</a></p>
-                    </div>
-                    <div class="col-md-4">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:dhodges351@gmail.com">dhodges351@gmail.com</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8768529044696!2d-88.48190346115236!3d35.68003413015614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887c6cd2d480f4b5%3A0x191f19d2c0aa746!2sSand%20Ridge%20Baptist%20Church!5e0!3m2!1sen!2sus!4v1686178361232!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="col-md-6">
-                <div class="wow fadeInUp" data-wow-delay="0.2s">
-                    <form asp-controller="Home" asp-action="ContactUs" method="post">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">                                   
-                                    <input asp-for="Name" class="form-control" placeholder="Your Name" />
-                                    <label for="Name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">                                    
-                                    <input asp-for="Email" type="email" class="form-control" placeholder="Your Name" />
-                                    <label for="Email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">                                    
-                                    <input asp-for="Subject" class="form-control" placeholder="Subject" />
-                                    <label for="Subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" asp-for="Message" rows="5"></textarea>
-                                    <label for="Message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                        <input type="hidden" asp-for="UserId" class="form-control" placeholder="Subject" value="@userId" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
-<!-- Contact End -->
 
 <script>
     var isLoggedIn = false;

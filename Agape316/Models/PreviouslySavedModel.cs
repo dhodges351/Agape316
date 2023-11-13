@@ -26,7 +26,10 @@ namespace Agape316.Models
                 var agapeEventModels = new List<AgapeEventModel>();
                 foreach (var agapeEvent in events)
                 {
-                    agapeEventModels.Add(new AgapeEventModel { EventId = agapeEvent.Id, Title = agapeEvent.Title });
+                    if (!string.IsNullOrEmpty(agapeEvent.Title))
+                    {
+						agapeEventModels.Add(new AgapeEventModel { EventId = agapeEvent.Id, Title = agapeEvent.Title });
+					}                    
                 }
                 Events = new SelectList(agapeEventModels, "EventId", "Title");
             }
@@ -37,7 +40,10 @@ namespace Agape316.Models
                 var eventDishModels = new List<EventDishModel>();
                 foreach (var eventDish in eventDishes)
                 {
-                    eventDishModels.Add(new EventDishModel { Id = eventDish.Id, Title = eventDish.Title });
+					if (!string.IsNullOrEmpty(eventDish.Title))
+					{
+						eventDishModels.Add(new EventDishModel { Id = eventDish.Id, Title = eventDish.Title });
+					}					
                 }
                 EventDishes = new SelectList(eventDishModels, "Id", "Title");
             }
@@ -48,7 +54,10 @@ namespace Agape316.Models
                 var mealScheduleModels = new List<MealScheduleModel>();
                 foreach (var mealSchedule in mealSchedules)
                 {
-                    mealScheduleModels.Add(new MealScheduleModel { Id = mealSchedule.Id, Title = mealSchedule.Title });
+					if (!string.IsNullOrEmpty(mealSchedule.Title))
+					{
+						mealScheduleModels.Add(new MealScheduleModel { Id = mealSchedule.Id, Title = mealSchedule.Title });
+					}					
                 }
                 MealSchedules = new SelectList(mealScheduleModels, "Id", "Title");
             }
