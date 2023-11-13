@@ -128,6 +128,9 @@
                 $(".selected-event-dish").hide();
                 $(".selected-meal-schedule").hide();
                 $(".selected-meal-delivery").hide();
+                $("#ddlEventDishes").val("");
+                $("#ddlMealSchedules").val("");
+                $("#ddlMealDeliveries").val("");                
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -169,6 +172,9 @@
                 $(".selected-item").hide();
                 $(".selected-meal-schedule").hide();
                 $(".selected-meal-delivery").hide();
+                $("#ddlEvents").val("");
+                $("#ddlMealSchedules").val("");
+                $("#ddlMealDeliveries").val(""); 
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -210,6 +216,9 @@
                 $(".selected-item").hide();
                 $(".selected-event-dish").hide();
                 $(".selected-meal-delivery").hide();
+                $("#ddlEvents").val("");
+                $("#ddlEventDishes").val("");
+                $("#ddlMealDeliveries").val(""); 
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -244,6 +253,9 @@
                 $(".selected-meal-schedule").hide();
                 $(".selected-item").hide();
                 $(".selected-event-dish").hide();
+                $("#ddlEvents").val("");
+                $("#ddlEventDishes").val("");
+                $("#ddlMealSchedules").val("");
             },
             failure: function (response) {
                 alert('Get selected item details failed');
@@ -254,19 +266,19 @@
         });
     }
 
-    $(document).ready(function () {        
-        if ($("#logged").val() == "true") {
-            $('#ddlEvents').attr('disabled', false);
-            $('#ddlEventDishes').attr('disabled', false);
-            $('#ddlMealSchedules').attr('disabled', false);
-            $('#ddlMealDeliveries').attr('disabled', false);
-        }
-        else {
-            $('#ddlEvents').attr('disabled', true);
-            $('#ddlEventDishes').attr('disabled', true);
-            $('#ddlMealSchedules').attr('disabled', true);
-            $('#ddlMealDeliveries').attr('disabled', true);
-        }
-    });
+    // $(document).ready(function () {        
+    //     if ($("#logged").val() == "true") {
+    //         $('#ddlEvents').attr('disabled', false);
+    //         $('#ddlEventDishes').attr('disabled', false);
+    //         $('#ddlMealSchedules').attr('disabled', false);
+    //         $('#ddlMealDeliveries').attr('disabled', false);
+    //     }
+    //     else {
+    //         $('#ddlEvents').attr('disabled', true);
+    //         $('#ddlEventDishes').attr('disabled', true);
+    //         $('#ddlMealSchedules').attr('disabled', true);
+    //         $('#ddlMealDeliveries').attr('disabled', true);
+    //     }
+    // });
 </script>
 
