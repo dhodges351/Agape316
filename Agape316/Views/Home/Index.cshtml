@@ -42,14 +42,13 @@ else
                 </p>
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select an Action
+                        Select an Action
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/Event/Index">Create an Event</a>
-                    <a class="dropdown-item" href="#" onclick="showEventDishModal()">Bring a Dish</a>
-                    <a class="dropdown-item" href="#" onclick="showScheduleMealsModal()">Schedule Meals</a>
-                    <a class="dropdown-item" href="#" onclick="showDeliverMealsModal()">Deliver Meals</a>
-                    <a class="dropdown-item" href="#">View All</a>
+                        <a class="dropdown-item" href="#" onclick="showPlanEventModal()">Plan Event</a>
+                        <a class="dropdown-item" href="#" onclick="showEventDishModal()">Bring a Dish</a>
+                        <a class="dropdown-item" href="#" onclick="showScheduleMealsModal()">Schedule Meals</a>
+                        <a class="dropdown-item" href="#" onclick="showDeliverMealsModal()">Deliver Meals</a>                        
                     </div>
                 </div>
             </div>
@@ -60,7 +59,7 @@ else
     </div>    
 </div>
 
-<div class="container-xxl py-5">
+<div class="container-xxl py-5 mx-4">
     <a id="previously-saved"></a>
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal mb-4">Previously Saved</h5>
@@ -72,122 +71,118 @@ else
     <partial name="_MealDeliveryPartial" />
 </div>
 
-<div class="row">
+<div class="container-xxl py-5 my-5">
+    <div class="row">
         <div class="col-md-12"> 
-            <a id="team-members"></a>
-            <div class="container-xxl py-5 pb-3">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">[Ministry Name]</h5>
-                        <h1 class="mb-5">Our Caring Team Members</h1>
-                        <div class="container">                
-                            <div class="row g-4">
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <div class="team-item text-center rounded overflow-hidden">
-                                        <div class="rounded-circle overflow-hidden m-4">
-                                            <img class="img-fluid" src="img/users/team-1.jpg" alt="">
-                                        </div>
-                                        <h5 class="mb-0">Full Name</h5>
-                                        <small>Designation</small>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
+           <a id="team-members"></a>
+           <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">[Ministry Name]</h5>
+                <h1 class="mb-5">Our Caring Team Members</h1>
+                <div class="container">                
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="team-item text-center rounded overflow-hidden">
+                                <div class="rounded-circle overflow-hidden m-4">
+                                    <img class="img-fluid" src="img/users/team-1.jpg" alt="">
                                 </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                    <div class="team-item text-center rounded overflow-hidden">
-                                        <div class="rounded-circle overflow-hidden m-4">
-                                            <img class="img-fluid" src="img/users/team-2.jpg" alt="">
-                                        </div>
-                                        <h5 class="mb-0">Full Name</h5>
-                                        <small>Designation</small>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
+                                <h5 class="mb-0">Full Name</h5>
+                                <small>Designation</small>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
                                 </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                    <div class="team-item text-center rounded overflow-hidden">
-                                        <div class="rounded-circle overflow-hidden m-4">
-                                            <img class="img-fluid" src="img/users/team-3.jpg" alt="">
-                                        </div>
-                                        <h5 class="mb-0">Full Name</h5>
-                                        <small>Designation</small>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                                    <div class="team-item text-center rounded overflow-hidden">
-                                        <div class="rounded-circle overflow-hidden m-4">
-                                            <img class="img-fluid" src="img/users/team-4.jpg" alt="">
-                                        </div>
-                                        <h5 class="mb-0">Full Name</h5>
-                                        <small>Designation</small>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>  
                             </div>
                         </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="team-item text-center rounded overflow-hidden">
+                                <div class="rounded-circle overflow-hidden m-4">
+                                    <img class="img-fluid" src="img/users/team-2.jpg" alt="">
+                                </div>
+                                <h5 class="mb-0">Full Name</h5>
+                                <small>Designation</small>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="team-item text-center rounded overflow-hidden">
+                                <div class="rounded-circle overflow-hidden m-4">
+                                    <img class="img-fluid" src="img/users/team-3.jpg" alt="">
+                                </div>
+                                <h5 class="mb-0">Full Name</h5>
+                                <small>Designation</small>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="team-item text-center rounded overflow-hidden">
+                                <div class="rounded-circle overflow-hidden m-4">
+                                    <img class="img-fluid" src="img/users/team-4.jpg" alt="">
+                                </div>
+                                <h5 class="mb-0">Full Name</h5>
+                                <small>Designation</small>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>  
                     </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
     
-    <div class="container-xxl py-5">
-        <a id="about-us"></a>
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
-                        </div>
+<div class="container-xxl py-5 my-5">
+    <a id="about-us"></a>
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-3.jpg">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/about2.JPEG">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.5s" src="img/about-4.jpg">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about4.jpg">
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                    <h1 class="mb-4">[Ministry Name]</h1>
-                    <p class="mb-4">Our aim is to serve the members of [Church Name] and people in surrounding communities.</p>
-                    <p class="mb-4">We welcome new members and hope you will visit us at [Church Name] soon!</p>                
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="#" onclick="showReadMoreModal()">Read More</a>
-                    <div class="modal fade" id="readMoreModal" tabindex="-1" aria-labelledby="readMoreModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content rounded-0 readMoreModalContent">
-                                <div class="modal-header eventModalHeader">
-                                    <h5 class="modal-title" id="readMoreModalLabel">About [Church Name]</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">                                
-                                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
-                                    </p>
-                                </div>
+            </div>
+            <div class="col-lg-6">
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
+                <h1 class="mb-4">[Ministry Name]</h1>
+                <p class="mb-4">Our aim is to serve the members of [Church Name] and people in surrounding communities.</p>
+                <p class="mb-4">We welcome new members and hope you will visit us at [Church Name] soon!</p>                
+                <a class="btn btn-primary py-3 px-5 mt-2" href="#" onclick="showReadMoreModal()">Read More</a>
+                <div class="modal fade" id="readMoreModal" tabindex="-1" aria-labelledby="readMoreModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-0 readMoreModalContent">
+                            <div class="modal-header eventModalHeader">
+                                <h5 class="modal-title" id="readMoreModalLabel">About [Church Name]</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">                                
+                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -195,332 +190,76 @@ else
             </div>
         </div>
     </div>
-
-    <div class="container-xxl py-5">
-        <a id="contact-us"></a>
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
-                <h1 class="mb-5">We'd Love to Hear From You!</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-12">
-                    <div class="row gy-4">
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">Planning/Scheduling</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
-                        </div>
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
-                        </div>
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:technicalsupport@gmail.com">technicalsupport@gmail.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51921.46466975783!2d-89.30303552753828!3d35.576132302110324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887edc61d9074173%3A0xb0be2562a6ffec5d!2sBrownsville%2C%20TN%2038012!5e0!3m2!1sen!2sus!4v1699839982486!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="col-md-6">
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                        <form asp-controller="Home" asp-action="ContactUs" method="post">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">                                   
-                                        <input asp-for="Name" class="form-control" placeholder="Your Name" />
-                                        <label for="Name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">                                    
-                                        <input asp-for="Email" type="email" class="form-control" placeholder="Your Name" />
-                                        <label for="Email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">                                    
-                                        <input asp-for="Subject" class="form-control" placeholder="Subject" />
-                                        <label for="Subject">Subject</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a message here" asp-for="Message" rows="5"></textarea>
-                                        <label for="Message">Message</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                                </div>
-                            </div>
-                            <input type="hidden" asp-for="UserId" class="form-control" placeholder="Subject" value="@userId" />
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- 
-
-    <div class="modal fade" id="planEventModal" tabindex="-1" aria-labelledby="planEventModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0 eventModalContent">
-                <div class="modal-header eventModalHeader">
-                    <h5 class="modal-title" id="planEventModalLabel">Plan Event</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">                
-                    @await Component.InvokeAsync("Event")  
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="eventDishModal" tabindex="-1" aria-labelledby="eventDishModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0 eventModalContent">
-                <div class="modal-header eventModalHeader">
-                    <h5 class="modal-title" id="eventDishModalLabel">Bring a Dish</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @await Component.InvokeAsync("EventDish")                 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="scheduleMealsModal" tabindex="-1" aria-labelledby="scheduleMealsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0 scheduleMealsModalContent">
-                <div class="modal-header eventModalHeader">
-                    <h5 class="modal-title" id="scheduleMealsModalLabel">Schedule Meals</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @await Component.InvokeAsync("MealSchedule")
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="deliverMealsModal" tabindex="-1" aria-labelledby="deliverMealsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0 deliverMealsModalContent">
-                <div class="modal-header eventModalHeader">
-                    <h5 class="modal-title" id="deliverMealsModalLabel">Deliver Meals</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @await Component.InvokeAsync("MealDelivery")
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="recipientInfoModal" tabindex="-1" aria-labelledby="recipientInfoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0 recipientInfoModalContent">
-                <div class="modal-header eventModalHeader">
-                    <h5 class="modal-title" id="recipientInfoModalLabel">Recipient Info</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">                
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Full Name: </label>
-                                <label id="recipientFullName"></label>                        
-                            </div>
-                            <div class="form-group">
-                                <label>Address: </label>
-                                <label id="recipientAddress">Recipient Address</label>                          
-                            </div>                       
-                            <div class="form-group">
-                                <label>Food Allergies: </label>
-                                <label id="recipientFoodAllergies"></label>                           
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-
-
-
-
-<!-- Navbar & Hero Start --> 
-@* <div class="container-xxl top-container bg-dark">    
-    <div class="container top-inner-container"> 
-        <div class="row align-items-start">
-            <div class="col-md-12">
-                <p class="mainPara">
-                    <span class="welcome">Welcome</span> to the Agape Ministry website!
-                    Our mission is to show God's love to those who enter our doors, 
-                    whether as a leader, a member, or a guest.
-                </p>               
-            </div>            
+<div class="container-xxl py-5">
+    <a id="contact-us"></a>
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
+            <h1 class="mb-5">We'd Love to Hear From You!</h1>
         </div>
-        <div class="row align-items-start">
-            <form asp-controller="Home" asp-action="Index" method="post" role="form" id="homeSearchForm">
-                <input asp-for="SearchQuery" id="txtSearch" type="text" class="homeSearch" placeholder="Search..." onfocus="clearThis(this)" />
-                
-                <input type="hidden" asp-for="EventCount" value="@Model.EventCount" />
-                <input type="hidden" asp-for="EventDishCount" value="@Model.EventDishCount" />
-                <input type="hidden" asp-for="MealScheduleCount" value="@Model.MealScheduleCount" />
-                <input type="hidden" asp-for="MealDeliveryCount" value="@Model.MealDeliveryCount" />
-                
-                <button type="submit" class="btn btn-forumSearch" onclick="return checkEntry()">
-                    <i class="material-icons">search</i>
-                </button>
-                <div id="divSearchResults" class="container-xxl bg-light py-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @if (Model.Events != null && Model.Events.Any()
-                            || (Model.EventDishes != null && Model.EventDishes.Any())
-                            || (Model.MealSchedules != null && Model.MealSchedules.Any())
-                            || (Model.MealDeliveries != null && Model.MealDeliveries.Any()))
-                            {                                
-                                <h3>Search Results</h3>
-                                <table id="searchResultsTable" cellpadding="2" cellspacing="2">
-                                    <tr>
-                                        <td class="searchResultsHeader">Type</td>
-                                        <td class="searchResultsHeader">Title</td>
-                                        <td class="searchResultsHeader">Description</td>
-                                        <td class="searchResultsHeader">Contact Email</td>
-                                        <td class="searchResultsHeader">Event Date/Time</td>                                        
-                                    </tr>
-                                    @if (Model.Events != null && Model.Events.Any())
-                                    {
-                                        @foreach (var evt in Model.Events)
-                                        {
-                                            <tr>
-                                                <td>Event</td>
-                                                <td>@evt.Title</td>
-                                                <td>@evt.Description</td>
-                                                <td>@evt.ContactEmail</td>
-                                                <td>@evt.EventDate.ToShortDateString() @evt.StartTime - @evt.EndTime</td>                                                
-                                            </tr>
-                                        }
-                                    }                                    
-                                    @if (Model.EventDishes != null && Model.EventDishes.Any())
-                                    {
-                                        @foreach (var evtDish in Model.EventDishes)
-                                        {
-                                            <tr>
-                                                <td>Event Dish</td>
-                                                <td>@evtDish.Title</td>
-                                                <td>@evtDish.Description</td>
-                                                <td>@evtDish.ContactEmail</td>
-                                                <td>@evtDish.Created.ToShortDateString()</td>
-                                            </tr>
-                                        }
-                                    }
-                                    @if (Model.MealSchedules != null && Model.MealSchedules.Any())
-                                    {
-                                        @foreach (var sched in Model.MealSchedules)
-                                        {
-                                            <tr>
-                                                <td>Meal Schedule</td>
-                                                <td>@sched.Title</td>
-                                                <td>@sched.Description</td>
-                                                <td>@sched.CoordEmail</td>
-                                                <td>@sched.StartDate.ToShortDateString() - @sched.EndDate.ToShortDateString()</td>                                                
-                                            </tr>
-                                        }
-                                    }
-                                    @if (Model.MealDeliveries != null && Model.MealDeliveries.Any())
-                                    {
-                                        @foreach (var del in Model.MealDeliveries)
-                                        {
-                                            <tr>
-                                                <td>Meal Delivery</td>
-                                                <td>@del.FirstName</td>
-                                                <td>@del.LastName</td>
-                                                <td>@del.Email</td>
-                                                <td>@del.DeliveryDate.ToShortDateString()</td>
-                                            </tr>
-                                        }
-                                    }
-                                </table>
-                            }
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Planning/Scheduling</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:technicalsupport@gmail.com">technicalsupport@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51921.46466975783!2d-89.30303552753828!3d35.576132302110324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887edc61d9074173%3A0xb0be2562a6ffec5d!2sBrownsville%2C%20TN%2038012!5e0!3m2!1sen!2sus!4v1699839982486!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-controller="Home" asp-action="ContactUs" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">                                   
+                                    <input asp-for="Name" class="form-control" placeholder="Your Name" />
+                                    <label for="Name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">                                    
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="Your Name" />
+                                    <label for="Email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">                                    
+                                    <input asp-for="Subject" class="form-control" placeholder="Subject" />
+                                    <label for="Subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" asp-for="Message" rows="5"></textarea>
+                                    <label for="Message">Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
                         </div>
-                    </div>
+                        <input type="hidden" asp-for="UserId" class="form-control" placeholder="Subject" value="@userId" />
+                    </form>
                 </div>
-            </form>            
+            </div>
         </div>
-        
-        @if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name) && User.IsInRole("Admin"))
-        {
-            <div class="row gx-4">
-                <div class="col-lg-6 text-center py-3">
-                    <div>
-                        <p class="header-inner-left">
-
-                        </p>
-                        <a href="#" onclick="showPlanEventModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Plan An Event</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center py-3">
-                    <div>
-                        <p class="header-inner-right">
-                        </p>
-                        <a href="#" onclick="showEventDishModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row gx-4">
-                <div class="col-lg-6 text-center py-3">
-                    <div>
-                        <p class="header2-inner-left">
-
-                        </p>
-                        <a href="#" onclick="showScheduleMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Schedule Meals</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center py-3">
-                    <div>
-                        <p class="header2-inner-right">
-                        </p>
-                        <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
-                    </div>
-                </div>
-            </div>
-        }
-        else if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name))
-        {
-            <div class="row gx-4">
-                <div class="col-lg-6 text-center py-3">
-                    <div>
-                        <p class="header-inner-right">
-                        </p>
-                        <a href="#" onclick="showEventDishModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Bring A Dish</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center py-3">
-                    <p class="header2-inner-right">
-                    </p>
-                    <a href="#" onclick="showDeliverMealsModal()" class="btn btn-primary py-sm-3 px-sm-5 me-3">Deliver Meals</a>
-                </div>
-            </div>
-        }    
-        else
-        {
-            <div class="row gx-4">
-                <div class="col-lg-12 text-center py-3">
-                    <div class="info-message">
-                        Please Log In or Register to View or Create: an Event, Bring a Dish, Schedule a Meal, or Deliver a Meal. 
-                        Thank you.
-                    </div>
-                </div>                
-            </div>
-        }        
     </div>
-</div> *@
-<!-- Navbar & Hero End -->
-@* <div class="modal fade" id="planEventModal" tabindex="-1" aria-labelledby="planEventModalLabel" aria-hidden="true">
+</div>
+ 
+<div class="modal fade" id="planEventModal" tabindex="-1" aria-labelledby="planEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content rounded-0 eventModalContent">
             <div class="modal-header eventModalHeader">
@@ -599,55 +338,7 @@ else
             </div>
         </div>
     </div>
-</div> *@
-
-<!-- Service Start -->
-@* <div class="container-xxl py-4">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Events</h5>        
-    </div>    
-    @await Component.InvokeAsync("EventList")
 </div>
-<div class="container-xxl py-4">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Latest Dishes</h5>
-    </div>
-    @await Component.InvokeAsync("EventDishList")
-</div> *@
-<!-- Service End -->
-
-<!-- Schedule Meals Start -->
-@* <div class="container-xxl py-4">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Schedules</h5>
-    </div>
-    @await Component.InvokeAsync("MealScheduleList")	
-</div> *@
-<!-- Schedule Meals End -->
-
-<!-- Deliver Meals Start -->
-@* <div class="container-xxl py-4">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Meal Deliveries</h5>
-    </div>
-    @await Component.InvokeAsync("MealDeliveryList")	
-</div> *@
-<!-- Deliver Meals End -->
-
-
-
-@* <div class="container-xxl py-4">
-    <a id="previously-saved"></a>
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Previously Saved</h5>
-    </div>    
-    @await Component.InvokeAsync("PreviouslySaved")
-    <partial name="_EventPartial" />
-    <partial name="_EventDishPartial" />
-    <partial name="_MealSchedulePartial" />
-    <partial name="_MealDeliveryPartial" />
-</div> *@
-
 
 <script>
     var isLoggedIn = false;

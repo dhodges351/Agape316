@@ -1,11 +1,6 @@
 ﻿@model Agape316.Models.EventModel
 @using Agape316.Enums
 
-
-@{
-    Layout = "/Views/Shared/_AdminLayout.cshtml";
-}
-
 <div class="row">
     <div class="col-md-12">
         <form asp-controller="Event" asp-action="AddEditEvent" method="post" id="eventForm" enctype="multipart/form-data" onsubmit="return checkCategory();">

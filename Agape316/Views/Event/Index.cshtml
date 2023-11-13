@@ -1,14 +1,17 @@
 ﻿@model Agape316.Models.EventModel
 @using Agape316.Enums 
 
-<p style="height:95px;">
+<p class="create-top">
 </p>
-<div class="container-xxl"> 
-    <br />
-    <div class="row text-center"><h3>Create Event</h3></div>
-    <div class="row align-items-center">
-        <div class="col-md-12" style="padding-left:100px;padding-right:100px;">
-            <form asp-controller="Event" asp-action="AddEditEvent" method="post" id="eventForm" enctype="multipart/form-data" onsubmit="return checkCategory();">
+<div class="container"> 
+    <br />  
+    <div class="row mx-5 my-2">  
+        <div class="col-8 create-header-div">Create Event</div>
+        <div class="col-4 create-header-back"><a href="/">Back</a></div>        
+    </div>   
+    <div class="row align-items-center mx-5">
+        <div class="col-md-12 create-event-form">
+            <form asp-controller="Event" class="my-5  mx-5" asp-action="AddEditEvent" method="post" id="eventForm" enctype="multipart/form-data" onsubmit="return checkCategory();">
                 <div class="form-group">
                     <label asp-for="Title">Title</label>
                     <input asp-for="Title" class="form-control" placeholder="Event title" />
