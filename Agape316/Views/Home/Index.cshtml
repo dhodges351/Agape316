@@ -102,51 +102,38 @@ else
     }
 </style>
 
-<div class="container-xxl bg-white p-0">
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-
-    <!-- Navbar & Hero Start -->
-    <div class="container-xxl position-relative p-0"> 
-        <div class="container-xxl py-5 bg-dark mb-5">
-            <div class="container my-5 py-5">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="display-3 text-white animated slideInLeft">Welcome to Our<br>Ministry!</h1>
-                        <p class="text-white animated slideInLeft mb-4 pb-2">
-                            The [Ministry Name] mission is to show God's love to those who enter our doors, 
-                            whether as a leader, a member, or a guest. Using our self-service website
-                            you can: Create an Event, Create a Meal Schedule, Create a Delivery Schedule,
-                            or sign up to Bring a Dish.
-                        </p>
-                       <div class="dropdown">
-                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select an Action
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/Event/Index" @* onclick="showPlanEventModal() *@">Create an Event</a>
-                            <a class="dropdown-item" href="#" onclick="showEventDishModal()">Bring a Dish</a>
-                            <a class="dropdown-item" href="#" onclick="showScheduleMealsModal()">Schedule Meals</a>
-                            <a class="dropdown-item" href="#" onclick="showDeliverMealsModal()">Deliver Meals</a>
-                            <a class="dropdown-item" href="#">View All</a>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center text-lg-end overflow-hidden">                        
-                        <img class="img-fluid mt-4" src="img/agapeevents.jpg" alt="events">
+<div class="container-fluid bg-dark text-light my-5 py-5">
+   <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 text-white animated slideInLeft">Welcome to Our<br>Ministry!</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2">
+                    The [Ministry Name] mission is to show God's love to those who enter our doors, 
+                    whether as a leader, a member, or a guest. Using our self-service website
+                    you can: Create an Event, Create a Meal Schedule, Create a Delivery Schedule,
+                    or sign up to Bring a Dish.
+                </p>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select an Action
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/Event/Index">Create an Event</a>
+                    <a class="dropdown-item" href="#" onclick="showEventDishModal()">Bring a Dish</a>
+                    <a class="dropdown-item" href="#" onclick="showScheduleMealsModal()">Schedule Meals</a>
+                    <a class="dropdown-item" href="#" onclick="showDeliverMealsModal()">Deliver Meals</a>
+                    <a class="dropdown-item" href="#">View All</a>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6 text-center text-lg-end overflow-hidden">                        
+                <img class="img-fluid mt-4" src="img/agapeevents.jpg" alt="events">
+            </div>
         </div>
-    </div>
-    <!-- Navbar & Hero End -->
+    </div>    
+</div>
 
-    <!-- Team Start -->
+
     <div class="row">
         <div class="col-md-12"> 
             <a id="team-members"></a>
@@ -220,9 +207,7 @@ else
             </div>
         </div>
     </div>
-    <!-- Team End -->
-
-    <!-- About Start -->
+    
     <div class="container-xxl py-5">
         <a id="about-us"></a>
         <div class="container">
@@ -272,9 +257,7 @@ else
             </div>
         </div>
     </div>
-    <!-- About End -->
 
-    <!-- Contact Us Start -->
     <div class="container-xxl py-5">
         <a id="contact-us"></a>
         <div class="container">
@@ -287,20 +270,20 @@ else
                     <div class="row gy-4">
                         <div class="col-md-4">
                             <h5 class="section-title ff-secondary fw-normal text-start text-primary">Planning/Scheduling</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:sandridgeagape@gmail.com">sandridgeagape@gmail.com</a></p>
+                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
                         </div>
                         <div class="col-md-4">
                             <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:sandridgeagape@gmail.com">sandridgeagape@gmail.com</a></p>
+                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:yourchurch@gmail.com">yourchurch@gmail.com</a></p>
                         </div>
                         <div class="col-md-4">
                             <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:dhodges351@gmail.com">dhodges351@gmail.com</a></p>
+                            <p><i class="fa fa-envelope-open text-primary me-2"></i><a href="mailto:technicalsupport@gmail.com">technicalsupport@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8768529044696!2d-88.48190346115236!3d35.68003413015614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887c6cd2d480f4b5%3A0x191f19d2c0aa746!2sSand%20Ridge%20Baptist%20Church!5e0!3m2!1sen!2sus!4v1686178361232!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51921.46466975783!2d-89.30303552753828!3d35.576132302110324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887edc61d9074173%3A0xb0be2562a6ffec5d!2sBrownsville%2C%20TN%2038012!5e0!3m2!1sen!2sus!4v1699839982486!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-md-6">
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
@@ -341,7 +324,7 @@ else
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+ 
 
     <div class="modal fade" id="planEventModal" tabindex="-1" aria-labelledby="planEventModalLabel" aria-hidden="true">
         <div class="modal-dialog">

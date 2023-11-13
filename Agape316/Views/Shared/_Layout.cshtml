@@ -34,9 +34,9 @@
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container-xxl position-relative bg-white p-0">  
+    <div class="container-fluid">   
         <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-0">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
                  <div class="container">
                     <a id="logoLink" href="#" class="navbar-brand p-0">
                         <h1 class="text-primary m-0"><img src="~/img/agape316logo.png" alt="logo" />[Ministry Name]</h1>
@@ -50,8 +50,7 @@
                             <a rel="noopener" href="#about-us" class="nav-item nav-link">About</a>
                             <a rel="noopener" href="#team-members" class="nav-item nav-link">Team</a>
                             <a rel="noopener" href="#contact-us" class="nav-item nav-link">Contact</a>
-                            @* <a rel="noopener" href="#previously-saved" class="nav-item nav-link">Listings</a> *@
-                            @{
+                             @{
                                 if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <div class="nav-item dropdown">
@@ -68,15 +67,16 @@
                 </div>
             </nav>
         </header>
-        <div class="container-xxl position-relative p-0">           
-            <main role="main">
-                @RenderBody()  
-            </main>
-        </div>
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <div class="container-fluid main-container">           
+        <main role="main">
+            @RenderBody()  
+        </main>
     </div>
 
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -89,9 +89,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker" aria-hidden="true"></i> 7535 US-412 Lexington, TN</p>
-                    <p class="mb-2"><i class="fa fa-phone"></i> 731-968-4597</p>
-                    <a href="https://www.sandridgebaptist.com" target="_blank">https://www.sandridgebaptist.com</a>
+                    <p class="mb-2"><i class="fa fa-map-marker" aria-hidden="true"></i> 1234 US-222 YourTown, State</p>
+                    <p class="mb-2"><i class="fa fa-phone"></i> XXX-XXX-XXXX</p>
+                    <a href="#" target="_blank">https://www.yourchurchname.com</a>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">SRBC</h4>
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Your Church</h4>
                     <h5 class="text-light fw-normal">Wednesday Evening</h5>
                     <p>Meal 5:15 PM</p>
                     <h5 class="text-light fw-normal">Bible Study</h5>

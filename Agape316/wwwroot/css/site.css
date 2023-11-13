@@ -57,6 +57,11 @@ td {
     font-style: italic;
 }
 
+.main-container {
+    margin: 0;
+    padding: 0;
+}
+
 div.container-xxl.top-container.bg-dark {
     padding-top: 15px;
     padding-bottom: 5px;
