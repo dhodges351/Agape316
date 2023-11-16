@@ -66,6 +66,9 @@ html {
 }
 
 @media screen and (max-width: 991px) {
+    .welcome-container {
+        margin-top: 0 !important;
+    }
 
     div.col-md-6.left-col {        
         margin-left: 150px;
@@ -96,6 +99,10 @@ html {
     div.col-md-6.right-col {       
         margin-left: 25px;
     }
+}
+
+.welcome-container {
+    margin-top: 100px;
 }
 
 
