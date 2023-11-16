@@ -162,6 +162,21 @@ div.container.selected-item {
     font-size: medium;
 }
 
+
+.form-group {
+    text-align: left;
+}
+
+.left-col {
+    margin-left: 300px;
+    width: 400px !important;
+}
+
+.right-col {
+    margin-left: 50px;
+    width: 400px !important;
+}
+
 .form-group-label {
     font-weight: bold;
 }
