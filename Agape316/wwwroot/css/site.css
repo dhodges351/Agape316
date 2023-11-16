@@ -6,7 +6,7 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-  }    
+  }
 }
 
 @media (max-width: 991px) {
@@ -39,7 +39,74 @@ html {
 
         table#searchResultsTable td {
             white-space: nowrap;
-        }    
+        }
+
+}
+
+@media screen and (max-width: 1399px) {
+
+    div.col-md-6.left-col {        
+        margin-left: 200px;
+    }
+
+    div.col-md-6.right-col {        
+        margin-left: 25px;
+    } 
+}
+
+@media screen and (max-width: 1199px) {
+
+    div.col-md-6.left-col {        
+        margin-left: 100px;
+    }
+
+    div.col-md-6.right-col {        
+        margin-left: 15px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    div.col-md-6.left-col {        
+        margin-left: 150px;
+    }
+
+    div.col-md-6.right-col {        
+        margin-left: 150px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    div.col-md-6.left-col {        
+        margin-left: 100px;
+    }
+
+    div.col-md-6.right-col {        
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 567px) {
+
+    div.col-md-6.left-col {        
+        margin-left: 25px;
+    }
+
+    div.col-md-6.right-col {       
+        margin-left: 25px;
+    }
+}
+
+
+.left-col {
+    margin-left: 300px;
+    width: 400px !important;
+}
+
+.right-col {
+    margin-left: 50px;
+    width: 400px !important;
 }
 
 .hero-header img {
@@ -165,16 +232,6 @@ div.container.selected-item {
 
 .form-group {
     text-align: left;
-}
-
-.left-col {
-    margin-left: 300px;
-    width: 400px !important;
-}
-
-.right-col {
-    margin-left: 50px;
-    width: 400px !important;
 }
 
 .form-group-label {
