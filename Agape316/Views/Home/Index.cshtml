@@ -29,6 +29,16 @@ else
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    div.dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
+
+</style>
+
 <div class="container-xxl bg-dark text-light py-5">
    <div class="container welcome-container">
         <div class="row align-items-center g-5">
@@ -41,7 +51,7 @@ else
                     or sign up to Bring a Dish.
                 </p>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select an Action
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
