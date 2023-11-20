@@ -9,6 +9,10 @@
     .ddl-label  {
         font-weight: bold;
     }
+
+    select {
+        width: 300px;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -17,6 +21,7 @@
             {
                 <div class="form-group my-2">
                     <label class="ddl-label">Events:</label>
+                    <br>
                     @Html.DropDownListFor(m => m.EventId, Model.Events, "Please select", new { @id = "ddlEvents", @onchange = "GetSelectedAgapeEvent(this)" })
                     <br />
                 </div>
@@ -36,6 +41,7 @@
             {
                 <div class="form-group my-2">
                     <label class="ddl-label">Event Dishes:</label>
+                    <br>
                     @Html.DropDownListFor(m => m.Id, Model.EventDishes, "Please select", new { @id = "ddlEventDishes", @onchange = "GetSelectedEventDish(this)" })
                     <br />
                 </div>
@@ -57,6 +63,7 @@
             {
                 <div class="form-group my-2">
                     <label class="ddl-label">Meal Schedules:</label>
+                    <br>
                     @Html.DropDownListFor(m => m.Id, Model.MealSchedules, "Please select", new { @id = "ddlMealSchedules", @onchange = "GetSelectedMealSchedule(this)" })
                     <br />
                 </div>
@@ -76,6 +83,7 @@
             {
                 <div class="form-group my-2">
                     <label class="ddl-label">Meal Deliveries:</label>
+                    <br>
                     @Html.DropDownListFor(m => m.Id, Model.MealDeliveries, "Please select", new { @id = "ddlMealDeliveries", @onchange = "GetSelectedMealDelivery(this)" })
                     <br />
                 </div>
