@@ -105,6 +105,9 @@ html {
     margin-top: 100px;
 }
 
+.contrast-background {
+    background-color: gainsboro;
+}
 
 .left-col {
     margin-left: 300px;
